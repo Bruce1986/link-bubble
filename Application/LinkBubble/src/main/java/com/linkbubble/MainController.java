@@ -8,6 +8,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -66,6 +67,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
+
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class MainController implements Choreographer.FrameCallback {
 
@@ -411,7 +415,8 @@ public class MainController implements Choreographer.FrameCallback {
             mWindowManagerParams.y = 16;
             mWindowManagerParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
             mWindowManagerParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
-            mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+//            mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+            mWindowManagerParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
             mWindowManagerParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
             mWindowManagerParams.format = PixelFormat.TRANSPARENT;
             mWindowManagerParams.setTitle("LinkBubble: Debug Text");
@@ -1010,7 +1015,8 @@ public class MainController implements Choreographer.FrameCallback {
                 }
             });
 
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
             Util.showThemedDialog(dialog);
             MainApplication.sShowingAppPickerDialog = true;
         }
@@ -1455,4 +1461,5 @@ public class MainController implements Choreographer.FrameCallback {
     public static void doCrash() {
         throw new RuntimeException("Forced Exception");
     }
+
 }

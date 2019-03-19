@@ -1,0 +1,206 @@
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"supportedProtocolVersions":[{"isExperimental":true,"major":1,"minor":1}],"type":"hello"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {
+  "type": "handshake",
+  "cookie": "gradle-cmake-cookie",
+  "protocolVersion": {
+    "isExperimental": true,
+    "major": 1,
+    "minor": 1
+  },
+  "sourceDirectory": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni",
+  "buildDirectory": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a",
+  "generator": "Ninja"
+}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"gradle-cmake-cookie","inReplyTo":"handshake","type":"reply"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {
+  "type": "configure",
+  "cacheArguments": [
+    "",
+    "-DANDROID_ABI\u003darm64-v8a",
+    "-DANDROID_PLATFORM\u003dandroid-16",
+    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/build/intermediates/cmake/playstore/release/obj/arm64-v8a",
+    "-DCMAKE_BUILD_TYPE\u003dRelease",
+    "-DANDROID_NDK\u003d/Users/adrianbrowning/Library/Android/sdk/ndk-bundle",
+    "-DCMAKE_SYSTEM_NAME\u003dAndroid",
+    "-DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a",
+    "-DCMAKE_SYSTEM_VERSION\u003d16",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON",
+    "-DCMAKE_ANDROID_NDK\u003d/Users/adrianbrowning/Library/Android/sdk/ndk-bundle",
+    "-DCMAKE_TOOLCHAIN_FILE\u003d/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake",
+    "-G Ninja",
+    "-DCMAKE_MAKE_PROGRAM\u003d/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja"
+  ]
+}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","progressCurrent":900,"progressMaximum":1000,"progressMessage":"Configuring","progressMinimum":0,"type":"progress"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","message":"Using CMake version: 3.10.2","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: Using CMake version: 3.10.2
+CMAKE SERVER: Using CMake version: 3.10.2
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","message":"Compiling dlib version: 19.17.99","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: Compiling dlib version: 19.17.99
+CMAKE SERVER: Compiling dlib version: 19.17.99
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","message":"Building a C++11 test project to see if your compiler supports C++11","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: Building a C++11 test project to see if your compiler supports C++11
+CMAKE SERVER: Building a C++11 test project to see if your compiler supports C++11
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","message":"C++11 activated.","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: C++11 activated.
+CMAKE SERVER: C++11 activated.
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","progressCurrent":950,"progressMaximum":1000,"progressMessage":"Configuring","progressMinimum":0,"type":"progress"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","progressCurrent":1000,"progressMaximum":1000,"progressMessage":"Configuring","progressMinimum":0,"type":"progress"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","message":"Configuring done","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: Configuring done
+CMAKE SERVER: Configuring done
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"configure","type":"reply"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"type":"compute"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"compute","progressCurrent":500,"progressMaximum":1000,"progressMessage":"Generating","progressMinimum":0,"type":"progress"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"compute","progressCurrent":1000,"progressMaximum":1000,"progressMessage":"Generating","progressMinimum":0,"type":"progress"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"compute","message":"Generating done","type":"message"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: Generating done
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"cookie":"","inReplyTo":"compute","type":"reply"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"type":"cmakeInputs"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"buildFiles":[{"isCMake":true,"isTemporary":false,"sources":["/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Initialize.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeGenericSystem.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Linux.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/UnixPaths.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCInformation.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/GNU.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-C.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXInformation.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-CXX.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/GNUInstallDirs.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindThreads.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CheckLibraryExists.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CheckSymbolExists.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CheckIncludeFile.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageHandleStandardArgs.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageMessage.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CheckFunctionExists.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPNG.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindZLIB.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/SelectLibraryConfigurations.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageHandleStandardArgs.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageMessage.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/SelectLibraryConfigurations.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageHandleStandardArgs.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageMessage.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindJPEG.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageHandleStandardArgs.cmake","/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/FindPackageMessage.cmake"]},{"isCMake":false,"isTemporary":false,"sources":["CMakeLists.txt","/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake","/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/platforms.cmake","dlib/CMakeLists.txt","dlib/cmake_utils/set_compiler_specific_options.cmake","dlib/cmake_utils/release_build_by_default","dlib/cmake_utils/use_cpp_11.cmake","dlib/cmake_utils/find_libpng.cmake","dlib/cmake_utils/check_if_neon_available.cmake","dlib/cmake_utils/find_libjpeg.cmake"]},{"isCMake":false,"isTemporary":true,"sources":["../../../.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake","../../../.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/3.10.2/CMakeCCompiler.cmake","../../../.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake"]}],"cmakeRootDirectory":"/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10","cookie":"","inReplyTo":"cmakeInputs","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni","type":"reply"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"type":"codemodel"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+
+CMAKE SERVER: 
+
+CMAKE SERVER: [== "CMake Server" ==[
+
+CMAKE SERVER: {"configurations":[{"name":"Release","projects":[{"buildDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a","name":"Project","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni","targets":[{"artifacts":["/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/build/intermediates/cmake/playstore/release/obj/arm64-v8a/libLinkBubble.so"],"buildDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a","fileGroups":[{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O2 -DNDEBUG  -fPIC  ","defines":["LinkBubble_EXPORTS"],"includePath":[{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/src/main/jni"}],"isGenerated":false,"language":"CXX","sources":["main.cpp","ABPFilterParser.cpp","cosmeticFilter.cpp","filter.cpp","BloomFilter.cpp","hashFn.cpp","HashSet.cpp","TPParser.cpp"]}],"fullName":"libLinkBubble.so","linkFlags":"-Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now","linkLibraries":"-latomic -lm","linkerLanguage":"CXX","name":"LinkBubble","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni","sysroot":"/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot","type":"SHARED_LIBRARY"},{"artifacts":["/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build/libdlib.a"],"buildDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build","fileGroups":[{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT","defines":["DLIB_JPEG_STATIC"],"includePath":[{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng"},{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib"}],"isGenerated":false,"language":"C","sources":["external/libpng/arm/arm_init.c","external/libpng/arm/filter_neon_intrinsics.c","external/libpng/png.c","external/libpng/pngerror.c","external/libpng/pngget.c","external/libpng/pngmem.c","external/libpng/pngpread.c","external/libpng/pngread.c","external/libpng/pngrio.c","external/libpng/pngrtran.c","external/libpng/pngrutil.c","external/libpng/pngset.c","external/libpng/pngtrans.c","external/libpng/pngwio.c","external/libpng/pngwrite.c","external/libpng/pngwtran.c","external/libpng/pngwutil.c","external/zlib/adler32.c","external/zlib/compress.c","external/zlib/crc32.c","external/zlib/deflate.c","external/zlib/gzclose.c","external/zlib/gzlib.c","external/zlib/gzread.c","external/zlib/gzwrite.c","external/zlib/infback.c","external/zlib/inffast.c","external/zlib/inflate.c","external/zlib/inftrees.c","external/zlib/trees.c","external/zlib/uncompr.c","external/zlib/zutil.c"]},{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O2 -DNDEBUG  -fPIC   -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -ftemplate-depth=500 -std=gnu++11","defines":["DLIB_JPEG_STATIC"],"includePath":[{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng"},{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib"}],"isGenerated":false,"language":"CXX","sources":["base64/base64_kernel_1.cpp","bigint/bigint_kernel_1.cpp","bigint/bigint_kernel_2.cpp","bit_stream/bit_stream_kernel_1.cpp","entropy_decoder/entropy_decoder_kernel_1.cpp","entropy_decoder/entropy_decoder_kernel_2.cpp","entropy_encoder/entropy_encoder_kernel_1.cpp","entropy_encoder/entropy_encoder_kernel_2.cpp","md5/md5_kernel_1.cpp","tokenizer/tokenizer_kernel_1.cpp","unicode/unicode.cpp","data_io/image_dataset_metadata.cpp","data_io/mnist.cpp","global_optimization/global_function_search.cpp","filtering/kalman_filter.cpp","test_for_odr_violations.cpp","svm/auto.cpp","sockets/sockets_kernel_1.cpp","bsp/bsp.cpp","dir_nav/dir_nav_kernel_1.cpp","dir_nav/dir_nav_kernel_2.cpp","dir_nav/dir_nav_extensions.cpp","linker/linker_kernel_1.cpp","logger/extra_logger_headers.cpp","logger/logger_kernel_1.cpp","logger/logger_config_file.cpp","misc_api/misc_api_kernel_1.cpp","misc_api/misc_api_kernel_2.cpp","sockets/sockets_extensions.cpp","sockets/sockets_kernel_2.cpp","sockstreambuf/sockstreambuf.cpp","sockstreambuf/sockstreambuf_unbuffered.cpp","server/server_kernel.cpp","server/server_iostream.cpp","server/server_http.cpp","threads/multithreaded_object_extension.cpp","threads/threaded_object_extension.cpp","threads/threads_kernel_1.cpp","threads/threads_kernel_2.cpp","threads/threads_kernel_shared.cpp","threads/thread_pool_extension.cpp","threads/async.cpp","timer/timer.cpp","stack_trace.cpp","cuda/cpu_dlib.cpp","cuda/tensor_tools.cpp","image_loader/png_loader.cpp","image_saver/save_png.cpp","external/libjpeg/jcomapi.cpp","external/libjpeg/jdapimin.cpp","external/libjpeg/jdapistd.cpp","external/libjpeg/jdatasrc.cpp","external/libjpeg/jdcoefct.cpp","external/libjpeg/jdcolor.cpp","external/libjpeg/jddctmgr.cpp","external/libjpeg/jdhuff.cpp","external/libjpeg/jdinput.cpp","external/libjpeg/jdmainct.cpp","external/libjpeg/jdmarker.cpp","external/libjpeg/jdmaster.cpp","external/libjpeg/jdmerge.cpp","external/libjpeg/jdphuff.cpp","external/libjpeg/jdpostct.cpp","external/libjpeg/jdsample.cpp","external/libjpeg/jerror.cpp","external/libjpeg/jidctflt.cpp","external/libjpeg/jidctfst.cpp","external/libjpeg/jidctint.cpp","external/libjpeg/jidctred.cpp","external/libjpeg/jmemmgr.cpp","external/libjpeg/jmemnobs.cpp","external/libjpeg/jquant1.cpp","external/libjpeg/jquant2.cpp","external/libjpeg/jutils.cpp","external/libjpeg/jcapimin.cpp","external/libjpeg/jdatadst.cpp","external/libjpeg/jcparam.cpp","external/libjpeg/jcapistd.cpp","external/libjpeg/jcmarker.cpp","external/libjpeg/jcinit.cpp","external/libjpeg/jcmaster.cpp","external/libjpeg/jcdctmgr.cpp","external/libjpeg/jccoefct.cpp","external/libjpeg/jccolor.cpp","external/libjpeg/jchuff.cpp","external/libjpeg/jcmainct.cpp","external/libjpeg/jcphuff.cpp","external/libjpeg/jcprepct.cpp","external/libjpeg/jcsample.cpp","external/libjpeg/jfdctint.cpp","external/libjpeg/jfdctflt.cpp","external/libjpeg/jfdctfst.cpp","image_loader/jpeg_loader.cpp","image_saver/save_jpeg.cpp"]}],"fullName":"libdlib.a","linkerLanguage":"CXX","name":"dlib","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib","sysroot":"/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot","type":"STATIC_LIBRARY"}]},{"buildDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build","name":"dlib","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib","targets":[{"artifacts":["/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build/libdlib.a"],"buildDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build","fileGroups":[{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O2 -DNDEBUG  -fPIC   -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT","defines":["DLIB_JPEG_STATIC"],"includePath":[{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng"},{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib"}],"isGenerated":false,"language":"C","sources":["external/libpng/arm/arm_init.c","external/libpng/arm/filter_neon_intrinsics.c","external/libpng/png.c","external/libpng/pngerror.c","external/libpng/pngget.c","external/libpng/pngmem.c","external/libpng/pngpread.c","external/libpng/pngread.c","external/libpng/pngrio.c","external/libpng/pngrtran.c","external/libpng/pngrutil.c","external/libpng/pngset.c","external/libpng/pngtrans.c","external/libpng/pngwio.c","external/libpng/pngwrite.c","external/libpng/pngwtran.c","external/libpng/pngwutil.c","external/zlib/adler32.c","external/zlib/compress.c","external/zlib/crc32.c","external/zlib/deflate.c","external/zlib/gzclose.c","external/zlib/gzlib.c","external/zlib/gzread.c","external/zlib/gzwrite.c","external/zlib/infback.c","external/zlib/inffast.c","external/zlib/inflate.c","external/zlib/inftrees.c","external/zlib/trees.c","external/zlib/uncompr.c","external/zlib/zutil.c"]},{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O2 -DNDEBUG  -fPIC   -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -ftemplate-depth=500 -std=gnu++11","defines":["DLIB_JPEG_STATIC"],"includePath":[{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng"},{"path":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib"}],"isGenerated":false,"language":"CXX","sources":["base64/base64_kernel_1.cpp","bigint/bigint_kernel_1.cpp","bigint/bigint_kernel_2.cpp","bit_stream/bit_stream_kernel_1.cpp","entropy_decoder/entropy_decoder_kernel_1.cpp","entropy_decoder/entropy_decoder_kernel_2.cpp","entropy_encoder/entropy_encoder_kernel_1.cpp","entropy_encoder/entropy_encoder_kernel_2.cpp","md5/md5_kernel_1.cpp","tokenizer/tokenizer_kernel_1.cpp","unicode/unicode.cpp","data_io/image_dataset_metadata.cpp","data_io/mnist.cpp","global_optimization/global_function_search.cpp","filtering/kalman_filter.cpp","test_for_odr_violations.cpp","svm/auto.cpp","sockets/sockets_kernel_1.cpp","bsp/bsp.cpp","dir_nav/dir_nav_kernel_1.cpp","dir_nav/dir_nav_kernel_2.cpp","dir_nav/dir_nav_extensions.cpp","linker/linker_kernel_1.cpp","logger/extra_logger_headers.cpp","logger/logger_kernel_1.cpp","logger/logger_config_file.cpp","misc_api/misc_api_kernel_1.cpp","misc_api/misc_api_kernel_2.cpp","sockets/sockets_extensions.cpp","sockets/sockets_kernel_2.cpp","sockstreambuf/sockstreambuf.cpp","sockstreambuf/sockstreambuf_unbuffered.cpp","server/server_kernel.cpp","server/server_iostream.cpp","server/server_http.cpp","threads/multithreaded_object_extension.cpp","threads/threaded_object_extension.cpp","threads/threads_kernel_1.cpp","threads/threads_kernel_2.cpp","threads/threads_kernel_shared.cpp","threads/thread_pool_extension.cpp","threads/async.cpp","timer/timer.cpp","stack_trace.cpp","cuda/cpu_dlib.cpp","cuda/tensor_tools.cpp","image_loader/png_loader.cpp","image_saver/save_png.cpp","external/libjpeg/jcomapi.cpp","external/libjpeg/jdapimin.cpp","external/libjpeg/jdapistd.cpp","external/libjpeg/jdatasrc.cpp","external/libjpeg/jdcoefct.cpp","external/libjpeg/jdcolor.cpp","external/libjpeg/jddctmgr.cpp","external/libjpeg/jdhuff.cpp","external/libjpeg/jdinput.cpp","external/libjpeg/jdmainct.cpp","external/libjpeg/jdmarker.cpp","external/libjpeg/jdmaster.cpp","external/libjpeg/jdmerge.cpp","external/libjpeg/jdphuff.cpp","external/libjpeg/jdpostct.cpp","external/libjpeg/jdsample.cpp","external/libjpeg/jerror.cpp","external/libjpeg/jidctflt.cpp","external/libjpeg/jidctfst.cpp","external/libjpeg/jidctint.cpp","external/libjpeg/jidctred.cpp","external/libjpeg/jmemmgr.cpp","external/libjpeg/jmemnobs.cpp","external/libjpeg/jquant1.cpp","external/libjpeg/jquant2.cpp","external/libjpeg/jutils.cpp","external/libjpeg/jcapimin.cpp","external/libjpeg/jdatadst.cpp","external/libjpeg/jcparam.cpp","external/libjpeg/jcapistd.cpp","external/libjpeg/jcmarker.cpp","external/libjpeg/jcinit.cpp","external/libjpeg/jcmaster.cpp","external/libjpeg/jcdctmgr.cpp","external/libjpeg/jccoefct.cpp","external/libjpeg/jccolor.cpp","external/libjpeg/jchuff.cpp","external/libjpeg/jcmainct.cpp","external/libjpeg/jcphuff.cpp","external/libjpeg/jcprepct.cpp","external/libjpeg/jcsample.cpp","external/libjpeg/jfdctint.cpp","external/libjpeg/jfdctflt.cpp","external/libjpeg/jfdctfst.cpp","image_loader/jpeg_loader.cpp","image_saver/save_jpeg.cpp"]}],"fullName":"libdlib.a","linkerLanguage":"CXX","name":"dlib","sourceDirectory":"/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib","sysroot":"/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot","type":"STATIC_LIBRARY"}]}]}],"cookie":"","inReplyTo":"codemodel","type":"reply"}
+
+CMAKE SERVER: ]== "CMake Server" ==]
+

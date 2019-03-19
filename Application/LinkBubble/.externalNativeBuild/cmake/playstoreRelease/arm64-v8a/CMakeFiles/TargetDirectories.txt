@@ -1,0 +1,6 @@
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/CMakeFiles/LinkBubble.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/arm64-v8a/dlib_build/CMakeFiles/dlib.dir

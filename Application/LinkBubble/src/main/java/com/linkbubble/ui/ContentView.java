@@ -1044,7 +1044,8 @@ public class ContentView extends FrameLayout {
                                 }
                             });
 
-                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
                             dialog.show();
                             MainApplication.sShowingAppPickerDialog = true;
                             mHandledAppPickerForCurrentUrl = true;
@@ -1968,7 +1969,8 @@ public class ContentView extends FrameLayout {
 
         mLongPressAlertDialog = new AlertDialog.Builder(getContext()).create();
         mLongPressAlertDialog.setView(listView);
-        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        mLongPressAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
         mLongPressAlertDialog.show();
     }
 

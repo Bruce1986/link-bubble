@@ -1,0 +1,3 @@
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/cpp11_test_build/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/cpp11_test_build/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/cpp11_test_build/CMakeFiles/cpp11_test.dir

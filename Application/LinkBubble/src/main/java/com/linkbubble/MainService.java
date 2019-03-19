@@ -11,10 +11,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.PixelFormat;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebIconDatabase;
 
 import com.linkbubble.ui.NotificationCloseAllActivity;
@@ -28,6 +32,8 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
 import java.util.Vector;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class MainService extends Service {
 
@@ -156,8 +162,13 @@ public class MainService extends Service {
         filter.addAction(Intent.ACTION_USER_PRESENT);
         registerReceiver(mScreenReceiver, filter);
 
-        MainApplication.registerForBus(this, this);
     }
+
+    /** code to post/handler request for permission */
+    public final static int REQUEST_CODE = 65535;/*(see edit II)*/
+
+
+
 
     @Override
     public void onDestroy() {
@@ -279,4 +290,28 @@ public class MainService extends Service {
             MainController.get().updateScreenState(intent.getAction());
         }
     };
+
+    public static boolean canDrawOverlays(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true;
+        else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            return android.provider.Settings.canDrawOverlays(context);
+        } else {
+            if (android.provider.Settings.canDrawOverlays(context)) return true;
+            try {
+                WindowManager mgr = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+                if (mgr == null) return false; //getSystemService might return null
+                View viewToAdd = new View(context);
+                WindowManager.LayoutParams params = new WindowManager.LayoutParams(0, 0, android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ?
+                        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, PixelFormat.TRANSPARENT);
+                viewToAdd.setLayoutParams(params);
+                mgr.addView(viewToAdd, params);
+                mgr.removeView(viewToAdd);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
 }

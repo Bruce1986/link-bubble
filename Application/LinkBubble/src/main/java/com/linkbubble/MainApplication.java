@@ -4,6 +4,7 @@
 
 package com.linkbubble;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.app.Notification;
@@ -57,6 +58,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 
 public class MainApplication extends Application {
@@ -660,6 +663,7 @@ public class MainApplication extends Application {
             return null;
         }
     }
+
 /*
     private void checkStrings() {
         String blerg = "blerg";

@@ -1,0 +1,3 @@
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeFiles/LinkBubble.dir

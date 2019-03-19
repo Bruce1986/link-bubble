@@ -1,0 +1,6 @@
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/CMakeFiles/LinkBubble.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/CMakeFiles/rebuild_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/CMakeFiles/edit_cache.dir
+/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreDebug/x86_64/dlib_build/CMakeFiles/dlib.dir

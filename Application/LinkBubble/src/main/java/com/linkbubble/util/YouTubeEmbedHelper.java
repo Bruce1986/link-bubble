@@ -203,7 +203,8 @@ public class YouTubeEmbedHelper {
             builder.setIcon(0);
 
             AlertDialog alertDialog = builder.create();
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
 
             if (mCurrentDownloadTask != null) {
                 synchronized (mCurrentDownloadTask) {
@@ -233,7 +234,8 @@ public class YouTubeEmbedHelper {
             builder.setTitle(R.string.title_youtube_embed_to_load);
 
             final AlertDialog alertDialog = builder.create();
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -259,7 +261,8 @@ public class YouTubeEmbedHelper {
                 }
 
             });
-            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
             return alertDialog;
         }
     }

@@ -1,0 +1,31 @@
+{
+  "buildFiles": [
+    "/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake",
+    "/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/platforms.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/use_cpp_11.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/CMakeLists.txt",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/set_compiler_specific_options.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libpng.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/check_if_neon_available.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libjpeg.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeLists.txt",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/release_build_by_default"
+  ],
+  "cleanCommands": [
+    "/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake --build /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "LinkBubble-Release-armeabi-v7a": {
+      "artifactName": "LinkBubble",
+      "buildCommand": "/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake --build /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a --target LinkBubble",
+      "abi": "armeabi-v7a",
+      "output": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/build/intermediates/cmake/playstore/release/obj/armeabi-v7a/libLinkBubble.so"
+    },
+    "dlib-Release-armeabi-v7a": {
+      "artifactName": "dlib",
+      "buildCommand": "/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake --build /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a --target dlib",
+      "abi": "armeabi-v7a",
+      "output": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a/dlib_build/libdlib.a"
+    }
+  }
+}
