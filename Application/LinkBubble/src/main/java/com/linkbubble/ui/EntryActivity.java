@@ -122,12 +122,12 @@ public class EntryActivity extends Activity {
                 MainApplication.checkRestoreCurrentTabs(this);
 
                 boolean showedWelcomeUrl = false;
-                if (Settings.get().getWelcomeMessageDisplayed() == false) {
-                    if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
-                        MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
-                        showedWelcomeUrl = true;
-                    }
-                }
+//                if (Settings.get().getWelcomeMessageDisplayed() == false) {
+//                    if (!(MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL))) {
+//                        MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
+//                        showedWelcomeUrl = true;
+//                    }
+//                }
 
                 MainApplication.openLink(this, url, true, openedFromAppName);
             } else {

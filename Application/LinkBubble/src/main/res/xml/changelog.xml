@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.0.1">
+        <change>Hide Welcome message</change>
+    </release>
+    <release version="2.0.0">
+        <change>Updated to latest Android Target</change>
+    </release>
     <release version="1.9.58">
         <change>NEW: Renamed to Link Bubble.</change>
         <change>NEW: Added a link to the new Brave browser to the fallback list.</change>
