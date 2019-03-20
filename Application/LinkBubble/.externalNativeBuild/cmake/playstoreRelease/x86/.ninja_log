@@ -1,0 +1,10 @@
+# ninja log v5
+4	128	1553088523	CMakeFiles/LinkBubble.dir/hashFn.cpp.o	3f99806b78d885a1
+4	201	1553088523	CMakeFiles/LinkBubble.dir/HashSet.cpp.o	357ace6f53d96ed4
+3	372	1553088523	CMakeFiles/LinkBubble.dir/BloomFilter.cpp.o	fe80aa8dab799286
+1	586	1553088523	CMakeFiles/LinkBubble.dir/main.cpp.o	8de689906e92c633
+2	736	1553088524	CMakeFiles/LinkBubble.dir/filter.cpp.o	645c060f0b9d7a19
+4	815	1553088524	CMakeFiles/LinkBubble.dir/TPParser.cpp.o	5f9dbef7a3be63a6
+1	1112	1553088524	CMakeFiles/LinkBubble.dir/cosmeticFilter.cpp.o	47db2c1e4cfd6df0
+1	1165	1553088524	CMakeFiles/LinkBubble.dir/ABPFilterParser.cpp.o	b4116eb8c16354d6
+1165	1273	1553088524	/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/build/intermediates/cmake/playstore/release/obj/x86/libLinkBubble.so	b00f987401b2364c

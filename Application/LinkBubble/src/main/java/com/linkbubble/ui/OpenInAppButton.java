@@ -265,7 +265,7 @@ public class OpenInAppButton extends ContentViewButton implements View.OnClickLi
                                 }
                             });
 //                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
                     Util.showThemedDialog(dialog);
                 }
             }

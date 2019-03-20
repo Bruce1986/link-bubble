@@ -83,7 +83,7 @@ public class CanvasView extends FrameLayout {
             lp.height = statusBarHeight;
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
 //            lp.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-            lp.type = WindowManager.LayoutParams.TYPE_TOAST;
+            lp.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
             lp.flags = WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
             lp.format = PixelFormat.TRANSPARENT;
 

@@ -1016,7 +1016,7 @@ public class MainController implements Choreographer.FrameCallback {
             });
 
 //            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             Util.showThemedDialog(dialog);
             MainApplication.sShowingAppPickerDialog = true;
         }

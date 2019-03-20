@@ -60,44 +60,44 @@ public class HomeActivity extends AppCompatActivity {
         mTimeSavedTotalTextView = (CondensedTextView) mStatsFlipView.getFlippedView().findViewById(R.id.time_total);
         mTimeSavedTotalTextView.setText("");
 
-        if (!Settings.get().getTermsAccepted()) {
-            final FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
-
-            final View acceptTermsView = getLayoutInflater().inflate(R.layout.view_accept_terms, null);
-            TextView acceptTermsTextView = (TextView)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_text);
-            acceptTermsTextView.setText(Html.fromHtml(getString(R.string.accept_terms_and_privacy)));
-            acceptTermsTextView.setMovementMethod(LinkMovementMethod.getInstance());
-            Button acceptTermsButton = (Button)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_button);
-            acceptTermsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Settings.get().setTermsAccepted(true);
-                    if (rootView != null) {
-                        rootView.removeView(acceptTermsView);
-                    }
-                }
-            });
-            acceptTermsView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // do nothing, but prevent clicks from flowing to item underneath
-                }
-            });
-
-            if (rootView != null) {
-                rootView.addView(acceptTermsView);
-            }
-        }
-
-        if (!Settings.get().getWelcomeMessageDisplayed()) {
-            boolean showWelcomeUrl = true;
-            if (MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL)) {
-                showWelcomeUrl = false;
-            }
-            if (showWelcomeUrl) {
-                MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
-            }
-        }
+//        if (!Settings.get().getTermsAccepted()) {
+//            final FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
+//
+//            final View acceptTermsView = getLayoutInflater().inflate(R.layout.view_accept_terms, null);
+//            TextView acceptTermsTextView = (TextView)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_text);
+//            acceptTermsTextView.setText(Html.fromHtml(getString(R.string.accept_terms_and_privacy)));
+//            acceptTermsTextView.setMovementMethod(LinkMovementMethod.getInstance());
+//            Button acceptTermsButton = (Button)acceptTermsView.findViewById(R.id.accept_terms_and_privacy_button);
+//            acceptTermsButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Settings.get().setTermsAccepted(true);
+//                    if (rootView != null) {
+//                        rootView.removeView(acceptTermsView);
+//                    }
+//                }
+//            });
+//            acceptTermsView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // do nothing, but prevent clicks from flowing to item underneath
+//                }
+//            });
+//
+//            if (rootView != null) {
+//                rootView.addView(acceptTermsView);
+//            }
+//        }
+//
+//        if (!Settings.get().getWelcomeMessageDisplayed()) {
+//            boolean showWelcomeUrl = true;
+//            if (MainController.get() != null && MainController.get().isUrlActive(Constant.WELCOME_MESSAGE_URL)) {
+//                showWelcomeUrl = false;
+//            }
+//            if (showWelcomeUrl) {
+//                MainApplication.openLink(this, Constant.WELCOME_MESSAGE_URL, null);
+//            }
+//        }
 
         if (Settings.get().debugAutoLoadUrl()) {
             MainApplication.openLink(this, "file:///android_asset/test.html", null);

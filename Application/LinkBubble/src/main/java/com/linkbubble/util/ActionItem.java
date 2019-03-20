@@ -397,7 +397,7 @@ public class ActionItem {
 
         final AlertDialog alertDialog = builder.create();
 //        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
 
         ArrayList<ActionItem> actionItems = getActionItems(context, false, true, showSharePicker);
         ActionItemAdapter adapter = new ActionItemAdapter(context,

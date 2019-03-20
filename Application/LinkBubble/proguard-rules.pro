@@ -13,6 +13,8 @@
 -keepattributes *Annotation*
 -dontwarn com.squareup.okhttp.**
 -dontwarn com.facebook.**
+-dontwarn org.apache.commons.**
+-dontwarn org.apache.http.**
 -dontwarn rx.**
 
 # -printusage unused.txt
@@ -21,6 +23,7 @@
 
 -keepattributes SourceFile,LineNumberTable
 
+#-keep public class * extends org.apache.commons.**
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service

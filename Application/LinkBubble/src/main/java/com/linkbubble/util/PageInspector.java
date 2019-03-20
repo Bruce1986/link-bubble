@@ -281,7 +281,7 @@ public class PageInspector {
             });
             dialog = builder.create();
 //            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             dialog.show();
         }
 

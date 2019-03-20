@@ -815,7 +815,7 @@ class WebViewRenderer extends WebRenderer {
             mJsAlertDialog = new AlertDialog.Builder(mContext).create();
             mJsAlertDialog.setMessage(message);
 //            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            mJsAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             mJsAlertDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(R.string.action_ok),
                     new DialogInterface.OnClickListener() {
 
@@ -847,7 +847,7 @@ class WebViewRenderer extends WebRenderer {
             mJsConfirmDialog.setTitle(R.string.confirm_title);
             mJsConfirmDialog.setMessage(message);
 //            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            mJsConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             mJsConfirmDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -880,7 +880,7 @@ class WebViewRenderer extends WebRenderer {
             mJsPromptDialog = new AlertDialog.Builder(mContext).create();
             mJsPromptDialog.setView(v);
 //            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            mJsPromptDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             mJsPromptDialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getResources().getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
