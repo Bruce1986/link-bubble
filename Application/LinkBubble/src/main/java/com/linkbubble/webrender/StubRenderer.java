@@ -6,6 +6,7 @@ package com.linkbubble.webrender;
 
 import android.content.Context;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.linkbubble.util.Util;
 import com.linkbubble.util.YouTubeEmbedHelper;
@@ -79,6 +80,9 @@ class StubRenderer extends WebRenderer {
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return null;
     }
+
+    @Override
+    public WebView getWebView() {return null;}
 
     @Override
     public String getUserAgentString(Context context) {

@@ -16,14 +16,14 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class WhiteListCollector {
+public class BlackListCollector {
 
-    public WhiteListCollector(Context context) {
+    public BlackListCollector(Context context) {
         mContext = context;
-        mWhiteList = new HashSet<String>();
+        mBlackList = new HashSet<String>();
         mLock = new ReentrantReadWriteLock();
         try {
-            File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.whitelist_localfilename));
+            File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.blacklist_localfilename));
 
             byte[] buffer = null;
             if (dataPath.exists()) {
@@ -36,7 +36,7 @@ public class WhiteListCollector {
                         continue;
                     }
 
-                    mWhiteList.add(array[i]);
+                    mBlackList.add(array[i]);
                 }
             }
         }
@@ -45,14 +45,14 @@ public class WhiteListCollector {
         }
     }
 
-    public boolean isInWhiteList(String host) {
+    public boolean isInBlackList(String host) {
         if (null != host && host.startsWith("www.")) {
             host = host.substring("www.".length());
         }
         try {
             mLock.readLock().lock();
 
-            if (mWhiteList.contains(host)) {
+            if (mBlackList.contains(host)) {
                 return true;
             }
         }
@@ -63,47 +63,47 @@ public class WhiteListCollector {
         return false;
     }
 
-    public void addHostToWhiteList(String host) {
+    public void addHostToBlackList(String host) {
         if (null != host && host.startsWith("www.")) {
             host = host.substring("www.".length());
         }
-        File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.whitelist_localfilename));
+        File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.blacklist_localfilename));
         try {
             mLock.writeLock().lock();
-            mWhiteList.add(host);
+            mBlackList.add(host);
 
-            saveWhiteList(dataPath.getAbsolutePath());
+            saveBlackList(dataPath.getAbsolutePath());
         }
         finally {
             mLock.writeLock().unlock();
         }
     }
 
-    public void removeHostFromWhiteList(String host) {
+    public void removeHostFromBlackList(String host) {
         if (null != host && host.startsWith("www.")) {
             host = host.substring("www.".length());
         }
-        File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.whitelist_localfilename));
+        File dataPath = new File(mContext.getApplicationInfo().dataDir, mContext.getString(R.string.blacklist_localfilename));
         try {
             mLock.writeLock().lock();
-            mWhiteList.remove(host);
+            mBlackList.remove(host);
 
-            saveWhiteList(dataPath.getAbsolutePath());
+            saveBlackList(dataPath.getAbsolutePath());
         }
         finally {
             mLock.writeLock().unlock();
         }
     }
 
-    private void saveWhiteList(String dataPath) {
+    private void saveBlackList(String dataPath) {
         try {
             FileOutputStream outputStream = new FileOutputStream(dataPath);
             boolean firstIteration = true;
-            for (String whiteListHost : mWhiteList) {
+            for (String blackListHost : mBlackList) {
                 if (!firstIteration) {
                     outputStream.write(",".getBytes(), 0, ",".length());
                 }
-                outputStream.write(whiteListHost.getBytes(), 0, whiteListHost.length());
+                outputStream.write(blackListHost.getBytes(), 0, blackListHost.length());
                 firstIteration = false;
             }
             outputStream.close();
@@ -116,7 +116,7 @@ public class WhiteListCollector {
         }
     }
 
-    private HashSet<String> mWhiteList;
+    private HashSet<String> mBlackList;
     private ReentrantReadWriteLock mLock;
     Context mContext;
 }

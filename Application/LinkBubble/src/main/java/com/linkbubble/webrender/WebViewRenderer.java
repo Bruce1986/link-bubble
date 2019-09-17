@@ -133,6 +133,8 @@ class WebViewRenderer extends WebRenderer {
         webSettings.setSupportMultipleWindows(true);
         webSettings.setGeolocationDatabasePath(Constant.WEBVIEW_DATABASE_LOCATION);
         webSettings.setSavePassword(false);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setLoadsImagesAutomatically(true);
 
         String userAgentString = Settings.get().getUserAgentString();
         if (userAgentString != null) {
@@ -331,6 +333,11 @@ class WebViewRenderer extends WebRenderer {
     @Override
     public YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper() {
         return mPageInspector.getYouTubeEmbedHelper();
+    }
+
+    @Override
+    public WebView getWebView() {
+        return mWebView;
     }
 
     PageInspector.OnItemFoundListener mOnPageInspectorItemFoundListener = new PageInspector.OnItemFoundListener() {

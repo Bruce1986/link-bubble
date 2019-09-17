@@ -4,10 +4,8 @@
 
 package com.linkbubble;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
@@ -25,14 +23,13 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
-import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
-import com.linkbubble.adblock.WhiteListCollector;
+import com.linkbubble.adblock.BlackListCollector;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
@@ -59,8 +56,6 @@ import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
-
 
 public class MainApplication extends Application {
 
@@ -76,7 +71,7 @@ public class MainApplication extends Application {
     private ABPFilterParser mABPParser = null;
     private TPFilterParser mTPParser = null;
     private AdInserter mADInserter = null;
-    private WhiteListCollector mWhiteListCollector = null;
+    private BlackListCollector mBlackListCollector = null;
     public boolean mAdInserterEnabled = false;
 
     public IconCache mIconCache;
@@ -121,7 +116,7 @@ public class MainApplication extends Application {
             mAdInserterEnabled = true;
             new DownloadAdInsertionDataAsyncTask().execute();
         }
-        new InitWhiteListCollectorAsyncTask().execute();
+        new InitBlackListCollectorAsyncTask().execute();
 
 
         Settings settings = Settings.get();
@@ -162,10 +157,10 @@ public class MainApplication extends Application {
         notifyMgr.notify(NotificationNewBraveBrowserActivity.NOTIFICATION_ID, builder.build());
     }
 
-    class InitWhiteListCollectorAsyncTask extends AsyncTask<Void,Void,Long> {
+    class InitBlackListCollectorAsyncTask extends AsyncTask<Void,Void,Long> {
 
         protected Long doInBackground(Void... params) {
-            initWhiteListCollector();
+            initBlackListCollector();
 
             return null;
         }
@@ -183,14 +178,14 @@ public class MainApplication extends Application {
 
     public HttpsEverywhere getHttpsEverywhere() { return mHttpsEverywhere; }
 
-    public void initWhiteListCollector() {
-        if (mWhiteListCollector == null) {
-            mWhiteListCollector = new WhiteListCollector(this);
+    public void initBlackListCollector() {
+        if (mBlackListCollector == null) {
+            mBlackListCollector = new BlackListCollector(this);
         }
     }
 
-    public WhiteListCollector getWhiteListCollector() {
-        return mWhiteListCollector;
+    public BlackListCollector getBlackListCollector() {
+        return mBlackListCollector;
     }
 
     public void createTrackingProtectionList() {

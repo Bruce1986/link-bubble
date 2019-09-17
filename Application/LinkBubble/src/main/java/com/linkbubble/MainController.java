@@ -39,6 +39,9 @@ import android.view.animation.TranslateAnimation;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
+import android.webkit.WebStorage;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -282,6 +285,7 @@ public class MainController implements Choreographer.FrameCallback {
             if (cookieManager != null && cookieManager.hasCookies()) {
                 cookieManager.removeAllCookie();
             }
+            WebStorage.getInstance().deleteAllData();
         }
 
         if (Constant.PROFILE_FPS) {

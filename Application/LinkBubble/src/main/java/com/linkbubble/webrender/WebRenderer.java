@@ -106,6 +106,8 @@ public abstract class WebRenderer {
 
     public abstract YouTubeEmbedHelper getPageInspectorYouTubeEmbedHelper();
 
+    public abstract WebView getWebView();
+
     public abstract String getUserAgentString(Context context);
 
     public abstract void setUserAgentString(String userAgentString);

@@ -4,17 +4,22 @@
 
 package com.linkbubble;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
@@ -107,12 +112,17 @@ public class MainService extends Service {
 
     @Override
     public void onCreate() {
-
         mRestoreComplete = false;
 
         setTheme(Settings.get().getDarkThemeEnabled() ? R.style.MainServiceThemeDark : R.style.MainServiceThemeLight);
 
         super.onCreate();
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//            startMyOwnForeground();
+//        else
+//            startForeground(1, new Notification());
+
         Fabric.with(this, new Crashlytics());
         CrashTracking.log("MainService.onCreate()");
 
@@ -164,6 +174,54 @@ public class MainService extends Service {
 
     }
 
+//    public Notification getNotification(PendingIntent hidePendingIntent) {
+//        String channel;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//            channel = createChannel();
+//        else {
+//            channel = "";
+//        }
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channel)
+//                .setSmallIcon(R.drawable.ic_stat)
+//                .setContentTitle(getString(R.string.app_name));
+//        Notification notification = mBuilder
+//                .setSmallIcon(R.drawable.ic_stat)
+//                .setPriority(Notification.PRIORITY_MIN)
+//                .setContentTitle(getString(R.string.app_name))
+//                .setContentText(getString(R.string.notification_default_summary))
+//                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
+//                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+//                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+//                .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
+//                .setGroupSummary(true)
+//                .setLocalOnly(true)
+//                .setContentIntent(hidePendingIntent)
+//                .build();
+//
+//
+//        return notification;
+//    }
+
+    @NonNull
+    @TargetApi(26)
+    private synchronized String createChannel() {
+        NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String name = "snap map fake location ";
+        int importance = NotificationManager.IMPORTANCE_LOW;
+
+        NotificationChannel mChannel = new NotificationChannel("snap map channel", name, importance);
+
+        mChannel.enableLights(true);
+        mChannel.setLightColor(Color.BLUE);
+        if (mNotificationManager != null) {
+            mNotificationManager.createNotificationChannel(mChannel);
+        } else {
+            stopSelf();
+        }
+        return "snap map channel";
+    }
+
     /** code to post/handler request for permission */
     public final static int REQUEST_CODE = 65535;/*(see edit II)*/
 
@@ -196,6 +254,33 @@ public class MainService extends Service {
         hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent hidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+
+        String channel;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            channel = createChannel();
+        else {
+            channel = "";
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channel)
+                .setSmallIcon(R.drawable.ic_stat)
+                .setContentTitle(getString(R.string.app_name));
+        Notification notification = mBuilder
+                .setSmallIcon(R.drawable.ic_stat)
+                .setPriority(Notification.PRIORITY_MIN)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText(getString(R.string.notification_default_summary))
+                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
+                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
+                .setGroupSummary(true)
+                .setLocalOnly(true)
+                .setContentIntent(hidePendingIntent)
+                .build();
+
+
+
+        /*
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
@@ -208,12 +293,13 @@ public class MainService extends Service {
                 .setGroupSummary(true)
                 .setLocalOnly(true)
                 .setContentIntent(hidePendingIntent);
+                */
 
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        startForeground(NotificationHideActivity.NOTIFICATION_ID, notificationBuilder.build());
+        startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
     }
 
     private void showUnhideHiddenNotification() {

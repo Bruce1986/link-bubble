@@ -387,6 +387,6 @@ pessoas geralmente pensam como obrigação, e ficam bravas se/quando atrasa por 
     <string name="https_everywhere_targets_url">https://s3.amazonaws.com/https-everywhere-data/5.1.2/httpse-targets.json</string>
     <string name="https_everywhere_rulesets_localfilename">rulesets.sqlite</string>
     <string name="https_everywhere_targets_localfilename">httpse-targets.json</string>
-    <string name="whitelist_localfilename">whitelist.dat</string>
+    <string name="blacklist_localfilename">whitelist.dat</string>
 
 </resources>

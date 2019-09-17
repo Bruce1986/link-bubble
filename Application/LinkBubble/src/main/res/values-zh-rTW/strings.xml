@@ -353,6 +353,6 @@
     
     
     
-    <string name="whitelist_localfilename">whitelist.dat</string>
+    <string name="blacklist_localfilename">whitelist.dat</string>
 
 </resources>

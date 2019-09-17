@@ -44,6 +44,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.ValueCallback;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,7 +68,7 @@ import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
 import com.linkbubble.adblock.TPFilterParser;
-import com.linkbubble.adblock.WhiteListCollector;
+import com.linkbubble.adblock.BlackListCollector;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.articlerender.ArticleContent;
 import com.linkbubble.articlerender.ArticleRenderer;
@@ -75,7 +78,6 @@ import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.DownloadImage;
 import com.linkbubble.util.Util;
-import com.linkbubble.webrender.CustomWebView;
 import com.linkbubble.webrender.WebRenderer;
 import com.linkbubble.adblock.ABPFilterParser;
 
@@ -84,7 +86,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -164,7 +165,7 @@ public class ContentView extends FrameLayout {
     private boolean mApplyAutoSuggestionToUrlString = true;
     private boolean mSetTheRealUrlString = true;
     private boolean mFirstTimeUrlTyped = true;
-    private boolean mHostInWhiteList = false;
+    private boolean mHostInBlackList = false;
 
     ConcurrentHashMap<String, Integer> mHostRedirectCounter;
 
@@ -332,12 +333,12 @@ public class ContentView extends FrameLayout {
         return d;
     }
 
-    private void HostInWhiteListCheck(String url) {
+    private void HostInBlackListCheck(String url) {
         MainApplication app = (MainApplication) mContext.getApplicationContext();
 
-        WhiteListCollector whiteListCollector = app.getWhiteListCollector();
-        if (null == whiteListCollector) {
-            mHostInWhiteList = false;
+        BlackListCollector blackListCollector = app.getBlackListCollector();
+        if (null == blackListCollector) {
+            mHostInBlackList = false;
 
             return;
         }
@@ -349,15 +350,15 @@ public class ContentView extends FrameLayout {
         catch (MalformedURLException exc) {
         }
 
-        mHostInWhiteList = whiteListCollector.isInWhiteList(host);
+        mHostInBlackList = blackListCollector.isInBlackList(host);
     }
 
-    private void AddRemoveHostFromWhiteList(String url, boolean add) {
+    private void AddRemoveHostFromBlackList(String url, boolean add) {
         MainApplication app = (MainApplication) mContext.getApplicationContext();
 
-        WhiteListCollector whiteListCollector = app.getWhiteListCollector();
-        if (null == whiteListCollector) {
-            mHostInWhiteList = false;
+        BlackListCollector blackListCollector = app.getBlackListCollector();
+        if (null == blackListCollector) {
+            mHostInBlackList = false;
 
             return;
         }
@@ -370,10 +371,10 @@ public class ContentView extends FrameLayout {
         }
 
         if (add) {
-            whiteListCollector.addHostToWhiteList(host);
+            blackListCollector.addHostToBlackList(host);
         }
         else {
-            whiteListCollector.removeHostFromWhiteList(host);
+            blackListCollector.removeHostFromBlackList(host);
         }
     }
 
@@ -437,7 +438,7 @@ public class ContentView extends FrameLayout {
         mTintableDrawables.clear();
 
 
-        HostInWhiteListCheck(urlAsString);
+        HostInBlackListCheck(urlAsString);
         View webRendererPlaceholder = findViewById(R.id.web_renderer_placeholder);
         mWebRenderer = WebRenderer.create(WebRenderer.Type.WebView, getContext(), mWebRendererController, webRendererPlaceholder, TAG);
         mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
@@ -648,7 +649,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public String getHTTPSUrl(String originalUrl) {
-            if (mHostInWhiteList || !Settings.get().isHttpsEverywhereEnabled()) {
+            if (!mHostInBlackList || !Settings.get().isHttpsEverywhereEnabled()) {
                 return originalUrl;
             }
             MainApplication app = (MainApplication) mContext.getApplicationContext();
@@ -691,7 +692,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
-            if (mHostInWhiteList) {
+            if (!mHostInBlackList) {
                 return false;
             }
 
@@ -713,8 +714,8 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
-            if (mHostInWhiteList) {
-                return false;
+            if (mHostInBlackList) {
+                return true;
             }
 
             MainApplication app = (MainApplication) mContext.getApplicationContext();
@@ -736,13 +737,9 @@ public class ContentView extends FrameLayout {
                     }
                 }
 
-                // Temporary whitelist until we have an UI to unblock hosts
-                List<String> whitelistHosts = Arrays.asList("connect.facebook.net", "connect.facebook.com", "staticxx.facebook.com", "www.facebook.com", "scontent.xx.fbcdn.net", "pbs.twimg.com", "scontent-sjc2-1.xx.fbcdn.net", "platform.twitter.com", "syndication.twitter.com");
-                if (whitelistHosts.contains(host)) {
-                    return false;
-                }
-
-                return true;
+                // Temporary blackList until we have an UI to unblock hosts
+                List<String> blackListHosts = new ArrayList<>();//Arrays.asList("connect.facebook.net", "connect.facebook.com", "staticxx.facebook.com", "www.facebook.com", "scontent.xx.fbcdn.net", "pbs.twimg.com", "scontent-sjc2-1.xx.fbcdn.net", "platform.twitter.com", "syndication.twitter.com");
+                return blackListHosts.contains(host);
             }
 
             return false;
@@ -750,7 +747,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public String adInsertionList(String baseHost) {
-            if (mHostInWhiteList) {
+            if (mHostInBlackList) {
                 return "";
             }
 
@@ -1667,9 +1664,10 @@ public class ContentView extends FrameLayout {
             final Context context = getContext();
             mOverflowPopupMenu = new PopupMenu(context, mOverflowButton);
             Resources resources = context.getResources();
-            final MenuItem siteProtection = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_site_protection, Menu.NONE, resources.getString(R.string.action_site_protection))
+            final MenuItem siteProtection = mOverflowPopupMenu.getMenu()
+                    .add(Menu.NONE, R.id.item_site_protection, Menu.NONE, resources.getString(R.string.action_site_protection))
                     .setCheckable(true)
-                    .setChecked(!mHostInWhiteList);
+                    .setChecked(mHostInBlackList);
             if (mCurrentProgress != 100) {
                 mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_stop, Menu.NONE, resources.getString(R.string.action_stop));
             }
@@ -1684,7 +1682,8 @@ public class ContentView extends FrameLayout {
                         String.format(resources.getString(R.string.action_open_in_browser), defaultBrowserLabel));
             }
 
-            final MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site))
+            final MenuItem requestDesktopSite = mOverflowPopupMenu.getMenu()
+                    .add(Menu.NONE, R.id.item_request_desktop_site, Menu.NONE, resources.getString(R.string.action_request_desktop_site))
                     .setCheckable(true)
                     .setChecked(mWebRenderer.getUserAgentString(mContext).equals(Constant.USER_AGENT_CHROME_DESKTOP));
 
@@ -1692,34 +1691,24 @@ public class ContentView extends FrameLayout {
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_new_bubble, Menu.NONE, resources.getString(R.string.action_new_bubble));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_close_tab, Menu.NONE, resources.getString(R.string.action_close_tab));
             mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_settings, Menu.NONE, resources.getString(R.string.action_settings));
+            mOverflowPopupMenu.getMenu().add(Menu.NONE, R.id.item_clear_site_data, Menu.NONE, resources.getString(R.string.action_clear_site_data));
             mOverflowPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+
                     switch (item.getItemId()) {
                         case R.id.item_site_protection: {
                             CrashTracking.log("R.id.item_site_protection");
                             // This looks backwards, but is correct, as isChecked() isn't true until
                             // after onMenuItemClick() is called.
-                            AddRemoveHostFromWhiteList(mWebRenderer.getUrl().toString(), siteProtection.isChecked());
-                            HostInWhiteListCheck(mWebRenderer.getUrl().toString());
+                            AddRemoveHostFromBlackList(mWebRenderer.getUrl().toString(), !siteProtection.isChecked());
+                            HostInBlackListCheck(mWebRenderer.getUrl().toString());
                             // We need to go to reload page case.
                         }
 
                         case R.id.item_reload_page: {
                             CrashTracking.log("R.id.item_reload_page");
-                            mWebRenderer.resetPageInspector();
-                            URL currentUrl = mWebRenderer.getUrl();
-                            mEventHandler.onPageLoading(currentUrl);
-                            mWebRenderer.stopLoading();
-                            mWebRenderer.reload();
-                            String urlAsString = currentUrl.toString();
-                            updateAppsForUrl(currentUrl);
-                            configureOpenInAppButton();
-                            configureOpenEmbedButton();
-                            configureArticleModeButton();
-                            Log.d(TAG, "reload url: " + urlAsString);
-                            mInitialUrlLoadStartTime = System.currentTimeMillis();
-                            updateUrlTitleAndText(urlAsString);
+                            reloadBubble();
                             break;
                         }
 
@@ -1787,6 +1776,32 @@ public class ContentView extends FrameLayout {
                             MainController.get().switchToBubbleView(false);
                             break;
                         }
+                        case R.id.item_clear_site_data: {
+                            CrashTracking.log("R.id.item_clear_site_data");
+                            String host = mWebRenderer.getUrl().getHost();
+                            Log.d("CookieCheck", "Cookies for "+ host +" :" + CookieManager.getInstance().getCookie(host));
+                            Log.d("CookieCheck", "Cookies for http://"+ host +" :" + CookieManager.getInstance().getCookie("http://" + host));
+                            Log.d("CookieCheck", "Cookies for https://"+ host +" :" + CookieManager.getInstance().getCookie("https://" + host));
+
+                            clearCookies();
+                            Log.d("CookieCheck", "Cookies for "+ host +" :" + CookieManager.getInstance().getCookie(host));
+                            Log.d("CookieCheck", "Cookies for http://"+ host +" :" + CookieManager.getInstance().getCookie("http://" + host));
+                            Log.d("CookieCheck", "Cookies for https://"+ host +" :" + CookieManager.getInstance().getCookie("https://" + host));
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                mWebRenderer.getWebView().evaluateJavascript("localStorage.clear();",
+                                        new ValueCallback<String>() {
+                                            @Override
+                                            public void onReceiveValue(String s) {
+                                                Log.d("LogName", s); // Log is written, but s is always null
+                                                reloadBubble();
+                                            }
+                                        });
+                            } else {
+                                reloadBubble();
+                            }
+                            break;
+                        }
                     }
                     mOverflowPopupMenu = null;
                     return false;
@@ -1812,6 +1827,43 @@ public class ContentView extends FrameLayout {
             MainController.get().showNextBubble();
         }
     };
+
+
+    private void reloadBubble(){
+        mWebRenderer.resetPageInspector();
+        URL currentUrl = mWebRenderer.getUrl();
+        mEventHandler.onPageLoading(currentUrl);
+        mWebRenderer.stopLoading();
+        mWebRenderer.reload();
+        String urlAsString = currentUrl.toString();
+        updateAppsForUrl(currentUrl);
+        configureOpenInAppButton();
+        configureOpenEmbedButton();
+        configureArticleModeButton();
+        Log.d(TAG, "reload url: " + urlAsString);
+        mInitialUrlLoadStartTime = System.currentTimeMillis();
+        updateUrlTitleAndText(urlAsString);
+    }
+
+    private void clearCookies() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            Log.d("ClearCookies", "Using clearCookies code for API >=" + String.valueOf(Build.VERSION_CODES.LOLLIPOP_MR1));
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
+        } else
+        {
+            Log.d("ClearCookies", "Using clearCookies code for API <" + String.valueOf(Build.VERSION_CODES.LOLLIPOP_MR1));
+            CookieSyncManager cookieSyncMngr=CookieSyncManager.createInstance(getContext());
+            cookieSyncMngr.startSync();
+            CookieManager cookieManager=CookieManager.getInstance();
+            cookieManager.removeAllCookie();
+            cookieManager.removeSessionCookie();
+            cookieSyncMngr.stopSync();
+            cookieSyncMngr.sync();
+        }
+
+    }
 
     private void onDownloadStart(String urlAsString) {
         CrashTracking.log("onDownloadStart()");
@@ -2221,7 +2273,7 @@ public class ContentView extends FrameLayout {
         if (urlAsString.equals(mWebRenderer.getUrl().toString()) == false) {
             try {
                 Log.d(TAG, "change url from " + mWebRenderer.getUrl() + " to " + urlAsString);
-                HostInWhiteListCheck(urlAsString);
+                HostInBlackListCheck(urlAsString);
                 mWebRenderer.setUrl(mWebRendererController.getHTTPSUrl(urlAsString));
             } catch (MalformedURLException e) {
                 return false;
