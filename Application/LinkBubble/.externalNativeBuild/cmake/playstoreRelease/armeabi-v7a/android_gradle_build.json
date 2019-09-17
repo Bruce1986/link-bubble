@@ -1,10 +1,11 @@
 {
   "stringTable": {
-    "0": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a",
-    "1": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DLinkBubble_EXPORTS -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/src/main/jni -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++ -Oz -DNDEBUG -fPIC",
-    "2": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DDLIB_JPEG_STATIC -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++ -Oz -DNDEBUG -fPIC -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -ftemplate-depth=500 -std=gnu++11",
-    "3": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DDLIB_JPEG_STATIC -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC -DDLIB_NO_GUI_SUPPORT -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT",
-    "4": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a/dlib_build"
+    "0": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a/dlib_build",
+    "1": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DLinkBubble_EXPORTS -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/src/main/jni -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC",
+    "2": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DDLIB_JPEG_STATIC -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -DDLIB_NO_GUI_SUPPORT -ftemplate-depth=500 -std=gnu++11",
+    "3": "--target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DDLIB_JPEG_STATIC -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -DDLIB_NO_GUI_SUPPORT",
+    "4": "-target armv7-none-linux-androideabi16 -gcc-toolchain /Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DDLIB_JPEG_STATIC -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng -I/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -Oz -DNDEBUG -fPIC -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -DDLIB_NO_GUI_SUPPORT -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -x assembler-with-cpp",
+    "5": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a"
   },
   "buildFiles": [
     "/Users/adrianbrowning/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake",
@@ -15,6 +16,7 @@
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libpng.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/check_if_neon_available.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libjpeg.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_blas.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeLists.txt",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/release_build_by_default"
   ],
@@ -32,42 +34,42 @@
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/main.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/ABPFilterParser.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/cosmeticFilter.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/filter.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/BloomFilter.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/hashFn.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/HashSet.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/TPParser.cpp",
           "flagsOrdinal": 1,
-          "workingDirectoryOrdinal": 0
+          "workingDirectoryOrdinal": 5
         }
       ],
       "output": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/build/intermediates/cmake/playstore/release/obj/armeabi-v7a/libLinkBubble.so"
@@ -82,632 +84,637 @@
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/arm/arm_init.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/arm/filter_neon_intrinsics.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/png.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngerror.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngget.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngmem.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngpread.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngread.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngrio.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngrtran.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngrutil.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngset.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngtrans.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngwio.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngwrite.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngwtran.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/pngwutil.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/adler32.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/compress.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/crc32.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/deflate.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/gzclose.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/gzlib.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/gzread.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/gzwrite.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/infback.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/inffast.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/inflate.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/inftrees.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/trees.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/uncompr.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/zlib/zutil.c",
           "flagsOrdinal": 3,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libpng/arm/filter_neon.S",
+          "flagsOrdinal": 4,
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/base64/base64_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/bigint/bigint_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/bigint/bigint_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/bit_stream/bit_stream_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/entropy_decoder/entropy_decoder_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/entropy_decoder/entropy_decoder_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/entropy_encoder/entropy_encoder_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/entropy_encoder/entropy_encoder_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/md5/md5_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/tokenizer/tokenizer_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/unicode/unicode.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/data_io/image_dataset_metadata.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/data_io/mnist.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/global_optimization/global_function_search.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/filtering/kalman_filter.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/test_for_odr_violations.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/svm/auto.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/sockets/sockets_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/bsp/bsp.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/dir_nav/dir_nav_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/dir_nav/dir_nav_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/dir_nav/dir_nav_extensions.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/linker/linker_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/logger/extra_logger_headers.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/logger/logger_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/logger/logger_config_file.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/misc_api/misc_api_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/misc_api/misc_api_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/sockets/sockets_extensions.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/sockets/sockets_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/sockstreambuf/sockstreambuf.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/sockstreambuf/sockstreambuf_unbuffered.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/server/server_kernel.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/server/server_iostream.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/server/server_http.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/multithreaded_object_extension.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/threaded_object_extension.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/threads_kernel_1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/threads_kernel_2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/threads_kernel_shared.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/thread_pool_extension.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/threads/async.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/timer/timer.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/stack_trace.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cuda/cpu_dlib.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cuda/tensor_tools.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/image_loader/png_loader.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/image_saver/save_png.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcomapi.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdapimin.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdapistd.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdatasrc.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdcoefct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdcolor.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jddctmgr.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdhuff.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdinput.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdmainct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdmarker.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdmaster.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdmerge.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdphuff.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdpostct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdsample.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jerror.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jidctflt.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jidctfst.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jidctint.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jidctred.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jmemmgr.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jmemnobs.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jquant1.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jquant2.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jutils.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcapimin.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jdatadst.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcparam.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcapistd.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcmarker.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcinit.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcmaster.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcdctmgr.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jccoefct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jccolor.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jchuff.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcmainct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcphuff.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcprepct.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jcsample.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jfdctint.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jfdctflt.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/external/libjpeg/jfdctfst.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/image_loader/jpeg_loader.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         },
         {
           "src": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/image_saver/save_jpeg.cpp",
           "flagsOrdinal": 2,
-          "workingDirectoryOrdinal": 4
+          "workingDirectoryOrdinal": 0
         }
       ],
       "output": "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/armeabi-v7a/dlib_build/libdlib.a"

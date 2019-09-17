@@ -8,6 +8,7 @@
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libpng.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/check_if_neon_available.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_libjpeg.cmake",
+    "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/find_blas.cmake",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/CMakeLists.txt",
     "/Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/release_build_by_default"
   ],

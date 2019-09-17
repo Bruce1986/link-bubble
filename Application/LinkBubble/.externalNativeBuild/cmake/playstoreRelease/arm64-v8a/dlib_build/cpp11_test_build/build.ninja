@@ -58,7 +58,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 build cmake_object_order_depends_target_cpp11_test: phony
 build CMakeFiles/cpp11_test.dir/cpp11_test.cpp.o: CXX_COMPILER__cpp11_test /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/test_for_cpp11/cpp11_test.cpp || cmake_object_order_depends_target_cpp11_test
   DEP_FILE = CMakeFiles/cpp11_test.dir/cpp11_test.cpp.o.d
-  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -fPIC   -std=c++11
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fPIC   -std=c++11
   OBJECT_DIR = CMakeFiles/cpp11_test.dir
   OBJECT_FILE_DIR = CMakeFiles/cpp11_test.dir
 
@@ -70,7 +70,7 @@ build CMakeFiles/cpp11_test.dir/cpp11_test.cpp.o: CXX_COMPILER__cpp11_test /User
 # Link the static library libcpp11_test.a
 
 build libcpp11_test.a: CXX_STATIC_LIBRARY_LINKER__cpp11_test CMakeFiles/cpp11_test.dir/cpp11_test.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++
+  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security
   OBJECT_DIR = CMakeFiles/cpp11_test.dir
   POST_BUILD = :
   PRE_LINK = :

@@ -1,18 +1,18 @@
 Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeeded with the following output:
 Change Dir: /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/x86_64/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_a56cb"
-[1/2] Building CXX object CMakeFiles/cmTC_a56cb.dir/src.cxx.o
-[2/2] Linking CXX executable cmTC_a56cb
+Run Build Command:"/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_53bc4"
+[1/2] Building CXX object CMakeFiles/cmTC_53bc4.dir/src.cxx.o
+[2/2] Linking CXX executable cmTC_53bc4
 
 Source file was:
 int main() { return 0; }
 Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeeded with the following output:
 Change Dir: /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/.externalNativeBuild/cmake/playstoreRelease/x86_64/dlib_build/cpp11_test_build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_0904d"
-[1/2] Building CXX object CMakeFiles/cmTC_0904d.dir/src.cxx.o
-[2/2] Linking CXX executable cmTC_0904d
+Run Build Command:"/Users/adrianbrowning/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja" "cmTC_01fc0"
+[1/2] Building CXX object CMakeFiles/cmTC_01fc0.dir/src.cxx.o
+[2/2] Linking CXX executable cmTC_01fc0
 
 Source file was:
 int main() { return 0; }

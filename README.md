@@ -13,6 +13,11 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 
 npm install
 
+##Update SDK version
+Goto LinkBubble/build.gradle
+
+Update `compileSdkVersion` & `targetSdkVersion`
+
 ##Building
 
 Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
@@ -60,3 +65,5 @@ If you don't have `adb` in your path add it to your `~/.bash_profile` or similar
   `adb install -r ./LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk`
 - **Getting a list of devices:**
   `adb devices`
+  
+  adb -s `<device id>` install -d -r LinkBubble-playstore-release.apk 

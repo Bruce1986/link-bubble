@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.0.4">
+        <change>Reverted to old LinkBubble Icons</change>
+        <change>Update to SDK v28</change>
+    </release>
+    <release version="2.0.3">
+        <change>NEW: Added clear sites data option.</change>
+    </release>
     <release version="2.0.2">
-        <change>NEW: Added clear sites cookies option.</change>
+        <change>Switched shield mode to off by default.</change>
     </release>
     <release version="2.0.1">
         <change>Hide Welcome message</change>

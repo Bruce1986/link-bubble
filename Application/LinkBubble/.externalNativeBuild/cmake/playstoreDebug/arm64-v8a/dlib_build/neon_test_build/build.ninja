@@ -58,7 +58,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 build cmake_object_order_depends_target_neon_test: phony
 build CMakeFiles/neon_test.dir/neon_test.cpp.o: CXX_COMPILER__neon_test /Users/adrianbrowning/Documents/repos/adrianbrowning/link-bubble/Application/LinkBubble/src/main/jni/dlib/cmake_utils/test_for_neon/neon_test.cpp || cmake_object_order_depends_target_neon_test
   DEP_FILE = CMakeFiles/neon_test.dir/neon_test.cpp.o.d
-  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -fPIC
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fPIC
   OBJECT_DIR = CMakeFiles/neon_test.dir
   OBJECT_FILE_DIR = CMakeFiles/neon_test.dir
 
@@ -70,7 +70,7 @@ build CMakeFiles/neon_test.dir/neon_test.cpp.o: CXX_COMPILER__neon_test /Users/a
 # Link the static library libneon_test.a
 
 build libneon_test.a: CXX_STATIC_LIBRARY_LINKER__neon_test CMakeFiles/neon_test.dir/neon_test.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++
+  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security
   OBJECT_DIR = CMakeFiles/neon_test.dir
   POST_BUILD = :
   PRE_LINK = :
