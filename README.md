@@ -1,6 +1,6 @@
 # Brave for Android (formerly Link Bubble)
 
-##Install instructions and setup
+## Install instructions and setup
 
 `git clone git@github.com:brave/browser-android.git`
 
@@ -13,16 +13,16 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 
 npm install
 
-##Update SDK version
+## Update SDK version
 Goto LinkBubble/build.gradle
 
 Update `compileSdkVersion` & `targetSdkVersion`
 
-##Building
+## Building
 
 Open `./Application/` in Android Studio and build.  You'll need the NDK installed if you don't already have it, instructions below.
 
-##Building release build
+## Building release build
 
 Copy `build-release.sh.template` to `build-release.sh`.
 
@@ -34,7 +34,7 @@ If you get an error about similar to:
 
 Try uninstalling the application which already exists on your plugged in device.
 
-##Installing the NDK
+## Installing the NDK
 
 Android Studio has an easy way to download and link to the NDK.
 
@@ -42,12 +42,12 @@ In the menu navigate to File, Project Structure. Click the 'Download Android NDK
 
 If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
-##Telling getlocalization.com about new strings
+## Telling getlocalization.com about new strings
 
 1. Periodically upload the file `./Application/LinkBubble/src/main/res/values/strings.xml` to [getlocalization.com](https://www.getlocalization.com/LinkBubble/files/).  getlocalization.com will determine which strings are new
 2. When prompted on getlocalization.com, press the mark for retranslation (or keep existing) for changed strings.
 
-##Getting new translated strings from getlocalization.com
+## Getting new translated strings from getlocalization.com
 
 1. Install npm dependencies with `npm install`.
 2. Run `npm run translate <username> <password>` to pull down the translated xml files.
@@ -55,7 +55,7 @@ If you are not using Android Studio, reference this commit: https://github.com/b
 
 Remember to uncomment `checkStrings` from `MainApplication` and call it in `onCreate` to make sure the pulled files don't cause crashes with format specifiers.
 
-##ADB
+## ADB
 
 If you don't have `adb` in your path add it to your `~/.bash_profile` or similar file:
 
