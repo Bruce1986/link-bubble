@@ -30,8 +30,8 @@ apply plugin:'com.android.application'
 apply plugin: 'io.fabric'
 
 boolean isRelease = false;
-for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++) {
-    String item = project.gradle.startParameter.taskNames.get(i);
+for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++)
+ {    String item = project.gradle.startParameter.taskNames.get(i);
     if (item.contains("Release")) {
         isRelease = true;
     }
@@ -51,11 +51,11 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-    useLibrary 'org.apache.http.legacy'
-    compileSdkVersion 28
+    compileSdkVersion 34
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 34
+
+        targetSdkVersion 34
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
