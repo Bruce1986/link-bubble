@@ -51,11 +51,11 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-    compileSdkVersion 34
+    compileSdkVersion 32
     defaultConfig {
-        minSdkVersion 34
+        minSdkVersion 32
 
-        targetSdkVersion 34
+        targetSdkVersion 32
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
