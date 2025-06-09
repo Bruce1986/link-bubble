@@ -16,7 +16,7 @@ npm install
 ## Update SDK version
 Goto LinkBubble/build.gradle
 
-Update `compileSdkVersion` & `targetSdkVersion`
+Update `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` to `32`
 
 ## Building
 
