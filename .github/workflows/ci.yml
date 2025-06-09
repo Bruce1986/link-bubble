@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17 for SDK tools
+        id: jdk17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -22,6 +23,7 @@ jobs:
           packages: 'build-tools;34.0.0 platforms;android-34 platform-tools'
           log-accepted-android-sdk-licenses: false
       - name: Set up JDK 8 for build
+        id: jdk8
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
