@@ -4,27 +4,32 @@
 
 `git clone git@github.com:brave/browser-android.git`
 
-Either install the [Crashlytics/Fabric Android Studio plugin](http://try.crashlytics.com/sdk-android/) or copy `Application/LinkBubble/fabric.properties.template` to `Application/LinkBubble/fabric.properties` and fill in the apiSecret.
+If you wish to enable Crashlytics, copy `Application/LinkBubble/fabric.properties.template` to `Application/LinkBubble/fabric.properties` and fill in the apiSecret.
 
 Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.template` to `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java` and fill in the youtube apiSecret.
 
-Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and fill in `com.crashlytics.ApiKey` and
+Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and, if Crashlytics is used, fill in `com.crashlytics.ApiKey` and
 `io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
 npm install
 
 ### Java Version
-The project requires JDK 8 for Gradle builds. Set your default Java to version 8
+The project requires JDK 17 for Gradle builds. Set your default Java to version 17
 or use the provided `.java-version` file with tools like `jenv`.
+The project now uses the Android Gradle Plugin **8.1.1** and the Gradle wrapper
+is pinned to **8.1**, so older Gradle versions will not work with JDK 17.
 
-Using newer JDK versions can lead to build failures such as a
+With AGP 8 and above, make sure your `build.gradle` specifies the
+application `namespace` alongside `compileSdkVersion`.
+
+Using older JDK versions can lead to build failures such as a
 `NullPointerException` during Gradle configuration. If you encounter such
-errors, verify that `JAVA_HOME` points to a JDK 8 installation.
+errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 
 ## Update SDK version
 Goto LinkBubble/build.gradle
 
-Update `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` to `32`
+Update `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` to `34`
 
 ## Building
 
