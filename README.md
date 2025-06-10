@@ -19,6 +19,9 @@ or use the provided `.java-version` file with tools like `jenv`.
 The project now uses the Android Gradle Plugin **8.1.1** and the Gradle wrapper
 is pinned to **8.1**, so older Gradle versions will not work with JDK 17.
 
+With AGP 8 and above, make sure your `build.gradle` specifies the
+application `namespace` alongside `compileSdkVersion`.
+
 Using older JDK versions can lead to build failures such as a
 `NullPointerException` during Gradle configuration. If you encounter such
 errors, verify that `JAVA_HOME` points to a JDK 17 installation.
