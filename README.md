@@ -56,11 +56,11 @@ In the menu navigate to File, Project Structure. Click the 'Download Android NDK
 
 If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
-Newer NDK releases (r23 and above) no longer include the `platforms` directory.
-The Android Gradle plugin used by this project expects that directory to exist.
-If you see an error like `NDK is missing a "platforms" directory`, install an
-older NDK (for example r22b) and update `local.properties` to point to that
-version.
+Recent NDK releases remove the legacy `platforms` directory.  Android
+Gradle Plugin 8 generates this directory automatically so r25 or newer works
+out of the box.  If you see a warning that your NDK only supports API level
+33 when targeting SDK 34, upgrade to a newer NDK (r26 or later) or adjust
+`local.properties` to point at an updated installation.
 
 ## Telling getlocalization.com about new strings
 
