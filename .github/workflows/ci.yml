@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run lint
+      - name: Run JS linter
+        run: npx semistandard Application/LinkBubble/src/main/assets/pagescripts/*
 
   build:
     runs-on: ubuntu-latest
