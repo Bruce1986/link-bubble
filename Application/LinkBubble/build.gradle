@@ -8,7 +8,6 @@ buildscript {
 
     repositories {
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -16,7 +15,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
-        classpath 'io.fabric.tools:gradle:1.25.4'
     }
 }
 
@@ -27,7 +25,6 @@ def versionPatch = 4
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
-apply plugin: 'io.fabric'
 
 boolean isRelease = false;
 for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++)
@@ -152,7 +149,5 @@ task showVersion {
         println buildscript.configurations.classpath.resolvedConfiguration.firstLevelModuleDependencies.moduleVersion
     }
 }
-
-crashlytics.verboseGradlePlugin = true
 
 clean.dependsOn showVersion
