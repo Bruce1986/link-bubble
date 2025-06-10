@@ -17,6 +17,10 @@ npm install
 The project requires JDK 8 for Gradle builds. Set your default Java to version 8
 or use the provided `.java-version` file with tools like `jenv`.
 
+Using newer JDK versions can lead to build failures such as a
+`NullPointerException` during Gradle configuration. If you encounter such
+errors, verify that `JAVA_HOME` points to a JDK 8 installation.
+
 ## Update SDK version
 Goto LinkBubble/build.gradle
 
