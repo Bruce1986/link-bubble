@@ -30,7 +30,9 @@ errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 The project is configured for Android **SDK 34**.
 Check `Application/LinkBubble/build.gradle` and ensure
 `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` are
-all set to **34** for every module.
+all set to **34** for every module. Make sure your
+`local.properties` (or the `ANDROID_HOME` environment variable)
+points at an SDK installation that includes API 34.
 
 ## Building
 

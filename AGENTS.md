@@ -8,4 +8,5 @@
   `.java-version` file when building the Android project. The project uses the
   Android Gradle Plugin 8.1.1 with Gradle 8.1 and targets **Android SDK 34**.
   All modules should set `compileSdkVersion`, `targetSdkVersion`, and
-  `minSdkVersion` to 34.
+  `minSdkVersion` to 34. Ensure `local.properties` or the `ANDROID_HOME`
+  environment variable points to an SDK that includes API 34.
