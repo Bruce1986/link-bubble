@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 17 for SDK tools
+      - name: Set up JDK 17
         id: jdk17
         uses: actions/setup-java@v3
         with:
@@ -22,12 +22,6 @@ jobs:
         with:
           packages: 'build-tools;34.0.0 platforms;android-34 platform-tools'
           log-accepted-android-sdk-licenses: false
-      - name: Set up JDK 8 for build
-        id: jdk8
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '8'
       - name: Build Debug
         run: |
           cd Application
