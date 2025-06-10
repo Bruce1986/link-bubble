@@ -13,6 +13,10 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 
 npm install
 
+### Java Version
+The project requires JDK 8 for Gradle builds. Set your default Java to version 8
+or use the provided `.java-version` file with tools like `jenv`.
+
 ## Update SDK version
 Goto LinkBubble/build.gradle
 
