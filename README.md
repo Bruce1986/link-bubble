@@ -49,7 +49,7 @@ Copy `build-release.sh.template` to `build-release.sh`.
 
 Modify each of these exported environment variables: `LINK_BUBBLE_KEYSTORE_LOCATION`, `LINK_BUBBLE_KEYSTORE_PASSWORD`, and `LINK_BUBBLE_KEY_PASSWORD`.
 
-If you get an error about similar to:
+If you get an error similar to:
 
 > Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]
 
