@@ -16,8 +16,8 @@ npm install
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
 or use the provided `.java-version` file with tools like `jenv`.
-The Gradle wrapper has been updated to version 7.6 so older Gradle versions will
-not work with JDK 17.
+The project now uses the Android Gradle Plugin **8.1.1** and the Gradle wrapper
+is pinned to **8.1**, so older Gradle versions will not work with JDK 17.
 
 Using older JDK versions can lead to build failures such as a
 `NullPointerException` during Gradle configuration. If you encounter such
