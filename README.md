@@ -27,10 +27,10 @@ Using older JDK versions can lead to build failures such as a
 errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 
 ## Update SDK version
-The project is configured for Android **SDK 34**.
-Check `Application/LinkBubble/build.gradle` and ensure that
-`compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` are all set to
-`34`.
+The project is configured for Android **SDK 34**.
+Check `Application/LinkBubble/build.gradle` and ensure
+`compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` are
+all set to **34** for every module.
 
 ## Building
 
