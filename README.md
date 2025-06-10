@@ -33,6 +33,11 @@ Check `Application/LinkBubble/build.gradle` and ensure
 all set to **34** for every module. Make sure your
 `local.properties` (or the `ANDROID_HOME` environment variable)
 points at an SDK installation that includes API 34.
+An example `local.properties` entry might look like:
+
+```properties
+sdk.dir=/path/to/android/sdk
+```
 
 ## Building
 

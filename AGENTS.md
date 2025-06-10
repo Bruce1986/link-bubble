@@ -10,3 +10,8 @@
   All modules should set `compileSdkVersion`, `targetSdkVersion`, and
   `minSdkVersion` to 34. Ensure `local.properties` or the `ANDROID_HOME`
   environment variable points to an SDK that includes API 34.
+  For example:
+
+  ```properties
+  sdk.dir=/path/to/android/sdk
+  ```
