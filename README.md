@@ -46,6 +46,12 @@ In the menu navigate to File, Project Structure. Click the 'Download Android NDK
 
 If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
+Newer NDK releases (r23 and above) no longer include the `platforms` directory.
+The Android Gradle plugin used by this project expects that directory to exist.
+If you see an error like `NDK is missing a "platforms" directory`, install an
+older NDK (for example r22b) and update `local.properties` to point to that
+version.
+
 ## Telling getlocalization.com about new strings
 
 1. Periodically upload the file `./Application/LinkBubble/src/main/res/values/strings.xml` to [getlocalization.com](https://www.getlocalization.com/LinkBubble/files/).  getlocalization.com will determine which strings are new
