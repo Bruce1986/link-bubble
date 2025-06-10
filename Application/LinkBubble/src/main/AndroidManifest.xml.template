@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.linkbubble" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
@@ -53,7 +52,8 @@
             android:configChanges="keyboardHidden|orientation"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
-            android:theme="@style/TransparentTheme">
+            android:theme="@style/TransparentTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -157,7 +157,7 @@
 
         </activity>
 
-        <activity android:name=".ui.DefaultBrowserResetActivity" android:enabled="false">
+        <activity android:name=".ui.DefaultBrowserResetActivity" android:enabled="false" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
