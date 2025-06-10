@@ -50,7 +50,6 @@ def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim
 def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 android {
-    android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
     compileSdkVersion 32
     defaultConfig {
         minSdkVersion 32
