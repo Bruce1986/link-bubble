@@ -11,7 +11,7 @@ Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.templa
 Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and, if Crashlytics is used, fill in `com.crashlytics.ApiKey` and
 `io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
-npm install
+npm install  # use Node.js 18 when installing dependencies
 
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
@@ -27,9 +27,17 @@ Using older JDK versions can lead to build failures such as a
 errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 
 ## Update SDK version
-Goto LinkBubble/build.gradle
+The project is configured for Android **SDK 34**.
+Check `Application/LinkBubble/build.gradle` and ensure
+`compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` are
+all set to **34** for every module. Make sure your
+`local.properties` (or the `ANDROID_HOME` environment variable)
+points at an SDK installation that includes API 34.
+An example `local.properties` entry might look like:
 
-Update `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` to `34`
+```properties
+sdk.dir=/path/to/android/sdk
+```
 
 ## Building
 
@@ -41,7 +49,7 @@ Copy `build-release.sh.template` to `build-release.sh`.
 
 Modify each of these exported environment variables: `LINK_BUBBLE_KEYSTORE_LOCATION`, `LINK_BUBBLE_KEYSTORE_PASSWORD`, and `LINK_BUBBLE_KEY_PASSWORD`.
 
-If you get an error about similar to:
+If you get an error similar to:
 
 > Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]
 
@@ -55,11 +63,11 @@ In the menu navigate to File, Project Structure. Click the 'Download Android NDK
 
 If you are not using Android Studio, reference this commit: https://github.com/brave/browser-android/commit/0fa9f58286e0679ec5772e19b995d6a508907691
 
-Newer NDK releases (r23 and above) no longer include the `platforms` directory.
-The Android Gradle plugin used by this project expects that directory to exist.
-If you see an error like `NDK is missing a "platforms" directory`, install an
-older NDK (for example r22b) and update `local.properties` to point to that
-version.
+Recent NDK releases remove the legacy `platforms` directory.  Android
+Gradle Plugin 8 generates this directory automatically so r25 or newer works
+out of the box.  If you see a warning that your NDK only supports API level
+33 when targeting SDK 34, upgrade to a newer NDK (r26 or later) or adjust
+`local.properties` to point at an updated installation.
 
 ## Telling getlocalization.com about new strings
 
