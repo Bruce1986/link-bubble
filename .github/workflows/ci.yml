@@ -17,13 +17,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: actions/setup-python@v5
-        id: python2
-        with:
-          python-version: '2.7'
       - name: Install Node dependencies
-        env:
-          PYTHON: ${{ steps.python2.outputs.python-path }}
         run: npm install
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
