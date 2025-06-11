@@ -3,6 +3,7 @@
 - Before committing changes to JavaScript files, run `npm run lint`.
 - If `npm test` exists, run it as well.
 - Use two-space indentation and semistandard style for JS.
+- Use Node.js 18 when running npm scripts to avoid node-gyp build issues.
 - Summaries should briefly mention lint and test results.
 - Gradle builds require JDK 17. Ensure `JAVA_HOME` points to JDK 17 or use the
   `.java-version` file when building the Android project. The project uses the

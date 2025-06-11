@@ -11,7 +11,7 @@ Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.templa
 Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and, if Crashlytics is used, fill in `com.crashlytics.ApiKey` and
 `io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
-npm install
+npm install  # use Node.js 18 when installing dependencies
 
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
