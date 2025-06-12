@@ -27,3 +27,5 @@ cp -f node_modules/tracking-protection/FirstPartyHost.h ./Application/LinkBubble
 cp -f node_modules/tracking-protection/TrackerData.h ./Application/LinkBubble/src/main/jni/TrackerData.h
 cp -f node_modules/tracking-protection/TPParser.h ./Application/LinkBubble/src/main/jni/TPParser.h
 cp -f node_modules/tracking-protection/TPParser.cpp ./Application/LinkBubble/src/main/jni/TPParser.cpp
+sed -i 's#test/hashFn.h#hashFn.h#' ./Application/LinkBubble/src/main/jni/FirstPartyHost.cpp
+sed -i 's#test/hashFn.h#hashFn.h#' ./Application/LinkBubble/src/main/jni/TrackerData.cpp
