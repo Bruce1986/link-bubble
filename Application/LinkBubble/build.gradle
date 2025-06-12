@@ -49,6 +49,7 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 android {
     namespace 'com.linkbubble'
     compileSdkVersion 33
+    useLibrary 'org.apache.http.legacy'
     buildFeatures {
         buildConfig true
     }
