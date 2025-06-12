@@ -33,15 +33,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class SettingsDomainsActivity extends AppCompatActivity {
 
     Adapter adapter;
-    @Bind(R.id.recycler_view) RecyclerView recyclerView;
-    @Bind(R.id.fab) FloatingActionButton addButton;
-    @Bind(R.id.root_view) View rootView;
+    RecyclerView recyclerView;
+    FloatingActionButton addButton;
+    View rootView;
     LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -50,7 +48,9 @@ public class SettingsDomainsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_settings_domains);
 
-        ButterKnife.bind(this);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        addButton = (FloatingActionButton) findViewById(R.id.fab);
+        rootView = findViewById(R.id.root_view);
 
         adapter = new Adapter(this);
 
@@ -229,14 +229,16 @@ public class SettingsDomainsActivity extends AppCompatActivity {
 
         static class ViewHolder extends BaseItem.ViewHolder {
 
-            @Bind(R.id.settings_title) TextView titleView;
-            @Bind(R.id.settings_divider) View divider;
-            @Bind(R.id.remove_icon) ImageView removeIcon;
+            TextView titleView;
+            View divider;
+            ImageView removeIcon;
 
             public ViewHolder(View itemView) {
                 super(itemView);
 
-                ButterKnife.bind(this, this.itemView);
+                titleView = (TextView) itemView.findViewById(R.id.settings_title);
+                divider = itemView.findViewById(R.id.settings_divider);
+                removeIcon = (ImageView) itemView.findViewById(R.id.remove_icon);
 
                 itemView.findViewById(R.id.settings_summary).setVisibility(View.GONE);
                 itemView.findViewById(R.id.app_icon).setVisibility(View.GONE);

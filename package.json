@@ -25,5 +25,16 @@
   "dependencies": {
     "abp-filter-parser-cpp": "^1.2.13",
     "tracking-protection": "^1.2.0"
+  },
+  "overrides": {
+    "abp-filter-parser-cpp": {
+      "node-gyp": "^11.2.0"
+    },
+    "bloom-filter-cpp": {
+      "node-gyp": "^11.2.0"
+    },
+    "hashset-cpp": {
+      "node-gyp": "^11.2.0"
+    }
   }
 }

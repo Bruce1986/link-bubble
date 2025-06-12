@@ -29,5 +29,7 @@ add_library( # Specifies the name of the library.
         BloomFilter.cpp
         hashFn.cpp
         HashSet.cpp
+        FirstPartyHost.cpp
+        TrackerData.cpp
         TPParser.cpp )
 

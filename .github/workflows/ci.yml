@@ -26,8 +26,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libx11-dev
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Install Node dependencies
-        run: npm install
+        run: npm install --ignore-scripts
+      - name: Copy JNI sources
+        run: sh ./scripts/copyJNIFiles.js
       - name: Prepare project files
         run: |
           cp Application/LinkBubble/src/main/AndroidManifest.xml.template Application/LinkBubble/src/main/AndroidManifest.xml

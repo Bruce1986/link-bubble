@@ -189,16 +189,17 @@ public class HistoryActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
 
-            case R.id.action_clear_history: {
-                if (mHistoryAdapter == null) {
-                    Toast.makeText(this, R.string.history_already_empty, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
+        if (id == R.id.action_clear_history) {
+            if (mHistoryAdapter == null) {
+                Toast.makeText(this, R.string.history_already_empty, Toast.LENGTH_SHORT).show();
+                return true;
+            }
 
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle(R.string.erase_all_history_title);
@@ -220,9 +221,8 @@ public class HistoryActivity extends AppCompatActivity
                         dialog.dismiss();
                     }
                 });
-                Util.showThemedDialog(alertDialog);
-                return true;
-            }
+            Util.showThemedDialog(alertDialog);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
