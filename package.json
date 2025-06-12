@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Link Bubble Browser",
   "scripts": {
-    "translate": "babel-node scripts/updateTranslations.js",
+    "translate": "node scripts/updateTranslations.js",
     "postinstall": "sh ./scripts/copyJNIFiles.js",
     "lint": "semistandard Application/LinkBubble/src/main/assets/pagescripts/*"
   },
@@ -20,11 +20,10 @@
     "url": "https://github.com/brave/browser-android/issues"
   },
   "devDependencies": {
-    "babel": "^5.8.21",
-    "semistandard": "^7.0.2"
+    "semistandard": "^17.0.0"
   },
   "dependencies": {
-    "abp-filter-parser-cpp": "^1.1.5",
-    "tracking-protection": "^1.0.8"
+    "abp-filter-parser-cpp": "^1.2.13",
+    "tracking-protection": "^1.2.0"
   }
 }
