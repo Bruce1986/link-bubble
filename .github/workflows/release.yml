@@ -1,0 +1,72 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'build-tools;34.0.0 platforms;android-34 platform-tools'
+          log-accepted-android-sdk-licenses: false
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libx11-dev
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Node dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Copy JNI sources
+        run: sh ./scripts/copyJNIFiles.js
+
+      - name: Prepare project files
+        run: |
+          cp Application/LinkBubble/src/main/AndroidManifest.xml.template Application/LinkBubble/src/main/AndroidManifest.xml
+          cp Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.template Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java
+          echo "sdk.dir=$ANDROID_HOME" > Application/local.properties
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Build Playstore Release
+        env:
+          LINK_BUBBLE_KEYSTORE_LOCATION: ${{ secrets.LINK_BUBBLE_KEYSTORE_LOCATION }}
+          LINK_BUBBLE_KEYSTORE_PASSWORD: ${{ secrets.LINK_BUBBLE_KEYSTORE_PASSWORD }}
+          LINK_BUBBLE_KEY_ALIAS: ${{ secrets.LINK_BUBBLE_KEY_ALIAS }}
+          LINK_BUBBLE_KEY_PASSWORD: ${{ secrets.LINK_BUBBLE_KEY_PASSWORD }}
+        run: |
+          cd Application
+          ./gradlew assemblePlaystoreRelease
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: LinkBubble-playstore-release.apk
+          path: Application/LinkBubble/build/outputs/apk/LinkBubble-playstore-release.apk
+
