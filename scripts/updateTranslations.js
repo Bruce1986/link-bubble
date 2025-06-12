@@ -10,7 +10,7 @@ const https = require('https')
 const waitInterval = 2000
 
 if (process.argv.length !== 4) {
-  console.error('usage: babel-node udpateTranslations.js <username> <password>')
+  console.error('usage: node updateTranslations.js <username> <password>')
   process.exit(0)
 }
 

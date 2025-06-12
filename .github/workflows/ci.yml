@@ -22,6 +22,12 @@ jobs:
         with:
           packages: 'build-tools;34.0.0 platforms;android-34 platform-tools'
           log-accepted-android-sdk-licenses: false
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libx11-dev
+      - name: Install Node dependencies
+        run: npm install
       - name: Prepare project files
         run: |
           cp Application/LinkBubble/src/main/AndroidManifest.xml.template Application/LinkBubble/src/main/AndroidManifest.xml
