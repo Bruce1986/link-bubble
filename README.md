@@ -12,6 +12,7 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 `io.fabric.ApiKey` with your Crashlytics API key. You can obtain it from logging into your Fabric account and going to: `Settings -> Organizations -> Brave (or your organization)` then click on `API Key` at the top.
 
 npm install  # pulls JNI sources via postinstall
+npm run lint  # enforce semistandard style
 
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
@@ -25,6 +26,11 @@ application `namespace` alongside `compileSdkVersion`.
 Using older JDK versions can lead to build failures such as a
 `NullPointerException` during Gradle configuration. If you encounter such
 errors, verify that `JAVA_HOME` points to a JDK 17 installation.
+
+### Node Version
+Use Node.js 18 for the project tools. You can install it with `nvm install 18`
+and activate it via `nvm use 18`. Other versions may fail when building native
+modules.
 
 ## Update SDK version
 Goto LinkBubble/build.gradle
