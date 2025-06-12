@@ -30,10 +30,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Set up Python 3.11
+      - name: Set up Python 2.7
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '2.7'
+      - name: Install Node dependencies
+        run: npm install
       - name: Prepare project files
         run: |
           cp Application/LinkBubble/src/main/AndroidManifest.xml.template Application/LinkBubble/src/main/AndroidManifest.xml
