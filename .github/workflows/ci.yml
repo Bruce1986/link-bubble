@@ -34,8 +34,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install Node dependencies
-        run: npm install
       - name: Prepare project files
         run: |
           cp Application/LinkBubble/src/main/AndroidManifest.xml.template Application/LinkBubble/src/main/AndroidManifest.xml
