@@ -1816,8 +1816,6 @@ public class ContentView extends FrameLayout {
 
                     mOverflowPopupMenu = null;
                     return false;
-                    mOverflowPopupMenu = null;
-                    return false;
                 }
             });
             mOverflowPopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
