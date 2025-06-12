@@ -29,11 +29,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
-      - name: Set up Python 2.7
+          node-version: 16
+      - name: Set up Python 3
         uses: actions/setup-python@v5
         with:
-          python-version: '2.7'
+          python-version: '3.11'
       - name: Install Node dependencies
         run: npm install
       - name: Prepare project files
