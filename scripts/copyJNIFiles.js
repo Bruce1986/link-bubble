@@ -1,6 +1,7 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+#!/bin/sh
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 cp -f node_modules/abp-filter-parser-cpp/ABPFilterParser.cpp ./Application/LinkBubble/src/main/jni/ABPFilterParser.cpp
 cp -f node_modules/abp-filter-parser-cpp/ABPFilterParser.h ./Application/LinkBubble/src/main/jni/ABPFilterParser.h
@@ -20,6 +21,8 @@ cp -f node_modules/hashset-cpp/HashSet.h ./Application/LinkBubble/src/main/jni/H
 cp -f node_modules/hashset-cpp/HashItem.h ./Application/LinkBubble/src/main/jni/HashItem.h
 cp -f node_modules/tracking-protection/node_modules/hashset-cpp/hash_set.h ./Application/LinkBubble/src/main/jni/hash_set.h
 cp -f node_modules/tracking-protection/node_modules/hashset-cpp/hash_item.h ./Application/LinkBubble/src/main/jni/hash_item.h
+cp -f node_modules/tracking-protection/FirstPartyHost.cpp ./Application/LinkBubble/src/main/jni/FirstPartyHost.cpp
+cp -f node_modules/tracking-protection/TrackerData.cpp ./Application/LinkBubble/src/main/jni/TrackerData.cpp
 cp -f node_modules/tracking-protection/FirstPartyHost.h ./Application/LinkBubble/src/main/jni/FirstPartyHost.h
 cp -f node_modules/tracking-protection/TrackerData.h ./Application/LinkBubble/src/main/jni/TrackerData.h
 cp -f node_modules/tracking-protection/TPParser.h ./Application/LinkBubble/src/main/jni/TPParser.h
