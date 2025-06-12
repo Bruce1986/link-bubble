@@ -29,7 +29,7 @@ errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 ## Update SDK version
 Goto LinkBubble/build.gradle
 
-Update `compileSdkVersion`, `targetSdkVersion`, and `minSdkVersion` to `34`
+Update `compileSdkVersion` and `targetSdkVersion` to `33`, and `minSdkVersion` to `28`
 
 ## Building
 
