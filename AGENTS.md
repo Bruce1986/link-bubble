@@ -1,7 +1,7 @@
 # Guidelines for Codex
 
 - If `npm test` exists, run it as well.
-- Run `npm run lint` if a `lint` script is available.
+- Run `npm run lint` if a `lint` script is available (before committing changes).
 - Use two-space indentation and semistandard style for JS.
 - Summaries should briefly mention lint and test results.
 - Use Node.js 18 (LTS) for builds to avoid native module issues.
