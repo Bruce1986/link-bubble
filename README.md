@@ -29,7 +29,7 @@ errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 
 ### Node Version
 Use Node.js 18 for the project tools. You can install it with `nvm install 18`
-and activate it via `nvm use 18`. Other versions may fail when building native
+and activate it via `nvm use 18`. Newer versions may introduce compatibility issues with native
 modules.
 
 ## Update SDK version
