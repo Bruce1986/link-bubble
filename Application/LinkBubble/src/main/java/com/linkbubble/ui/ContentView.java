@@ -1696,113 +1696,126 @@ public class ContentView extends FrameLayout {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
 
-                    switch (item.getItemId()) {
-                        case R.id.item_site_protection: {
-                            CrashTracking.log("R.id.item_site_protection");
-                            // This looks backwards, but is correct, as isChecked() isn't true until
-                            // after onMenuItemClick() is called.
-                            AddRemoveHostFromBlackList(mWebRenderer.getUrl().toString(), !siteProtection.isChecked());
-                            HostInBlackListCheck(mWebRenderer.getUrl().toString());
-                            // We need to go to reload page case.
-                        }
+                    int id = item.getItemId();
 
-                        case R.id.item_reload_page: {
-                            CrashTracking.log("R.id.item_reload_page");
-                            reloadBubble();
-                            break;
-                        }
-
-                        case R.id.item_open_in_browser: {
-                            CrashTracking.log("ContentView.setOnMenuItemClickListener() - open in browser clicked");
-                            boolean braveBrowser = false;
-                            if (null != item.getTitle()
-                                    && null != context
-                                    && item.getTitle().toString().endsWith(context.getResources().getString(R.string.tab_based_browser_name))) {
-                                braveBrowser = true;
-                            }
-                            openInBrowser(mWebRenderer.getUrl().toString(), true, braveBrowser);
-                            break;
-                        }
-
-                        case R.id.item_request_desktop_site: {
-                            String newUserAgentString;
-                            // This looks backwards, but is correct, as isChecked() isn't true until
-                            // after onMenuItemClick() is called.
-                            if (!requestDesktopSite.isChecked()) {
-                                newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
-                            } else {
-                                String defaultUserAgentString = Settings.get().getUserAgentString();
-                                if (defaultUserAgentString != null
-                                        && !defaultUserAgentString.equals(Constant.USER_AGENT_CHROME_DESKTOP)) {
-                                    newUserAgentString = defaultUserAgentString;
-                                } else {
-                                    newUserAgentString = Util.getDefaultUserAgentString(getContext());
-                                }
-                            }
-
-                            mWebRenderer.setUserAgentString(newUserAgentString);
-                            mWebRenderer.reload();
-                            break;
-                        }
-
-                        case R.id.item_copy_link: {
-                            MainApplication.copyLinkToClipboard(getContext(), mWebRenderer.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
-                            break;
-                        }
-
-                        case R.id.item_stop: {
-                            mWebRenderer.stopLoading();
-                            break;
-                        }
-
-                        case R.id.item_new_bubble: {
-                            MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
-                                    Analytics.OPENED_URL_FROM_NEW_TAB);
-                            break;
-                        }
-
-                        case R.id.item_close_tab: {
-                            CrashTracking.log("R.id.item_close_tab");
-                            if (MainController.get() != null) {
-                                MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
-                            }
-                            break;
-                        }
-
-                        case R.id.item_settings: {
-                            Intent intent = new Intent(context, SettingsActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                            context.startActivity(intent);
-                            MainController.get().switchToBubbleView(false);
-                            break;
-                        }
-                        case R.id.item_clear_site_data: {
-                            CrashTracking.log("R.id.item_clear_site_data");
-                            String host = mWebRenderer.getUrl().getHost();
-                            Log.d("CookieCheck", "Cookies for "+ host +" :" + CookieManager.getInstance().getCookie(host));
-                            Log.d("CookieCheck", "Cookies for http://"+ host +" :" + CookieManager.getInstance().getCookie("http://" + host));
-                            Log.d("CookieCheck", "Cookies for https://"+ host +" :" + CookieManager.getInstance().getCookie("https://" + host));
-
-                            clearCookies();
-                            Log.d("CookieCheck", "Cookies for "+ host +" :" + CookieManager.getInstance().getCookie(host));
-                            Log.d("CookieCheck", "Cookies for http://"+ host +" :" + CookieManager.getInstance().getCookie("http://" + host));
-                            Log.d("CookieCheck", "Cookies for https://"+ host +" :" + CookieManager.getInstance().getCookie("https://" + host));
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                                mWebRenderer.getWebView().evaluateJavascript("localStorage.clear();",
-                                        new ValueCallback<String>() {
-                                            @Override
-                                            public void onReceiveValue(String s) {
-                                                Log.d("LogName", s); // Log is written, but s is always null
-                                                reloadBubble();
-                                            }
-                                        });
-                            } else {
-                                reloadBubble();
-                            }
-                            break;
-                        }
+                    if (id == R.id.item_site_protection) {
+                        CrashTracking.log("R.id.item_site_protection");
+                        // This looks backwards, but is correct, as isChecked() isn't true until
+                        // after onMenuItemClick() is called.
+                        AddRemoveHostFromBlackList(mWebRenderer.getUrl().toString(), !siteProtection.isChecked());
+                        HostInBlackListCheck(mWebRenderer.getUrl().toString());
+                        id = R.id.item_reload_page;
                     }
+
+                    if (id == R.id.item_reload_page) {
+                        CrashTracking.log("R.id.item_reload_page");
+                        reloadBubble();
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_open_in_browser) {
+                        CrashTracking.log("ContentView.setOnMenuItemClickListener() - open in browser clicked");
+                        boolean braveBrowser = false;
+                        if (null != item.getTitle()
+                                && null != context
+                                && item.getTitle().toString().endsWith(context.getResources().getString(R.string.tab_based_browser_name))) {
+                            braveBrowser = true;
+                        }
+                        openInBrowser(mWebRenderer.getUrl().toString(), true, braveBrowser);
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_request_desktop_site) {
+                        String newUserAgentString;
+                        // This looks backwards, but is correct, as isChecked() isn't true until
+                        // after onMenuItemClick() is called.
+                        if (!requestDesktopSite.isChecked()) {
+                            newUserAgentString = Constant.USER_AGENT_CHROME_DESKTOP;
+                        } else {
+                            String defaultUserAgentString = Settings.get().getUserAgentString();
+                            if (defaultUserAgentString != null
+                                    && !defaultUserAgentString.equals(Constant.USER_AGENT_CHROME_DESKTOP)) {
+                                newUserAgentString = defaultUserAgentString;
+                            } else {
+                                newUserAgentString = Util.getDefaultUserAgentString(getContext());
+                            }
+                        }
+
+                        mWebRenderer.setUserAgentString(newUserAgentString);
+                        mWebRenderer.reload();
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_copy_link) {
+                        MainApplication.copyLinkToClipboard(getContext(), mWebRenderer.getUrl().toString(), R.string.bubble_link_copied_to_clipboard);
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_stop) {
+                        mWebRenderer.stopLoading();
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_new_bubble) {
+                        MainApplication.openLink(getContext(), getContext().getString(R.string.empty_bubble_page),
+                                Analytics.OPENED_URL_FROM_NEW_TAB);
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_close_tab) {
+                        CrashTracking.log("R.id.item_close_tab");
+                        if (MainController.get() != null) {
+                            MainController.get().closeTab(mOwnerTabView, MainController.get().contentViewShowing(), true);
+                        }
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_settings) {
+                        Intent intent = new Intent(context, SettingsActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        context.startActivity(intent);
+                        MainController.get().switchToBubbleView(false);
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    if (id == R.id.item_clear_site_data) {
+                        CrashTracking.log("R.id.item_clear_site_data");
+                        String host = mWebRenderer.getUrl().getHost();
+                        Log.d("CookieCheck", "Cookies for " + host + " :" + CookieManager.getInstance().getCookie(host));
+                        Log.d("CookieCheck", "Cookies for http://" + host + " :" + CookieManager.getInstance().getCookie("http://" + host));
+                        Log.d("CookieCheck", "Cookies for https://" + host + " :" + CookieManager.getInstance().getCookie("https://" + host));
+
+                        clearCookies();
+                        Log.d("CookieCheck", "Cookies for " + host + " :" + CookieManager.getInstance().getCookie(host));
+                        Log.d("CookieCheck", "Cookies for http://" + host + " :" + CookieManager.getInstance().getCookie("http://" + host));
+                        Log.d("CookieCheck", "Cookies for https://" + host + " :" + CookieManager.getInstance().getCookie("https://" + host));
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                            mWebRenderer.getWebView().evaluateJavascript("localStorage.clear();",
+                                    new ValueCallback<String>() {
+                                        @Override
+                                        public void onReceiveValue(String s) {
+                                            Log.d("LogName", s); // Log is written, but s is always null
+                                            reloadBubble();
+                                        }
+                                    });
+                        } else {
+                            reloadBubble();
+                        }
+                        mOverflowPopupMenu = null;
+                        return false;
+                    }
+
+                    mOverflowPopupMenu = null;
+                    return false;
                     mOverflowPopupMenu = null;
                     return false;
                 }

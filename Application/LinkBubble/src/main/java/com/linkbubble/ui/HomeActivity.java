@@ -151,14 +151,14 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                return true;
-            }
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            return true;
+        }
 
-            case R.id.action_settings:
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
-                return true;
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(HomeActivity.this, SettingsActivity.class), item.getActionView());
+            return true;
         }
 
         return false;
