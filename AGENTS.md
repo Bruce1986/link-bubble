@@ -9,3 +9,10 @@
   `.java-version` file when building the Android project. The project uses the
   Android Gradle Plugin 8.1.1 with Gradle 8.1.
 - Python 2 is no longer supported in CI environments; use Python 3 and do not configure Python 2.
+
+# Guidelines for Working with AI Assistant Feedback
+
+This repository uses **gemini-code-assist** to provide review suggestions.
+Please address all suggestions from the AI assistant. If a suggestion is not implemented, provide a brief justification in the pull request discussion.
+
+All new functions must include corresponding unit tests. If unit testing is not feasible for a particular function, a clear explanation should be provided.
