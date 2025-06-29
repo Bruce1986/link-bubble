@@ -14,6 +14,9 @@ Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Applicat
 npm install  # pulls JNI sources via postinstall
 npm run lint  # enforce semistandard style to ensure code quality and consistency
 
+Run `node --version` to confirm you are using Node.js 18 before running these
+commands. Newer Node versions may cause native module failures.
+
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
 or use the provided `.java-version` file with tools like `jenv`.
@@ -31,6 +34,7 @@ errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 Use Node.js 18 for the project tools. You can install it with `nvm install 18`
 and activate it via `nvm use 18`. Newer versions may introduce compatibility issues with native
 modules.
+Confirm the active version with `node --version` before building or running scripts.
 
 ## Update SDK version
 Goto LinkBubble/build.gradle
