@@ -8,15 +8,13 @@ buildscript {
 
     repositories {
         jcenter()
-        maven { url 'https://maven.fabric.io/public' }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'io.fabric.tools:gradle:1.25.4'
+        classpath 'com.android.tools.build:gradle:8.1.1'
     }
 }
 
@@ -27,7 +25,6 @@ def versionPatch = 4
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
-apply plugin: 'io.fabric'
 
 boolean isRelease = false;
 for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++)
@@ -50,12 +47,19 @@ def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim
 def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
 
 android {
-    android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
-    compileSdkVersion 32
+    namespace 'com.linkbubble'
+    compileSdkVersion 34
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig true
+    }
     defaultConfig {
-        minSdkVersion 32
+        minSdkVersion 34
 
-        targetSdkVersion 32
+        targetSdkVersion 34
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -144,10 +148,10 @@ dependencies {
     implementation files('libs/slf4j-android-1.5.8.jar')
 }
 
-task showVersion << {
-    println buildscript.configurations.classpath.resolvedConfiguration.firstLevelModuleDependencies.moduleVersion
+task showVersion {
+    doLast {
+        println buildscript.configurations.classpath.resolvedConfiguration.firstLevelModuleDependencies.moduleVersion
+    }
 }
-
-crashlytics.verboseGradlePlugin = true
 
 clean.dependsOn showVersion
