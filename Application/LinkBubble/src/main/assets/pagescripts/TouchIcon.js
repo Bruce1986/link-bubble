@@ -7,7 +7,7 @@
   const linksArray = [];
   for (const l of links) {
     if (l.rel && l.rel.indexOf('apple-touch-icon') !== -1) {
-      const s = '@@@' + l.rel + ',' + l.href + ',' + l.sizes + '###';
+const s = `@@@${l.rel},${l.href},${l.sizes}###`;
       linksArray.push(s);
     }
   }
