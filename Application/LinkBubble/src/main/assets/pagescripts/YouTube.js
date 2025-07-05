@@ -4,7 +4,7 @@
 
 (function () {
   function detectYoutubeEmbeds () {
-    const elems = document.getElementsByTagName('*');
+const elems = document.querySelectorAll('iframe, embed, object');
     const YOUTUBE_EMBED_PREFIX = '//www.youtube.com/embed/';
     const resultArray = [];
     for (const elem of elems) {
