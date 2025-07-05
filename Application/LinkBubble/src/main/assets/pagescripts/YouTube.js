@@ -4,16 +4,16 @@
 
 (function () {
   function detectYoutubeEmbeds () {
-    var elems = document.getElementsByTagName('*');
-    var i;
-    var YOUTUBE_EMBED_PREFIX = '//www.youtube.com/embed/';
-    var resultArray = null;
-    var resultCount = 0;
+    const elems = document.getElementsByTagName('*');
+    let i;
+    const YOUTUBE_EMBED_PREFIX = '//www.youtube.com/embed/';
+    let resultArray = null;
+    let resultCount = 0;
     for (i in elems) {
-      var elem = elems[i];
+      const elem = elems[i];
       if (elem.src != null && elem.src.indexOf(YOUTUBE_EMBED_PREFIX) !== -1) {
         if (resultArray == null) {
-          resultArray = [ ];
+          resultArray = [];
         }
         resultArray[resultCount] = elem.src;
         resultCount++;
