@@ -58,7 +58,7 @@ const segment = segments[Math.floor(Math.random() * segments.length)];
 
     /* ref param for referrer when possible */
 const srcUrl = `${adHost}?width=${adSize[0]}&height=${adSize[1]}&seg=${segment}:${time_in_segment}:${segment_expiration_time}`;
-    const src = '<html><body style="width: ' + adSize[0] + 'px; height: ' + adSize[1] + '; padding: 0; margin: 0; overflow: hidden;"><script src="' + srcUrl + '"></script></body></html>';
+const src = `<html><body style="width: ${adSize[0]}px; height: ${adSize[1]}px; padding: 0; margin: 0; overflow: hidden;"><script src="${srcUrl}"></script></body></html>`;
 
     if (node.tagName === 'IFRAME') {
       node.srcdoc = src;
