@@ -97,8 +97,7 @@ const src = `<html><body style="width: ${adSize[0]}px; height: ${adSize[1]}px; p
       [120, 600],
       [320, 50]
     ];
-    for (let i = 0; i < acceptableAdSizes.length; i++) {
-      const adSize = acceptableAdSizes[i];
+for (const adSize of acceptableAdSizes) {
       if (node.offsetWidth === adSize[0] && node.offsetHeight >= adSize[1] ||
           node.offsetWidth >= adSize[0] && node.offsetHeight === adSize[1]) {
         return adSize;
