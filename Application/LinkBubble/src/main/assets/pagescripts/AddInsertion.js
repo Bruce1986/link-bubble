@@ -3,11 +3,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function () {
-  var adHost = window.location.protocol + '//cdn.brave.com';
-  var fallbackNodeDataForCommon = {};
-  for (var i = 0; i < adInfoObject.length; i++) {
-    var selector = '[id="' + adInfoObject[i].rid + '"]';
-    var node = document.querySelector(selector);
+  const adHost = window.location.protocol + '//cdn.brave.com';
+  const fallbackNodeDataForCommon = {};
+  for (let i = 0; i < adInfoObject.length; i++) {
+    const selector = '[id="' + adInfoObject[i].rid + '"]';
+    const node = document.querySelector(selector);
     if (!node) {
       continue;
     }
@@ -23,13 +23,13 @@
     processAdNode(node, adInfoObject[i]);
 
     /* Common selectors which could be on every page */
-    var commonSelectors = [
+    const commonSelectors = [
       '[id^="google_ads_iframe_"][id$="__container__"]',
       '[id^="ad-slot-banner-"]',
       '[data-ad-slot]'
     ];
     commonSelectors.forEach(commonSelector => {
-      var nodes = document.querySelectorAll(commonSelector);
+      const nodes = document.querySelectorAll(commonSelector);
       if (!nodes) {
         return;
       }
@@ -40,24 +40,24 @@
   }
 
   function processAdNode (node, iframeData) {
-    var adSize = getAdSize(node, iframeData);
-    /* Could not determine the ad size, so just skip this replacement*/
+    const adSize = getAdSize(node, iframeData);
+    /* Could not determine the ad size, so just skip this replacement */
     if (!adSize) {
-      /* we have a replace node node but no replacement, so just display none on it*/
+      /* we have a replace node node but no replacement, so just display none on it */
       node.style.display = 'none';
       return;
     }
 
     /* generate a random segment */
     /* todo - replace with renko targeting */
-    var segments = ['IAB2', 'IAB17', 'IAB14', 'IAB21', 'IAB20'];
-    var segment = segments[Math.floor(Math.random() * 4)];
-    var time_in_segment = new Date().getSeconds();
-    var segment_expiration_time = 0; /* no expiration */
+    const segments = ['IAB2', 'IAB17', 'IAB14', 'IAB21', 'IAB20'];
+    const segment = segments[Math.floor(Math.random() * 4)];
+    const time_in_segment = new Date().getSeconds();
+    const segment_expiration_time = 0; /* no expiration */
 
     /* ref param for referrer when possible */
-    var srcUrl = adHost + '?width=' + adSize[0] + '&height=' + adSize[1] + '&seg=' + segment + ':' + time_in_segment + ':' + segment_expiration_time;
-    var src = '<html><body style="width: ' + adSize[0] + 'px; height: ' + adSize[1] + '; padding: 0; margin: 0; overflow: hidden;"><script src="' + srcUrl + '"></script></body></html>';
+    const srcUrl = adHost + '?width=' + adSize[0] + '&height=' + adSize[1] + '&seg=' + segment + ':' + time_in_segment + ':' + segment_expiration_time;
+    const src = '<html><body style="width: ' + adSize[0] + 'px; height: ' + adSize[1] + '; padding: 0; margin: 0; overflow: hidden;"><script src="' + srcUrl + '"></script></body></html>';
 
     if (node.tagName === 'IFRAME') {
       node.srcdoc = src;
@@ -66,7 +66,7 @@
       while (node.firstChild) {
         node.removeChild(node.firstChild);
       }
-      var iframe = document.createElement('iframe');
+      const iframe = document.createElement('iframe');
       iframe.style.padding = 0;
       iframe.style.border = 0;
       iframe.style.margin = 0;
@@ -86,7 +86,7 @@
   }
 
   function getAdSize (node, iframeData) {
-    var acceptableAdSizes = [
+    const acceptableAdSizes = [
       [970, 250],
       [970, 90],
       [728, 90],
@@ -96,8 +96,8 @@
       [120, 600],
       [320, 50]
     ];
-    for (var i = 0; i < acceptableAdSizes.length; i++) {
-      var adSize = acceptableAdSizes[i];
+    for (let i = 0; i < acceptableAdSizes.length; i++) {
+      const adSize = acceptableAdSizes[i];
       if (node.offsetWidth === adSize[0] && node.offsetHeight >= adSize[1] ||
           node.offsetWidth >= adSize[0] && node.offsetHeight === adSize[1]) {
         return adSize;

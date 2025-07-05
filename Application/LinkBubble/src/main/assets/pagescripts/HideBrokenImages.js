@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function () {
-  var images = document.querySelectorAll('img');
+  const images = document.querySelectorAll('img');
 
   Array.from(images).forEach(img => {
-    if (!img.complete || typeof img.naturalWidth === "undefined" || img.naturalWidth === 0) {
+    if (!img.complete || typeof img.naturalWidth === 'undefined' || img.naturalWidth === 0) {
       img.style.visibility = 'hidden';
     }
   });
