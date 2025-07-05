@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function () {
-  var themeColorTag = document.getElementsByTagName('meta')['theme-color'];
+const themeColorTag = document.querySelector('meta[name="theme-color"]');
   if (themeColorTag) {
     window.LinkBubble.onThemeColor(themeColorTag.getAttribute('content'));
   }

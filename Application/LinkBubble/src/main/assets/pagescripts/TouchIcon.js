@@ -3,23 +3,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function () {
-  var links = document.head.getElementsByTagName('link');
-  var linksArray = null;
-  var linksCount = 0;
-  for (var link in links) {
-    if (links.hasOwnProperty(link)) {
-      var l = links[link];
-      if (l.rel != null && l.rel.indexOf('apple-touch-icon') !== -1) {
-        if (linksArray == null) {
-          linksArray = [];
-        }
-        var s = '@@@' + l.rel + ',' + l.href + ',' + l.sizes + '###';
-        linksArray[linksCount] = s;
-        linksCount++;
-      }
+  const links = document.head.getElementsByTagName('link');
+  const linksArray = [];
+  for (const l of links) {
+    if (l.rel && l.rel.indexOf('apple-touch-icon') !== -1) {
+const s = `@@@${l.rel},${l.href},${l.sizes}###`;
+      linksArray.push(s);
     }
   }
-  if (linksCount > 0) {
+  if (linksArray.length > 0) {
     window.LinkBubble.onTouchIconLinks(linksArray.toString());
   }
 })();
