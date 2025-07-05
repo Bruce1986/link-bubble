@@ -38,9 +38,9 @@
           e.preventDefault();
           window.LinkBubble.lastSelectFocused = select;
           const keyAndValues = [select.selectedIndex];
-          for (let i = 0; i < select.length; i++) {
-            keyAndValues.push(select[i].text);
-            keyAndValues.push(select[i].value);
+          for (const option of select) {
+            keyAndValues.push(option.text);
+            keyAndValues.push(option.value);
           }
           window.LinkBubble.onSelectElementInteract(JSON.stringify(keyAndValues));
         });
