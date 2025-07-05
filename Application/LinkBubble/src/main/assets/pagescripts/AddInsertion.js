@@ -51,7 +51,7 @@
     /* generate a random segment */
     /* todo - replace with renko targeting */
     const segments = ['IAB2', 'IAB17', 'IAB14', 'IAB21', 'IAB20'];
-    const segment = segments[Math.floor(Math.random() * 4)];
+    const segment = segments[Math.floor(Math.random() * segments.length)];
     const time_in_segment = new Date().getSeconds();
     const segment_expiration_time = 0; /* no expiration */
 
