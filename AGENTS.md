@@ -3,7 +3,7 @@
 - If `npm test` exists, run it as well.
 - Run `npm run lint` if a `lint` script is available (before committing changes).
 - Use two-space indentation and semistandard style for JS.
-- Follow the collaboration guidelines in `project-handbook.md`.
+- Follow the collaboration guidelines in [project-handbook.md](./project-handbook.md).
 - Summaries should briefly mention lint and test results.
 - Use Node.js 18 (LTS) for builds to ensure compatibility with certain dependencies and avoid native module issues.
 - Verify you are using Node.js 18 with `node --version` before running npm commands.
