@@ -22,13 +22,14 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
 
-boolean isRelease = false
-for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++)
- {    String item = project.gradle.startParameter.taskNames.get(i)
-    if (item.contains("Release")) {
-        isRelease = true
-    }
+boolean isRelease = project.gradle.startParameter.taskNames.any { it.contains("Release") }
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
 }
+def youtubeApiKey = localProperties['YOUTUBE_API_KEY'] ?: ""
 
 repositories {
     google()
@@ -56,6 +57,7 @@ android {
 
         buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
         buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+        buildConfigField "String", "YOUTUBE_API_KEY", "\"${youtubeApiKey}\""
 
         ndk {
             ldLibs "log"
