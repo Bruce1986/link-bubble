@@ -28,7 +28,6 @@ import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
-import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 import java.util.Vector;
 
@@ -37,6 +36,7 @@ import static androidx.core.app.ActivityCompat.startActivityForResult;
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
+    private static final String OPENED_URL_FROM_RESTORE = "restore";
 
     private boolean mRestoreComplete;
 
@@ -64,7 +64,6 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String cmd = intent != null ? intent.getStringExtra("cmd") : null;
-        //CrashTracking.log("MainService.onStartCommand(), cmd:" + cmd);
 
         MainController mainController = MainController.get();
         if (mainController == null || intent == null || cmd == null) {
@@ -93,7 +92,7 @@ public class MainService extends Service {
                                 setAsCurrentTab = i == urls.length - 1;
                             }
 
-                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, "restore"/*Analytics.OPENED_URL_FROM_RESTORE*/);
+                            mainController.openUrl(urlAsString, urlLoadStartTime, setAsCurrentTab, OPENED_URL_FROM_RESTORE);
                         }
                     }
                 }
@@ -117,27 +116,20 @@ public class MainService extends Service {
 //        else
 //            startForeground(1, new Notification());
 
-        //Fabric.with(this, new Crashlytics());
-        //CrashTracking.log("MainService.onCreate()");
+
 
         showDefaultNotification();
 
         Config.init(this);
         Settings.get().onOrientationChange();
 
-        /*try {
-            WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
-        }
-        catch (RuntimeException exc) {
-            //CrashTracking.logHandledException(exc);
-        }*/
+
 
         MainController.create(this, new MainController.EventHandler() {
                 @Override
                 public void onDestroy() {
                     Settings.get().saveBubbleRestingPoint();
                     stopSelf();
-                    //CrashTracking.log("MainService.onCreate(): onDestroy()");
                 }
             });
 
@@ -230,7 +222,6 @@ public class MainService extends Service {
         unregisterReceiver(mDialogReceiver);
         unregisterReceiver(mBroadcastReceiver);
         MainController.destroy();
-        //CrashTracking.log("MainService.onDestroy()");
         super.onDestroy();
     }
 
