@@ -22,7 +22,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
@@ -82,7 +82,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
 
         mBus = new Bus();
 
@@ -329,7 +329,7 @@ public class MainApplication extends Application {
             intent.setComponent(defaultBrowserComponentName);
             context.startActivity(intent);
             activityStarted = true;
-            CrashTracking.log("MainApplication.openInBrowser()");
+            //            //CrashTracking.log("MainApplication.openInBrowser()");
         }
         else if (braveBrowser) {
             try {
@@ -343,7 +343,7 @@ public class MainApplication extends Application {
                     settings.initiateBrowsersUpdate();
                 }
             } catch (android.content.ActivityNotFoundException anfe) {
-                CrashTracking.log("MainApplication.openInBrowser() could not open google play");
+                //CrashTracking.log("MainApplication.openInBrowser() could not open google play");
             }
         }
 
@@ -380,7 +380,7 @@ public class MainApplication extends Application {
             if (urlLoadStartTime > -1) {
                 Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
             }
-            CrashTracking.log("MainApplication.loadIntent()");
+            //CrashTracking.log("MainApplication.loadIntent()");
             return true;
         } catch (Exception ex) {
             // We want to catch SecurityException || ActivityNotFoundException
@@ -393,7 +393,7 @@ public class MainApplication extends Application {
                 if (urlLoadStartTime > -1) {
                     Settings.get().trackLinkLoadTime(System.currentTimeMillis() - urlLoadStartTime, Settings.LinkLoadType.AppRedirectBrowser, urlAsString);
                 }
-                CrashTracking.log("MainApplication.loadIntent() [2]");
+                //CrashTracking.log("MainApplication.loadIntent() [2]");
                 return true;
             } catch (SecurityException ex2) {
                 if (toastOnError) {
@@ -424,7 +424,7 @@ public class MainApplication extends Application {
         boolean result = false;
         if (actionType == Constant.ActionType.Share) {
             String consumePackageName = Settings.get().getConsumeBubblePackageName(action);
-            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
+            //CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
             String consumeName = Settings.get().getConsumeBubbleActivityClassName(action);
 
             if (consumePackageName.equals(BuildConfig.APPLICATION_ID) && consumeName.equals(Constant.SHARE_PICKER_NAME)) {
@@ -462,11 +462,11 @@ public class MainApplication extends Application {
             }
         } else if (actionType == Constant.ActionType.View) {
             String consumePackageName = Settings.get().getConsumeBubblePackageName(action);
-            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
+            //CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString() + ", consumePackageName:" + consumePackageName);
             result = MainApplication.loadIntent(context, consumePackageName,
                     Settings.get().getConsumeBubbleActivityClassName(action), urlAsString, -1, true);
         } else if (action == BubbleAction.Close || action == BubbleAction.BackButton) {
-            CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString());
+            //CrashTracking.log("MainApplication.handleBubbleAction() action:" + action.toString());
             result = true;
         }
 
@@ -520,7 +520,7 @@ public class MainApplication extends Application {
             app.getBus().post(event);
         }
         catch (RuntimeException exc) {
-            CrashTracking.logHandledException(exc);
+            //CrashTracking.logHandledException(exc);
         }
     }
 

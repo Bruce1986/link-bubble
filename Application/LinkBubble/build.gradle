@@ -2,16 +2,12 @@ buildscript {
 
     configurations.all {
         resolutionStrategy {
-            force 'net.sf.proguard:proguard-gradle:6.0.3'
         }
     }
 
     repositories {
-        jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        google()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.1'
@@ -26,21 +22,18 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
 
-boolean isRelease = false;
+boolean isRelease = false
 for (int i = 0; i < project.gradle.startParameter.taskNames.size(); i++)
- {    String item = project.gradle.startParameter.taskNames.get(i);
+ {    String item = project.gradle.startParameter.taskNames.get(i)
     if (item.contains("Release")) {
-        isRelease = true;
+        isRelease = true
     }
 }
 
 repositories {
+    google()
     mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
-    maven {
-        url 'https://maven.google.com/'
-        name 'Google'
-    }
 }
 
 def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
@@ -48,15 +41,15 @@ def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone(
 
 android {
     namespace 'com.linkbubble'
-    compileSdkVersion 33
+    compileSdkVersion 34
     useLibrary 'org.apache.http.legacy'
     buildFeatures {
         buildConfig true
     }
     defaultConfig {
-        minSdkVersion 28
+        minSdkVersion 21
 
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -98,17 +91,23 @@ android {
             debuggable true
         }
 
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
+//        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//        }
     }
 
-    externalNativeBuild {
-        cmake {
-            path file('src/main/jni/CMakeLists.txt')
-        }
+    // externalNativeBuild {
+    //     cmake {
+    //         path file('src/main/jni/CMakeLists.txt')
+    //     }
+    // }
+
+    compileOptions {
+        // Choose a version supported by your compile JDK and Android
+        sourceCompatibility JavaVersion.VERSION_17 // Or VERSION_11, or VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_17 // Or VERSION_11, or VERSION_1_8
     }
 
     lintOptions {
@@ -127,14 +126,14 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation "com.android.support:appcompat-v7:28.0.0"
-    implementation 'com.android.support:palette-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'se.emilsjolander:stickylistheaders:2.1.2'
     implementation('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
+        transitive = true
     }
     implementation 'com.squareup.retrofit:retrofit:1.5.0'
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.0@aar'

@@ -22,7 +22,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.Choreographer;
 import android.view.Gravity;
@@ -72,7 +72,7 @@ import java.util.ListIterator;
 import java.util.Vector;
 
 
-import static android.support.v4.content.ContextCompat.startActivity;
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MainController implements Choreographer.FrameCallback {
 
