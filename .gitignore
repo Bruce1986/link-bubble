@@ -33,7 +33,7 @@ ActionLauncher/local.properties
 ActionLauncher/proguard/seeds.txt
 ActionLauncher/.idea/workspace.xml
 Libraries/ADW/.idea/workspace.xml
-com_crashlytics_export_strings.xml
+
 
 # Android Studio
 .idea/
@@ -51,16 +51,14 @@ com_crashlytics_export_strings.xml
 Application/gradle/wrapper/gradle-wrapper.jar
 Application/gradle/wrapper/gradle-wrapper.properties
 
-Application/LinkBubble/src/main/assets/crashlytics-build.properties
 
-# Crashlytics secret key file
-Application/LinkBubble/fabric.properties
+
+
 
 # API keys like youtube and etc
 Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java
 
-# Crashlytics API keys
-Application/LinkBubble/src/main/AndroidManifest.xml
+
 
 # release builds
 dist

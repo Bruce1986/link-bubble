@@ -9,8 +9,6 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.linkbubble.BuildConfig;
 
-import io.fabric.sdk.android.Fabric;
-
 public class CrashTracking {
 
     public static void logHandledException(Throwable throwable) {
@@ -38,9 +36,9 @@ public class CrashTracking {
     }
 
     public static void log(String message) {
-        Crashlytics.log(message);
         if (BuildConfig.DEBUG) {
             Log.d("CrashTracking", message);
         }
+        Crashlytics.log(message);
     }
 }

@@ -117,8 +117,8 @@ public class MainService extends Service {
 //        else
 //            startForeground(1, new Notification());
 
-        //Fabric.with(this, new Crashlytics());
-        //CrashTracking.log("MainService.onCreate()");
+        
+        
 
         showDefaultNotification();
 

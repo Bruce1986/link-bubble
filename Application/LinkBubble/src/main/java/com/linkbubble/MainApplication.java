@@ -4,6 +4,9 @@
 
 package com.linkbubble;
 
+import io.fabric.sdk.android.Fabric;
+import com.crashlytics.android.Crashlytics;
+
 import android.app.AlertDialog;
 import android.app.Application;
 import android.app.NotificationManager;
@@ -25,7 +28,7 @@ import android.os.Vibrator;
 import androidx.core.app.NotificationCompat;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
@@ -41,13 +44,12 @@ import com.linkbubble.ui.SettingsActivity;
 import com.linkbubble.ui.SettingsMoreActivity;
 import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
-import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import io.fabric.sdk.android.Fabric;
+
 import org.mozilla.gecko.favicons.Favicons;
 
 import java.net.MalformedURLException;
@@ -82,7 +84,8 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
+        
 
         mBus = new Bus();
 
@@ -104,7 +107,9 @@ public class MainApplication extends Application {
                 mBus.post(new SettingsMoreActivity.AdBlockTurnOnEvent());
             }
             if (Settings.get().isTrackingProtectionEnabled()) {
-                mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+                if (Settings.get().isTrackingProtectionEnabled()) {
+                //mBus.post(new SettingsMoreActivity.TrackingProtectionTurnOnEvent());
+            }
             }
         }
         if (Settings.get().isHttpsEverywhereEnabled()) {
@@ -128,7 +133,7 @@ public class MainApplication extends Application {
             }
         }
 
-        CrashTracking.log("MainApplication.onCreate()");
+        
         //WebView.setWebContentsDebuggingEnabled(true);
         //checkStrings();
     }
@@ -141,7 +146,7 @@ public class MainApplication extends Application {
                         this,
                         0,
                         resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)
@@ -314,7 +319,6 @@ public class MainApplication extends Application {
         if (urls == null || urls.length == 0) {
             return;
         }
-        CrashTracking.log("MainApplication.restoreLinks(), urls.length:" + urls.length);
         Intent serviceIntent = new Intent(context, MainService.class);
         serviceIntent.putExtra("cmd", "restore");
         serviceIntent.putExtra("urls", urls);
@@ -513,7 +517,6 @@ public class MainApplication extends Application {
         String simpleName = event.getClass().getSimpleName();
         if (sLastPostClassName.equals(sIgnoreClassName) == false
                 || sLastPostClassName.equals(sIgnoreClassName) == false) {
-            CrashTracking.log("post(" + simpleName + ")");
             sLastPostClassName = simpleName;
         }
         try {
@@ -610,7 +613,7 @@ public class MainApplication extends Application {
     class DownloadAdBlockDataAsyncTask extends AsyncTask<Void,Void,Long> {
 
         protected Long doInBackground(Void... params) {
-            createABPParser();
+            //createABPParser();
 
             return null;
         }
@@ -625,7 +628,7 @@ public class MainApplication extends Application {
     class DownloadTrackingProtectionDataAsyncTask extends AsyncTask<Void,Void,Long> {
 
         protected Long doInBackground(Void... params) {
-            createTrackingProtectionList();
+            //createTrackingProtectionList();
             return null;
         }
     }

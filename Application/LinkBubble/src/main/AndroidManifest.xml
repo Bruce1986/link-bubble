@@ -184,7 +184,7 @@
             </intent-filter>
         </service>
 
-        <meta-data android:name="com.crashlytics.ApiKey" android:value="key-here"/>
+        
 
         <activity
             android:name=".ui.ExpandedActivity"
@@ -285,7 +285,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="key-here" />
+            android:value="@string/fabric_api_key" />
     </application>
 
 </manifest>

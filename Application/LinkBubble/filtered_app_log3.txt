@@ -1,0 +1,75 @@
+--------- beginning of crash
+07-29 00:21:54.769 E/AndroidRuntime( 4810): FATAL EXCEPTION: main
+07-29 00:21:54.769 E/AndroidRuntime( 4810): Process: com.linkbubble.playstore.dev, PID: 4810
+07-29 00:21:54.769 E/AndroidRuntime( 4810): java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalArgumentException: com.linkbubble.playstore.dev: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+07-29 00:21:54.769 E/AndroidRuntime( 4810): Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.os.Looper.loopOnce(Looper.java:273)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.os.Looper.loop(Looper.java:388)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at java.lang.reflect.Method.invoke(Native Method)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): Caused by: java.lang.IllegalArgumentException: com.linkbubble.playstore.dev: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+07-29 00:21:54.769 E/AndroidRuntime( 4810): Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.PendingIntent.checkPendingIntent(PendingIntent.java:460)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.PendingIntent.getActivityAsUser(PendingIntent.java:576)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.PendingIntent.getActivity(PendingIntent.java:562)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.PendingIntent.getActivity(PendingIntent.java:526)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at com.linkbubble.MainApplication.showNewBraveBrowserHiddenNotification(MainApplication.java:142)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:129)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+07-29 00:21:54.769 E/AndroidRuntime( 4810): 	... 9 more
+07-29 00:21:58.841 E/AndroidRuntime( 4866): FATAL EXCEPTION: main
+07-29 00:21:58.841 E/AndroidRuntime( 4866): Process: com.linkbubble.playstore.dev, PID: 4866
+07-29 00:21:58.841 E/AndroidRuntime( 4866): java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalArgumentException: com.linkbubble.playstore.dev: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+07-29 00:21:58.841 E/AndroidRuntime( 4866): Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.os.Looper.loopOnce(Looper.java:273)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.os.Looper.loop(Looper.java:388)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at java.lang.reflect.Method.invoke(Native Method)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): Caused by: java.lang.IllegalArgumentException: com.linkbubble.playstore.dev: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+07-29 00:21:58.841 E/AndroidRuntime( 4866): Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.PendingIntent.checkPendingIntent(PendingIntent.java:460)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.PendingIntent.getActivityAsUser(PendingIntent.java:576)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.PendingIntent.getActivity(PendingIntent.java:562)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.PendingIntent.getActivity(PendingIntent.java:526)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at com.linkbubble.MainApplication.showNewBraveBrowserHiddenNotification(MainApplication.java:142)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:129)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+07-29 00:21:58.841 E/AndroidRuntime( 4866): 	... 9 more
+07-29 00:22:04.101 E/AndroidRuntime( 4947): FATAL EXCEPTION: main
+07-29 00:22:04.101 E/AndroidRuntime( 4947): Process: com.linkbubble.playstore.dev, PID: 4947
+07-29 00:22:04.101 E/AndroidRuntime( 4947): java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.os.Looper.loopOnce(Looper.java:273)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.os.Looper.loop(Looper.java:388)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at java.lang.reflect.Method.invoke(Native Method)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+07-29 00:22:04.101 E/AndroidRuntime( 4947): 	... 9 more

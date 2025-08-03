@@ -10,7 +10,7 @@ import com.linkbubble.R;
 public class TPFilterParser {
 
     static {
-        System.loadLibrary("LinkBubble");
+        //System.loadLibrary("LinkBubble");
     }
 
     private static final String ETAG_PREPEND = "tp";

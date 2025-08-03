@@ -15,7 +15,7 @@ import com.linkbubble.R;
 public class ABPFilterParser {
 
     static {
-        System.loadLibrary("LinkBubble");
+        //System.loadLibrary("LinkBubble");
     }
 
     private static final String ETAG_PREPEND = "abp";

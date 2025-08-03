@@ -1,0 +1,253 @@
+--------- beginning of crash
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 15018
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 03:21:41.928 15018 15018 E AndroidRuntime: 	... 9 more
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 24319
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:09:59.991 24319 24319 E AndroidRuntime: 	... 9 more
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 24433
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:10:15.639 24433 24433 E AndroidRuntime: 	... 9 more
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 24481
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:10:16.944 24481 24481 E AndroidRuntime: 	... 9 more
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 25098
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:10:29.059 25098 25098 E AndroidRuntime: 	... 9 more
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 25209
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:10:38.545 25209 25209 E AndroidRuntime: 	... 9 more
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 25510
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Must Initialize Fabric before using singleton()
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.singleton(Fabric.java:273)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.getKit(Fabric.java:524)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.getInstance(Crashlytics.java:188)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.checkInitialized(Crashlytics.java:371)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.crashlytics.android.Crashlytics.log(Crashlytics.java:218)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.linkbubble.util.CrashTracking.log(CrashTracking.java:41)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:133)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 05:10:52.749 25510 25510 E AndroidRuntime: 	... 9 more
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 17890
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: io.fabric.sdk.android.services.concurrency.UnmetDependencyException: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: Caused by: io.fabric.sdk.android.services.concurrency.UnmetDependencyException: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:288)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:236)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.InitializationTask.onPreExecute(InitializationTask.java:44)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.services.concurrency.AsyncTask.executeOnExecutor(AsyncTask.java:611)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.services.concurrency.PriorityAsyncTask.executeOnExecutor(PriorityAsyncTask.java:43)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.Kit.initialize(Kit.java:66)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.initializeKits(Fabric.java:439)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.init(Fabric.java:383)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.setFabric(Fabric.java:340)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.with(Fabric.java:311)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:85)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	... 9 more
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: Caused by: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.crashlytics.android.core.BuildIdValidator.validate(BuildIdValidator.java:59)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.setAndValidateKitProperties(CrashlyticsCore.java:319)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:262)
+08-03 15:31:44.882 17890 17890 E AndroidRuntime: 	... 21 more
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: FATAL EXCEPTION: main
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: Process: com.linkbubble.playstore.dev, PID: 18828
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: java.lang.RuntimeException: Unable to create application com.linkbubble.MainApplication: io.fabric.sdk.android.services.concurrency.UnmetDependencyException: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7719)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2500)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:273)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:388)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8969)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:892)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: Caused by: io.fabric.sdk.android.services.concurrency.UnmetDependencyException: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:288)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:236)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.InitializationTask.onPreExecute(InitializationTask.java:44)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.services.concurrency.AsyncTask.executeOnExecutor(AsyncTask.java:611)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.services.concurrency.PriorityAsyncTask.executeOnExecutor(PriorityAsyncTask.java:43)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.Kit.initialize(Kit.java:66)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.initializeKits(Fabric.java:439)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.init(Fabric.java:383)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.setFabric(Fabric.java:340)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at io.fabric.sdk.android.Fabric.with(Fabric.java:311)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.linkbubble.MainApplication.onCreate(MainApplication.java:85)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1387)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7713)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	... 9 more
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: Caused by: com.crashlytics.android.core.CrashlyticsMissingDependencyException: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: install an Android build tool and ask a team member to invite you to this app's organization.
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.crashlytics.android.core.BuildIdValidator.validate(BuildIdValidator.java:59)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.setAndValidateKitProperties(CrashlyticsCore.java:319)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	at com.crashlytics.android.core.CrashlyticsCore.onPreExecute(CrashlyticsCore.java:262)
+08-03 15:32:59.785 18828 18828 E AndroidRuntime: 	... 21 more
