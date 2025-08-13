@@ -2073,7 +2073,7 @@ public class ContentView extends FrameLayout {
                 Intent openTabIntent = new Intent(context, NotificationOpenTabActivity.class);
                 openTabIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
                 openTabIntent.putExtra(NotificationOpenTabActivity.EXTRA_DISMISS_NOTIFICATION, mArticleNotificationId);
-                PendingIntent openTabPendingIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), openTabIntent, Util.getImmutablePendingIntentFlags());
+                PendingIntent openTabPendingIntent = PendingIntent.getActivity(context, MainApplication.getNextRequestCode(), openTabIntent, Util.getImmutablePendingIntentFlags());
 
                 Notification notification = new NotificationCompat.Builder(context)
                         .addAction(R.drawable.ic_action_cancel_white, context.getString(R.string.action_close_tab), closeTabPendingIntent)
