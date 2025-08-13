@@ -138,7 +138,7 @@ public class MainApplication extends Application {
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
-                        0,
+                        MainApplication.getNextRequestCode(),
                         resultIntent,
                         Util.getImmutablePendingIntentFlags());
 
