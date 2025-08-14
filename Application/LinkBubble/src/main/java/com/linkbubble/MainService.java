@@ -28,6 +28,7 @@ import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 import java.util.Vector;
 
@@ -233,11 +234,11 @@ public class MainService extends Service {
     private void showDefaultNotification() {
         Intent closeAllIntent = new Intent(this, NotificationCloseAllActivity.class);
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), closeAllIntent, Util.getImmutablePendingIntentFlags());
 
         Intent hideIntent = new Intent(this, NotificationHideActivity.class);
         hideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent hidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), hideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent hidePendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), hideIntent, Util.getImmutablePendingIntentFlags());
 
 
         String channel;
@@ -290,11 +291,11 @@ public class MainService extends Service {
     private void showUnhideHiddenNotification() {
         Intent unhideIntent = new Intent(this, NotificationUnhideActivity.class);
         unhideIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent unhidePendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), unhideIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent unhidePendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), unhideIntent, Util.getImmutablePendingIntentFlags());
 
         Intent closeAllIntent = new Intent(this, NotificationCloseAllActivity.class);
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), closeAllIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), closeAllIntent, Util.getImmutablePendingIntentFlags());
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)

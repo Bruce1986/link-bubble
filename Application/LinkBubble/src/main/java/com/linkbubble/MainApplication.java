@@ -53,6 +53,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class MainApplication extends Application {
@@ -64,6 +65,7 @@ public class MainApplication extends Application {
     public static Favicons sFavicons;
     public static boolean sShowingAppPickerDialog = false;
     private static long sTrialStartTime = -1;
+    private static final AtomicInteger sRequestCodeGenerator = new AtomicInteger(0);
 
     private HttpsEverywhere mHttpsEverywhere = null;
     private ABPFilterParser mABPParser = null;
@@ -136,9 +138,9 @@ public class MainApplication extends Application {
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
-                        0,
+                        MainApplication.getNextRequestCode(),
                         resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+                        Util.getImmutablePendingIntentFlags());
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat)
@@ -237,6 +239,10 @@ public class MainApplication extends Application {
         }
 
         sFavicons = new Favicons();
+    }
+
+    public static int getNextRequestCode() {
+        return sRequestCodeGenerator.getAndIncrement();
     }
 
     public static void openLink(Context context, String url, String openedFromAppName) {
