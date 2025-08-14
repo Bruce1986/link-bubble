@@ -153,7 +153,7 @@ Your communication must be direct, professional, and concise. Focus on the user'
 
 ## 專案特定注意事項
 
-This repository uses **gemini-code-assist** to provide automated code review suggestions.
+本儲存庫使用 **gemini-code-assist** 提供自動化的程式碼審查建議。
 
-- Address all suggestions from the AI assistant. If a suggestion is not implemented, explain why in the pull request conversation.
-- Follow the workflow and coding conventions described in [project-handbook.md](./project-handbook.md).
+- 請處理所有來自 AI 助理的建議。如果某個建議未被採納，請在 Pull Request 的討論中說明原因。
+- 請遵循 [project-handbook.md](./project-handbook.md) 中描述的工作流程和編碼慣例。
