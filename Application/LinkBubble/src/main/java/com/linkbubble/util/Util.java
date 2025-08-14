@@ -797,6 +797,7 @@ public class Util {
 
         return result;
     }
+    @android.annotation.SuppressLint("InlinedApi")
     public static int getImmutablePendingIntentFlags() {
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
