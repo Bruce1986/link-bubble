@@ -797,6 +797,13 @@ public class Util {
 
         return result;
     }
+    /**
+     * Returns the flags for an immutable PendingIntent.
+     * The FLAG_IMMUTABLE is used here for devices with API 23+ to provide security benefits,
+     * even though it only became a mandatory requirement (and the cause of the crash on newer Android versions)
+     * on API 31.
+     * @return The flags for the PendingIntent.
+     */
     @android.annotation.SuppressLint("InlinedApi")
     public static int getImmutablePendingIntentFlags() {
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
