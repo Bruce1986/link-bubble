@@ -70,7 +70,7 @@
 
 **範例 `temp_ops.py` 內容：**
 
-'''python
+```python
 import os
 import sys
 import shutil
@@ -119,7 +119,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
+```
 
 **執行方式：**
 
