@@ -38,7 +38,7 @@
         *   `WebIconDatabase` 是已從 Android SDK 中移除的過時 API。
     *   **解決方案**:
         *   建立一個帶有虛擬值的 `ConfigAPIs.java` 檔案。
-        *   註解掉所有對 `CrashTracking`, `Fabric`, `Analytics` 的呼叫。
+        *   註解掉所有對 `CrashTracking` 與 `Analytics` 的呼叫。
         *   在 `MainService.java` 中加入所有缺少的 `import` 語句。
         *   註解掉對 `WebIconDatabase` 的呼叫。
         *   修正 `NotificationUnhideHandler` 為 `NotificationUnhideActivity` 的打字錯誤。

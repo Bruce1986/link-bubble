@@ -975,7 +975,7 @@ public class ContentView extends FrameLayout {
                     //boolean isLinkBubblePresent = mAppsForUrl.size() == 1 ? Util.isLinkBubbleResolveInfo(mAppsForUrl.get(0).mResolveInfo) : false;
                     for (AppForUrl info : mAppsForUrl) {
 
-                        // Handle crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/562667c7f5d3a7f76bf16a4c
+                        // Handle case where resolve info is missing
                         if (info.mResolveInfo == null || info.mResolveInfo.activityInfo == null) {
                             CrashTracking.log("onPageStarted() Null resolveInfo when getting default for app: " + info);
                             continue;
@@ -2131,7 +2131,7 @@ public class ContentView extends FrameLayout {
 
                         // In certain situations mResolveInfo is null, likely because we can't find the app.
                         // One possibility is that this happens when the app is currently being updated through the play store.
-                        // Prevents crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/55dcee53e0d514e5d6413e8d
+                        // Guard against a null resolveInfo
                         if (existing.mResolveInfo == null) {
                             continue;
                         }
