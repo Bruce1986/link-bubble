@@ -13,14 +13,14 @@ public class CrashTracking {
     private static final String TAG = "CrashTracking";
 
     public static void logHandledException(Throwable throwable) {
-        if (BuildConfig.DEBUG) {
-            Log.e(TAG, "Handled exception", throwable);
-        }
+        Log.e(TAG, "Handled exception", throwable);
     }
 
     private static void logKeyValue(String key, Object value) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, key + ": " + value);
+        } else {
+            Log.i(TAG, key + ": " + value);
         }
     }
 
@@ -47,6 +47,8 @@ public class CrashTracking {
     public static void log(String message) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, message);
+        } else {
+            Log.i(TAG, message);
         }
     }
 }
