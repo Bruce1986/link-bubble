@@ -18,34 +18,30 @@ public class CrashTracking {
         }
     }
 
-    public static void setInt(String key, int value) {
+    private static void logKeyValue(String key, Object value) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, key + ": " + value);
         }
+    }
+
+    public static void setInt(String key, int value) {
+        logKeyValue(key, value);
     }
 
     public static void setDouble(String key, double value) {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, key + ": " + value);
-        }
+        logKeyValue(key, value);
     }
 
     public static void setFloat(String key, float value) {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, key + ": " + value);
-        }
+        logKeyValue(key, value);
     }
 
     public static void setString(String key, String string) {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, key + ": " + string);
-        }
+        logKeyValue(key, string);
     }
 
     public static void setBool(String key, boolean value) {
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, key + ": " + value);
-        }
+        logKeyValue(key, value);
     }
 
     public static void log(String message) {
