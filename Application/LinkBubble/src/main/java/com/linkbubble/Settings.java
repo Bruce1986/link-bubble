@@ -1004,7 +1004,7 @@ public class Settings {
                 ComponentName componentName = ComponentName.unflattenFromString(flattenedComponentName);
                 if (componentName != null) {
                     for (ResolveInfo resolveInfo : resolveInfos) {
-                        // Handle crash: https://fabric.io/brave6/android/apps/com.linkbubble.playstore/issues/5623e787f5d3a7f76be5b166
+                        // Handle case where resolve info is missing
                         if (resolveInfo == null || resolveInfo.activityInfo == null) {
                             CrashTracking.log("Null resolveInfo when getting default for app: " + resolveInfo);
                             continue;

@@ -109,7 +109,7 @@ public class MainApplication extends Application {
         if (Settings.get().isHttpsEverywhereEnabled()) {
             mBus.post(new SettingsMoreActivity.HttpsEverywhereTurnOnEvent());
         }
-        // Enable ad insertion for Crashlytics builds and disable for play store builds
+        // Enable ad insertion for internal builds and disable for play store builds
         ApplicationInfo appInfo = getApplicationInfo();
         if (appInfo.packageName.equals("com.brave.playstore") || appInfo.packageName.equals("com.brave.playstore.dev")) {
             mAdInserterEnabled = true;
