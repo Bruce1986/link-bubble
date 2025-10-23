@@ -32,9 +32,9 @@ This review inspects the current Link Bubble Android app to explain why the buil
 4. Capture logcat traces on Android 15 to ensure `ForegroundServiceStartNotAllowedException` no longer appears during cold start and tab restore flows.
 
 ## Validation checklist
-- [ ] Instrumented notification-permission flow passes on API 33, 34, and 35 emulator suites.
-- [ ] Manifest diff shows the new `android.permission.FOREGROUND_SERVICE` declaration and any required foreground service types.
-- [ ] Robolectric unit tests cover the `ContextCompat.startForegroundService` migration.
-- [ ] Manual regression on ASUS Android 15 devices confirms the overlay bubble renders without background-start exceptions.
+- [ ] Pending — Instrumented notification-permission flow passes on API 33, 34, and 35 emulator suites.
+- [ ] Pending — Manifest diff shows the new `android.permission.FOREGROUND_SERVICE` declaration and any required foreground service types.
+- [ ] Pending — Robolectric unit tests cover the `ContextCompat.startForegroundService` migration.
+- [ ] Pending — Manual regression on ASUS Android 15 devices confirms the overlay bubble renders without background-start exceptions.
 
 Following this plan keeps the remediation effort actionable, testable, and aligned with modern Android foreground service policies.
