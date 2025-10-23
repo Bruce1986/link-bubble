@@ -1,48 +1,55 @@
 import sys
 import os
 import shutil
+import argparse
+
+def move_op(old_path, new_path):
+    """Moves a file or directory and handles exceptions."""
+    try:
+        shutil.move(old_path, new_path)
+        print(f"Renamed: {old_path} -> {new_path}")
+    except FileNotFoundError:
+        print(f"Error: File not found - {old_path}", file=sys.stderr)
+        sys.exit(1)
+    except OSError as e:
+        print(f"Error renaming {old_path}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+def remove_op(path_to_delete):
+    """Removes a file or directory and handles exceptions."""
+    try:
+        if os.path.isdir(path_to_delete):
+            shutil.rmtree(path_to_delete)
+            print(f"Deleted directory: {path_to_delete}")
+        else:
+            os.remove(path_to_delete)
+            print(f"Deleted file: {path_to_delete}")
+    except FileNotFoundError:
+        print(f"Error: File not found - {path_to_delete}", file=sys.stderr)
+        sys.exit(1)
+    except OSError as e:
+        print(f"Error deleting {path_to_delete}: {e}", file=sys.stderr)
+        sys.exit(1)
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python temp_ops.py <command> [args...]", file=sys.stderr)
-        print("Commands:", file=sys.stderr)
-        print("  mv <old_path> <new_path>", file=sys.stderr)
-        print("  rm <path_to_delete>", file=sys.stderr)
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="Perform temporary file operations.")
+    subparsers = parser.add_subparsers(dest="command", required=True, help="Available commands")
 
-    command = sys.argv[1]
+    # Move command
+    mv_parser = subparsers.add_parser("mv", help="Move or rename a file or directory.")
+    mv_parser.add_argument("old_path", help="The source path.")
+    mv_parser.add_argument("new_path", help="The destination path.")
 
-    if command == "mv" and len(sys.argv) == 4:
-        old_path = sys.argv[2]
-        new_path = sys.argv[3]
-        try:
-            shutil.move(old_path, new_path)
-            print(f"Renamed: {old_path} -> {new_path}")
-        except FileNotFoundError:
-            print(f"Error: File not found - {old_path}", file=sys.stderr)
-            sys.exit(1)
-        except Exception as e:
-            print(f"Error renaming {old_path}: {e}", file=sys.stderr)
-            sys.exit(1)
+    # Remove command
+    rm_parser = subparsers.add_parser("rm", help="Remove a file or directory.")
+    rm_parser.add_argument("path", help="The path to the file or directory to remove.")
 
-    elif command == "rm" and len(sys.argv) == 3:
-        path_to_delete = sys.argv[2]
-        try:
-            if os.path.isdir(path_to_delete):
-                shutil.rmtree(path_to_delete)
-                print(f"Deleted directory: {path_to_delete}")
-            else:
-                os.remove(path_to_delete)
-                print(f"Deleted file: {path_to_delete}")
-        except FileNotFoundError:
-            print(f"Error: File not found - {path_to_delete}", file=sys.stderr)
-            sys.exit(1)
-        except Exception as e:
-            print(f"Error deleting {path_to_delete}: {e}", file=sys.stderr)
-            sys.exit(1)
-    else:
-        print(f"Invalid command or arguments for '{command}'.", file=sys.stderr)
-        sys.exit(1)
+    args = parser.parse_args()
+
+    if args.command == "mv":
+        move_op(args.old_path, args.new_path)
+    elif args.command == "rm":
+        remove_op(args.path)
 
 if __name__ == "__main__":
     main()
