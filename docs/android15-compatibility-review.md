@@ -18,7 +18,7 @@ This review inspects the current Link Bubble Android app to explain why the buil
 ## Next steps
 1. Implement a notifications-permission request UI (with rationale copy) before launching `MainService`.
 2. Update the manifest with `android.permission.FOREGROUND_SERVICE` (and specific foreground types if targeting Android 14+ service policies).
-3. Switch service launches to `startForegroundService` / `ServiceCompat.startForeground`.
+3. Switch service launches to `ContextCompat.startForegroundService`.
 4. Retest on Android 15 builds from ASUS to confirm the overlay bubble renders and that no background-start exceptions are logged.
 
 Documenting these fixes now should streamline future remediation work and keep the project aligned with modern Android best practices.
