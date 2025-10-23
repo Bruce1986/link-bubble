@@ -17,7 +17,7 @@ This review inspects the current Link Bubble Android app to explain why the buil
 **Observed behaviour**  The manifest lacks the mandatory `android.permission.FOREGROUND_SERVICE` declaration even though `MainService` calls `startForeground` during normal operation.【F:Application/LinkBubble/src/main/AndroidManifest.xml†L1-L80】【F:Application/LinkBubble/src/main/java/com/linkbubble/MainService.java†L234-L315】 Android 9+ enforces this permission for apps targeting API 28 or above. Vendor builds of Android 15 (including the cited ASUS firmware) aggressively enforce the check, causing a `SecurityException` and killing the service.
 
 **Remediation plan**
-1. Update `AndroidManifest.xml` with `<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />` and annotate service declarations with the appropriate `android:foregroundServiceType` (likely `dataSync` or `mediaProjection` depending on the notification behaviour).
+1. Update `AndroidManifest.xml` with `<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />` and annotate service declarations with the appropriate `android:foregroundServiceType` (e.g., `dataSync`, or the new `whileInUse` type on Android 15+).
 2. Audit whether the app performs any location, camera, or microphone work; if so, add the corresponding specific foreground service type permissions introduced in Android 14.
 3. Add an instrumentation test that asserts the manifest export includes the permission to avoid future regressions.
 4. Re-run the app on Android 13, 14, and 15 emulators to confirm the service starts without `SecurityException`.
