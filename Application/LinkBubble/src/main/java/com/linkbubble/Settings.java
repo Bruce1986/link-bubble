@@ -102,6 +102,8 @@ public class Settings {
     public static final String PREFERENCE_USER_AGENT = "preference_user_agent";
 
     private static final String SAY_THANKS_CLICKED = "say_thanks_clicked";
+    private static final String PREFERENCE_NOTIFICATION_PERMISSION_PERMANENTLY_DENIED =
+            "notification_permission_permanently_denied";
 
     private static final String DEFAULT_APPS_MAP_KEY_HOST = "host";
     private static final String DEFAULT_APPS_MAP_KEY_COMPONENT = "component";
@@ -842,6 +844,17 @@ public class Settings {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean(SAY_THANKS_CLICKED, value);
         editor.commit();
+    }
+
+    public boolean wasNotificationPermissionPermanentlyDenied() {
+        return mSharedPreferences.getBoolean(
+                PREFERENCE_NOTIFICATION_PERMISSION_PERMANENTLY_DENIED, false);
+    }
+
+    public void setNotificationPermissionPermanentlyDenied(boolean denied) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_NOTIFICATION_PERMISSION_PERMANENTLY_DENIED, denied);
+        editor.apply();
     }
 
     void configureFallbackRedirectHosts(Set<String> items) {

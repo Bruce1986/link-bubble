@@ -19,25 +19,28 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
+import com.linkbubble.util.NotificationPermissionHelper;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Subscribe;
 import java.util.Vector;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private static final String OPENED_URL_FROM_RESTORE = "restore";
+    private static final String TAG = "MainService";
 
     private boolean mRestoreComplete;
 
@@ -285,7 +288,7 @@ public class MainService extends Service {
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
+        promoteToForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
     }
 
     private void showUnhideHiddenNotification() {
@@ -311,7 +314,7 @@ public class MainService extends Service {
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
-        startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
+        promoteToForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
     }
 
     @SuppressWarnings("unused")
@@ -362,6 +365,15 @@ public class MainService extends Service {
             MainController.get().updateScreenState(intent.getAction());
         }
     };
+
+    private void promoteToForeground(int notificationId, Notification notification) {
+        if (NotificationPermissionHelper.hasPermission(this)) {
+            startForeground(notificationId, notification);
+        } else {
+            Log.w(TAG, "startForeground skipped: POST_NOTIFICATIONS permission missing");
+            NotificationPermissionHelper.showPermissionDeniedMessage(this);
+        }
+    }
 
     public static boolean canDrawOverlays(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true;

@@ -8,6 +8,11 @@
     <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
     <string name="notification_action_close_all">Close All</string>
     <string name="notification_action_hide">Hide</string>
+    <string name="notification_permission_rationale_title">Allow notifications</string>
+    <string name="notification_permission_rationale_message">Link Bubble needs notification access to stay active while running in the background.</string>
+    <string name="notification_permission_rationale_positive">Allow</string>
+    <string name="notification_permission_rationale_negative">Not now</string>
+    <string name="notification_permission_required_toast">Enable notifications so Link Bubble can keep your bubbles open.</string>
     <string name="share_picker_label">Share picker</string>
 
     <string name="yes">Yes</string>

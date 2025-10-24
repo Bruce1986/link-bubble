@@ -4,13 +4,13 @@
 
 package com.linkbubble.ui;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -21,11 +21,18 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
 import com.linkbubble.MainController;
 import com.linkbubble.R;
 import com.linkbubble.Settings;
+import com.linkbubble.util.NotificationPermissionHelper;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.Util;
@@ -41,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     View mTimeSavedPerLinkContainerView;
     CondensedTextView mTimeSavedPerLinkTextView;
     CondensedTextView mTimeSavedTotalTextView;
+    private ActivityResultLauncher<String> mNotificationPermissionLauncher;
 
     @Override
     @TargetApi(23)
@@ -56,6 +64,20 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mNotificationPermissionLauncher =
+                registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+                        isGranted -> {
+                            if (isGranted) {
+                                NotificationPermissionHelper.clearPermanentlyDeniedFlag();
+                                MainApplication.checkRestoreCurrentTabs(HomeActivity.this);
+                            } else if (NotificationPermissionHelper.requiresRuntimePermission()) {
+                                if (!NotificationPermissionHelper.shouldShowRationale(HomeActivity.this)) {
+                                    NotificationPermissionHelper.markPermissionPermanentlyDenied();
+                                    NotificationPermissionHelper.showPermissionDeniedMessage(HomeActivity.this);
+                                }
+                            }
+                        });
 
         setContentView(R.layout.activity_home);
 
@@ -183,7 +205,9 @@ public class HomeActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        MainApplication.checkRestoreCurrentTabs(this);
+        if (ensureNotificationPermission()) {
+            MainApplication.checkRestoreCurrentTabs(this);
+        }
     }
 
     private void updateLinkLoadTimeStats() {
@@ -207,6 +231,43 @@ public class HomeActivity extends AppCompatActivity {
             mTimeSavedTotalTextView.setText(prettyTimeElapsed);
             Log.d(Settings.LOAD_TIME_TAG, "*** " + (prettyTimeElapsed.replace("\n", " ")));
         }
+    }
+
+    private boolean ensureNotificationPermission() {
+        if (!NotificationPermissionHelper.requiresRuntimePermission()) {
+            return true;
+        }
+
+        if (NotificationPermissionHelper.hasPermission(this)) {
+            NotificationPermissionHelper.clearPermanentlyDeniedFlag();
+            return true;
+        }
+
+        if (NotificationPermissionHelper.wasPermissionPermanentlyDenied()) {
+            NotificationPermissionHelper.showPermissionDeniedMessage(this);
+            return false;
+        }
+
+        if (NotificationPermissionHelper.shouldShowRationale(this)) {
+            showNotificationPermissionRationale();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            NotificationPermissionHelper.clearPermanentlyDeniedFlag();
+            mNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
+        return false;
+    }
+
+    private void showNotificationPermissionRationale() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.notification_permission_rationale_title)
+                .setMessage(R.string.notification_permission_rationale_message)
+                .setPositiveButton(R.string.notification_permission_rationale_positive,
+                        (dialog, which) -> {
+                            NotificationPermissionHelper.clearPermanentlyDeniedFlag();
+                            mNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+                        })
+                .setNegativeButton(R.string.notification_permission_rationale_negative, null)
+                .show();
     }
 
     void startActivity(Intent intent, View view) {
