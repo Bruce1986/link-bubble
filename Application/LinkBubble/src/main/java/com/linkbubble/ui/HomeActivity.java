@@ -9,7 +9,6 @@ import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -250,7 +249,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (NotificationPermissionHelper.shouldShowRationale(this)) {
             showNotificationPermissionRationale();
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        } else {
             NotificationPermissionHelper.clearPermanentlyDeniedFlag();
             mNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
         }

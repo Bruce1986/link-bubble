@@ -372,6 +372,7 @@ public class MainService extends Service {
         } else {
             Log.w(TAG, "startForeground skipped: POST_NOTIFICATIONS permission missing");
             NotificationPermissionHelper.showPermissionDeniedMessage(this);
+            stopSelf();
         }
     }
 

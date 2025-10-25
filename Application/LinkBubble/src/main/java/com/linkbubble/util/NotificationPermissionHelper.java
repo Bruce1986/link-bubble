@@ -77,13 +77,9 @@ public final class NotificationPermissionHelper {
     }
 
     /**
-     * Shows a non-blocking toast when the permission was permanently denied.
+     * Shows a non-blocking toast when the permission is denied.
      */
     public static void showPermissionDeniedMessage(@NonNull final Context context) {
-        if (!wasPermissionPermanentlyDenied()) {
-            return;
-        }
-
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> Toast.makeText(context.getApplicationContext(),
                 R.string.notification_permission_required_toast, Toast.LENGTH_LONG).show());
