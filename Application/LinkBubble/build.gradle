@@ -142,6 +142,10 @@ dependencies {
     implementation files('libs/picasso-2.1.1.jar')
     implementation files('libs/jsoup-1.7.3.jar')
     implementation files('libs/slf4j-android-1.5.8.jar')
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.11.1'
+    testImplementation 'androidx.test:core:1.5.0'
 }
 
 task showVersion {
