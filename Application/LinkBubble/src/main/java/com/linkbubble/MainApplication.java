@@ -282,15 +282,8 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("start_time", time);
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
 
-        if (!NotificationPermissionHelper.hasPermission(context)) {
-            Log.w(TAG, "Skipping MainService start: POST_NOTIFICATIONS permission missing");
-            NotificationPermissionHelper.showPermissionDeniedMessage(context);
-            return false;
-        }
-
-        startMainService(context, serviceIntent);
-
-        return true;
+        return startMainService(context, serviceIntent,
+                "Skipping MainService start: POST_NOTIFICATIONS permission missing");
     }
 
     public static void checkRestoreCurrentTabs(Context _context) {
@@ -336,21 +329,24 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("urls", urls);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
 
-        if (!NotificationPermissionHelper.hasPermission(context)) {
-            Log.w(TAG, "Skipping MainService restore: POST_NOTIFICATIONS permission missing");
-            NotificationPermissionHelper.showPermissionDeniedMessage(context);
-            return;
-        }
-
-        startMainService(context, serviceIntent);
+        startMainService(context, serviceIntent,
+                "Skipping MainService restore: POST_NOTIFICATIONS permission missing");
     }
 
-    private static void startMainService(Context context, Intent serviceIntent) {
+    private static boolean startMainService(Context context, Intent serviceIntent, String logMessage) {
+        if (!NotificationPermissionHelper.hasPermission(context)) {
+            Log.w(TAG, logMessage);
+            NotificationPermissionHelper.showPermissionDeniedMessage(context);
+            return false;
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ContextCompat.startForegroundService(context, serviceIntent);
         } else {
             context.startService(serviceIntent);
         }
+
+        return true;
     }
 
     public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser, boolean braveBrowser) {

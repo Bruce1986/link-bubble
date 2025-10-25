@@ -82,12 +82,37 @@ public class MainApplicationForegroundServiceTest {
         assertFalse(mContext.startServiceCalled);
     }
 
+    @Test
+    @Config(sdk = Build.VERSION_CODES.TIRAMISU)
+    public void restoreLinks_requiresNotificationPermissionOnTiramisu() {
+        MainApplication.restoreLinks(mContext, new String[] {"http://example.com"});
+
+        assertFalse(mContext.startForegroundServiceCalled);
+        assertFalse(mContext.startServiceCalled);
+    }
+
+    @Test
+    @Config(sdk = Build.VERSION_CODES.TIRAMISU)
+    public void restoreLinks_startsForegroundServiceWhenPermissionGrantedOnTiramisu() {
+        ShadowApplication.getInstance().grantPermissions(Manifest.permission.POST_NOTIFICATIONS);
+
+        MainApplication.restoreLinks(mContext, new String[] {"http://example.com"});
+
+        assertTrue(mContext.startForegroundServiceCalled);
+        assertFalse(mContext.startServiceCalled);
+    }
+
     private static class RecordingContext extends ContextWrapper {
         boolean startServiceCalled;
         boolean startForegroundServiceCalled;
 
         RecordingContext(Context base) {
             super(base);
+        }
+
+        @Override
+        public Context getApplicationContext() {
+            return this;
         }
 
         @Override

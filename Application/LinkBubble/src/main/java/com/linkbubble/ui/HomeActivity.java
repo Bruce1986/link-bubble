@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                             if (isGranted) {
                                 NotificationPermissionHelper.clearPermanentlyDeniedFlag();
                                 MainApplication.checkRestoreCurrentTabs(HomeActivity.this);
-                            } else if (NotificationPermissionHelper.requiresRuntimePermission()) {
+                            } else {
                                 if (!NotificationPermissionHelper.shouldShowRationale(HomeActivity.this)) {
                                     NotificationPermissionHelper.markPermissionPermanentlyDenied();
                                     NotificationPermissionHelper.showPermissionDeniedMessage(HomeActivity.this);
