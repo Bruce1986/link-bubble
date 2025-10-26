@@ -4,9 +4,11 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
+      # Do not run the workflow if only markdown files were changed.
       - '**/*.md'
   pull_request:
     paths-ignore:
+      # Do not run the workflow if only markdown files were changed.
       - '**/*.md'
 
 jobs:
