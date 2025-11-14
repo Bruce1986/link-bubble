@@ -22,8 +22,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
-import androidx.core.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
@@ -42,6 +45,7 @@ import com.linkbubble.util.ActionItem;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.CrashTracking;
 import com.linkbubble.util.IconCache;
+import com.linkbubble.util.NotificationPermissionHelper;
 import com.linkbubble.util.Util;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -57,6 +61,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class MainApplication extends Application {
+
+    private static final String TAG = "MainApplication";
 
     private Bus mBus;
     public static DatabaseHelper sDatabaseHelper;
@@ -275,9 +281,9 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("url", url);
         serviceIntent.putExtra("start_time", time);
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
-        context.startService(serviceIntent);
 
-        return true;
+        return startMainService(context, serviceIntent,
+                "Skipping MainService start: POST_NOTIFICATIONS permission missing");
     }
 
     public static void checkRestoreCurrentTabs(Context _context) {
@@ -322,7 +328,21 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("cmd", "restore");
         serviceIntent.putExtra("urls", urls);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
-        context.startService(serviceIntent);
+
+        startMainService(context, serviceIntent,
+                "Skipping MainService restore: POST_NOTIFICATIONS permission missing");
+    }
+
+    private static boolean startMainService(Context context, Intent serviceIntent, String logMessage) {
+        if (!NotificationPermissionHelper.hasPermission(context)) {
+            Log.w(TAG, logMessage);
+            NotificationPermissionHelper.showPermissionDeniedMessage(context);
+            return false;
+        }
+
+        ContextCompat.startForegroundService(context, serviceIntent);
+
+        return true;
     }
 
     public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser, boolean braveBrowser) {
