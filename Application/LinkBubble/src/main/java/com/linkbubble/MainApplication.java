@@ -340,11 +340,7 @@ public class MainApplication extends Application {
             return false;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ContextCompat.startForegroundService(context, serviceIntent);
-        } else {
-            context.startService(serviceIntent);
-        }
+        ContextCompat.startForegroundService(context, serviceIntent);
 
         return true;
     }
