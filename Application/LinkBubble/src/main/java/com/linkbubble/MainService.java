@@ -10,6 +10,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.pm.ServiceInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -146,9 +147,9 @@ public class MainService extends Service {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BCAST_CONFIGCHANGED);
-        registerReceiver(mBroadcastReceiver, filter);
+        registerReceiverCompat(mBroadcastReceiver, filter);
 
-        registerReceiver(mDialogReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        registerReceiverCompat(mDialogReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 
         filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
@@ -157,7 +158,7 @@ public class MainService extends Service {
         filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
-        registerReceiver(mScreenReceiver, filter);
+        registerReceiverCompat(mScreenReceiver, filter);
 
     }
 
@@ -285,7 +286,11 @@ public class MainService extends Service {
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationHideActivity.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+        } else {
+            startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
+        }
     }
 
     private void showUnhideHiddenNotification() {
@@ -311,7 +316,11 @@ public class MainService extends Service {
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
-        startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+        } else {
+            startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
+        }
     }
 
     @SuppressWarnings("unused")
@@ -384,6 +393,14 @@ public class MainService extends Service {
                 e.printStackTrace();
             }
             return false;
+        }
+    }
+
+    private void registerReceiverCompat(BroadcastReceiver receiver, IntentFilter filter) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(receiver, filter);
         }
     }
 }
