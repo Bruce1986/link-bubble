@@ -13,8 +13,6 @@ cmake_minimum_required(VERSION 3.10.2)
 
 add_subdirectory(dlib dlib_build)
 
-include_directories(src/main/jni/)
-
 add_library( # Specifies the name of the library.
         LinkBubble
 
@@ -24,12 +22,14 @@ add_library( # Specifies the name of the library.
         # Provides a relative path to your source file(s).
         main.cpp
         ABPFilterParser.cpp
-        cosmeticFilter.cpp
         filter.cpp
         BloomFilter.cpp
         hashFn.cpp
         HashSet.cpp
+        cosmeticFilter.cpp
+        TPParser.cpp
         FirstPartyHost.cpp
-        TrackerData.cpp
-        TPParser.cpp )
+        TrackerData.cpp )
+
+target_link_libraries(LinkBubble PRIVATE dlib)
 
