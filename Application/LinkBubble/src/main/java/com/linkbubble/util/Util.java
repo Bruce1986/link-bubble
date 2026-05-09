@@ -96,6 +96,8 @@ public class Util {
         "acr.browser.lightning",
         "com.ineedyourservice.RBrowser",
         "com.lastpass.lpandroid",
+        "com.brucejhang.bbubble",
+        "com.brucejhang.bbubble.dev",
         "com.linkbubble.playstore",
         "com.linkbubble.playstore.dev",
         "com.brave.playstore",          // Made that temporary(remove when merge to master)
