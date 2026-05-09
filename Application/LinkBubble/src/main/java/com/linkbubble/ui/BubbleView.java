@@ -188,17 +188,11 @@ public class BubbleView extends FrameLayout  {
             int reqH = Math.min(Constant.DESIRED_FAVICON_SIZE, h*2);
 
             if (w != reqW || h != reqH) {
-                w = reqW;
-                h = reqH;
-
-                Bitmap result = source;
                 try {
-                    result = Bitmap.createScaledBitmap(source, w, h, true);
+                    return Bitmap.createScaledBitmap(source, reqW, reqH, true);
                 } catch (OutOfMemoryError e) {
-
+                    return source;
                 }
-
-                return result;
             }
 
             return source;

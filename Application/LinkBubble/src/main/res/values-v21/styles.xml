@@ -6,11 +6,11 @@
         <item name="android:colorAccent">@color/color_primary</item>
     </style>
 
-    <style name="MainServiceThemeLight" parent="@android:style/Theme.Material.Light">
+    <style name="MainServiceThemeLight" parent="Theme.MaterialComponents.Light">
         <item name="android:popupMenuStyle">@style/popupMenuStyleLight</item>
     </style>
 
-    <style name="MainServiceThemeDark" parent="@android:style/Theme.Material">
+    <style name="MainServiceThemeDark" parent="Theme.MaterialComponents">
         <item name="android:popupMenuStyle">@style/popupMenuStyleDark</item>
     </style>
 

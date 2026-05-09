@@ -26,7 +26,7 @@ final class GeckoBackgroundThread extends Thread {
         setName(LOOPER_NAME);
         Looper.prepare();
         try {
-            mHandlerQueue.put(new Handler());
+            mHandlerQueue.put(new Handler(Looper.myLooper()));
         } catch (InterruptedException ie) {}
 
         Looper.loop();

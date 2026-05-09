@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationCompat;
@@ -80,6 +81,7 @@ import com.linkbubble.util.DownloadImage;
 import com.linkbubble.util.Util;
 import com.linkbubble.webrender.WebRenderer;
 import com.linkbubble.adblock.ABPFilterParser;
+import com.linkbubble.adblock.EasyListBlocker;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -692,7 +694,7 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldAdBlockUrl(String baseHost, String urlStr, String filterOption) {
-            if (!mHostInBlackList) {
+            if (!Settings.get().isAdBlockEnabled()) {
                 return false;
             }
 
@@ -704,6 +706,12 @@ public class ContentView extends FrameLayout {
             }
 
             MainApplication app = (MainApplication) mContext.getApplicationContext();
+
+            EasyListBlocker easyList = app.getEasyListBlocker();
+            if (easyList != null && easyList.shouldBlock(baseHost, urlStr)) {
+                return true;
+            }
+
             ABPFilterParser parser = app.getABPParser();
             if (null == parser) {
                 return false;
@@ -714,8 +722,8 @@ public class ContentView extends FrameLayout {
 
         @Override
         public boolean shouldTrackingProtectionBlockUrl(String baseHost, String host) {
-            if (mHostInBlackList) {
-                return true;
+            if (!Settings.get().isTrackingProtectionEnabled()) {
+                return false;
             }
 
             MainApplication app = (MainApplication) mContext.getApplicationContext();
@@ -1198,7 +1206,7 @@ public class ContentView extends FrameLayout {
             showAllowLocationDialog(origin, callback);
         }
 
-        private Handler mHandler = new Handler();
+        private Handler mHandler = new Handler(Looper.getMainLooper());
         private Runnable mUpdateOpenInAppRunnable = null;
 
         @Override
@@ -1997,7 +2005,7 @@ public class ContentView extends FrameLayout {
                 String string = longClickSelections.get(position);
                 if (string.equals(openLinkInNewBubbleLabel) && type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
                     Message msg = new Message();
-                    msg.setTarget(new Handler() {
+                    msg.setTarget(new Handler(Looper.getMainLooper()) {
                         @Override
                         public void handleMessage(Message msg) {
                             Bundle b = msg.getData();

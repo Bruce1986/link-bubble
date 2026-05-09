@@ -9,6 +9,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class Prompt {
     private TextView mMessageView;
     private TextView mPromptButtonTextView;
     private ViewPropertyAnimator mBarAnimator;
-    private Handler mHideHandler = new Handler();
+    private Handler mHideHandler = new Handler(Looper.getMainLooper());
     private OnPromptEventListener mListener;
 
     private WindowManager mWindowManager;

@@ -8,6 +8,17 @@ import android.util.Log;
 
 import com.linkbubble.BuildConfig;
 
+/**
+ * Crash/log facade. Currently delegates to android.util.Log only.
+ *
+ * TODO: Wire up to Firebase Crashlytics — see DEV-PLAN §4.
+ * Methods to delegate when integrated:
+ *   log()                 -> FirebaseCrashlytics.getInstance().log()
+ *   logHandledException() -> FirebaseCrashlytics.getInstance().recordException()
+ *   setString/Int/...     -> FirebaseCrashlytics.getInstance().setCustomKey()
+ * The 137 call sites across the project remain unchanged so the integration
+ * is a single-file edit.
+ */
 public class CrashTracking {
 
     private static final String TAG = "CrashTracking";
