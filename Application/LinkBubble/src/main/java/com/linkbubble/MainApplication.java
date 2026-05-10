@@ -539,7 +539,12 @@ public class MainApplication extends Application {
 
     public static void unregisterForBus(Context context, Object object) {
         MainApplication app = (MainApplication) context.getApplicationContext();
-        app.getBus().unregister(object);
+        try {
+            app.getBus().unregister(object);
+        } catch (IllegalArgumentException e) {
+            // Object was never registered (e.g. onCreate took an early-return
+            // path before reaching the register call). Safe to ignore.
+        }
     }
 
     public static void copyLinkToClipboard(Context context, String urlAsString, int string) {

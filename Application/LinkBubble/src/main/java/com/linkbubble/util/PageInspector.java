@@ -375,6 +375,13 @@ public class PageInspector {
                 }
             }
 
+            // Picasso 2.71828 contract: when transform returns a different bitmap,
+            // the source must be recycled. Source is owned by Picasso here (loaded
+            // via Picasso.get().load(url).transform(...).fetch()), so recycling
+            // is safe — the listener already has the new result above.
+            if (result != source) {
+                source.recycle();
+            }
             return result;
         }
 
