@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.View;
@@ -29,7 +30,7 @@ import com.linkbubble.R;
 import com.linkbubble.util.CrashTracking;
 import com.squareup.otto.Subscribe;
 
-import org.jsoup.helper.StringUtil;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,7 +69,7 @@ public class ExpandedActivity extends Activity {
     private boolean mIsAlive = false;
     private boolean mIsShowing = false;
     private boolean mRegisteredForBus = false;
-    private final Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     private LinearLayout mWebRendererContainer;
 
@@ -95,7 +96,9 @@ public class ExpandedActivity extends Activity {
 
         setContentView(R.layout.activity_expanded);
 
-        getActionBar().hide();
+        if (getActionBar() != null) {
+            getActionBar().hide();
+        }
 
         registerForBus();
 
@@ -311,7 +314,7 @@ public class ExpandedActivity extends Activity {
                         if (filteredList.size() == 0) {
                             i.setType("*/*");
                         } else {
-                            i.setType(StringUtil.join(filteredList, ","));
+                            i.setType(TextUtils.join(",", filteredList));
                         }
                         startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
                     }

@@ -29,6 +29,7 @@ import com.linkbubble.Constant.BubbleAction;
 import com.linkbubble.adblock.ABPFilterParser;
 import com.linkbubble.adblock.TPFilterParser;
 import com.linkbubble.adblock.BlackListCollector;
+import com.linkbubble.adblock.EasyListBlocker;
 import com.linkbubble.adinsert.AdInserter;
 import com.linkbubble.db.DatabaseHelper;
 import com.linkbubble.db.HistoryRecord;
@@ -72,6 +73,7 @@ public class MainApplication extends Application {
     private TPFilterParser mTPParser = null;
     private AdInserter mADInserter = null;
     private BlackListCollector mBlackListCollector = null;
+    private volatile EasyListBlocker mEasyListBlocker = null;
     public boolean mAdInserterEnabled = false;
 
     public IconCache mIconCache;
@@ -117,6 +119,8 @@ public class MainApplication extends Application {
         }
         new InitBlackListCollectorAsyncTask().execute();
 
+        new Thread(() -> mEasyListBlocker = new EasyListBlocker(this), "EasyList-init").start();
+
 
         Settings settings = Settings.get();
         if (null != settings && settings.showNewBraveBrowserNotification()) {
@@ -142,7 +146,10 @@ public class MainApplication extends Application {
                         resultIntent,
                         Util.getImmutablePendingIntentFlags());
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            MainService.ensureNotificationChannel(this);
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, Constant.NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setContentTitle(getResources().getString(R.string.tab_based_browser_notification_title))
                 .setContentText(getResources().getString(R.string.tab_based_browser_notification_text))
@@ -185,6 +192,10 @@ public class MainApplication extends Application {
 
     public BlackListCollector getBlackListCollector() {
         return mBlackListCollector;
+    }
+
+    public EasyListBlocker getEasyListBlocker() {
+        return mEasyListBlocker;
     }
 
     public void createTrackingProtectionList() {
@@ -528,7 +539,12 @@ public class MainApplication extends Application {
 
     public static void unregisterForBus(Context context, Object object) {
         MainApplication app = (MainApplication) context.getApplicationContext();
-        app.getBus().unregister(object);
+        try {
+            app.getBus().unregister(object);
+        } catch (IllegalArgumentException e) {
+            // Object was never registered (e.g. onCreate took an early-return
+            // path before reaching the register call). Safe to ignore.
+        }
     }
 
     public static void copyLinkToClipboard(Context context, String urlAsString, int string) {

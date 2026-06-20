@@ -211,7 +211,7 @@ public class Settings {
 
             configureDefaultApp(packageManager, "https://www.youtube.com/watch?v=_Aj-PRdU7xA", "com.google.android.youtube");
             configureDefaultApp(packageManager, "https://plus.google.com/+LinkBubble/posts/RdMoBbbjPUi", "com.google.android.apps.plus");
-            configureDefaultApp(packageManager, "https://play.google.com/store/apps/details?id=com.linkbubble.playstore&hl=en", "com.android.vending");
+            configureDefaultApp(packageManager, "https://play.google.com/store/apps/details?id=com.brucejhang.bbubble&hl=en", "com.android.vending");
             configureDefaultApp(packageManager, "https://maps.google.com/maps/ms?msid=212078515518849153944.000434d59f7fc56a57668", "com.google.android.apps.maps");
             saveDefaultApps();
         } else {
@@ -963,13 +963,15 @@ public class Settings {
                     } else {
                         // And some special case code for me to ignore alternate builds
                         if (BuildConfig.DEBUG) {
-                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore")
+                            if (info.activityInfo.packageName.equals("com.brucejhang.bbubble")
+                                    || info.activityInfo.packageName.equals("com.linkbubble.playstore")
                                     || info.activityInfo.packageName.equals("com.brave.playstore")) {
                                 //Log.d("blerg", "ignore " + info.activityInfo.packageName);
                                 packageOk = false;
                             }
                         } else {
-                            if (info.activityInfo.packageName.equals("com.linkbubble.playstore.dev")
+                            if (info.activityInfo.packageName.equals("com.brucejhang.bbubble.dev")
+                                    || info.activityInfo.packageName.equals("com.linkbubble.playstore.dev")
                                     || info.activityInfo.packageName.equals("com.brave.playstore.dev")) {
                                 //Log.d("blerg", "ignore " + info.activityInfo.packageName);
                                 packageOk = false;

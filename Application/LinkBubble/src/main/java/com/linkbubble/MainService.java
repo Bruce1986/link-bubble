@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
@@ -113,19 +114,12 @@ public class MainService extends Service {
 
         super.onCreate();
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//            startMyOwnForeground();
-//        else
-//            startForeground(1, new Notification());
-
-
-
         showDefaultNotification();
+
+        MainApplication.registerForBus(this, this);
 
         Config.init(this);
         Settings.get().onOrientationChange();
-
-
 
         MainController.create(this, new MainController.EventHandler() {
                 @Override
@@ -134,16 +128,6 @@ public class MainService extends Service {
                     stopSelf();
                 }
             });
-
-        //Intent i = new Intent();
-        //i.setData(Uri.parse("https://t.co/uxMl3bWtMP"));
-        //i.setData(Uri.parse("http://t.co/oOyu7GBZMU"));
-        //i.setData(Uri.parse("http://goo.gl/abc57"));
-        //i.setData(Uri.parse("https://bitly.com/QtQET"));
-        //i.setData(Uri.parse("http://www.duckduckgo.com"));
-        //openUrl("https://www.duckduckgo.com");
-        //openUrl("http://www.duckduckgo.com", true);
-        //openUrl("https://t.co/uxMl3bWtMP", true);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BCAST_CONFIGCHANGED);
@@ -162,52 +146,29 @@ public class MainService extends Service {
 
     }
 
-//    public Notification getNotification(PendingIntent hidePendingIntent) {
-//        String channel;
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//            channel = createChannel();
-//        else {
-//            channel = "";
-//        }
-//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channel)
-//                .setSmallIcon(R.drawable.ic_stat)
-//                .setContentTitle(getString(R.string.app_name));
-//        Notification notification = mBuilder
-//                .setSmallIcon(R.drawable.ic_stat)
-//                .setPriority(Notification.PRIORITY_MIN)
-//                .setContentTitle(getString(R.string.app_name))
-//                .setContentText(getString(R.string.notification_default_summary))
-//                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
-//                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-//                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-//                .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
-//                .setGroupSummary(true)
-//                .setLocalOnly(true)
-//                .setContentIntent(hidePendingIntent)
-//                .build();
-//
-//
-//        return notification;
-//    }
-
     @NonNull
     @TargetApi(26)
     private synchronized String createChannel() {
-        NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        String name = "snap map fake location ";
-        int importance = NotificationManager.IMPORTANCE_LOW;
-
-        NotificationChannel mChannel = new NotificationChannel("snap map channel", name, importance);
-
-        mChannel.enableLights(true);
-        mChannel.setLightColor(Color.BLUE);
-        if (mNotificationManager != null) {
-            mNotificationManager.createNotificationChannel(mChannel);
-        } else {
+        if (!ensureNotificationChannel(this)) {
             stopSelf();
         }
-        return "snap map channel";
+        return Constant.NOTIFICATION_CHANNEL_ID;
+    }
+
+    @TargetApi(26)
+    public static boolean ensureNotificationChannel(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager == null) {
+            return false;
+        }
+        NotificationChannel channel = new NotificationChannel(
+                Constant.NOTIFICATION_CHANNEL_ID,
+                Constant.NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_LOW);
+        channel.enableLights(true);
+        channel.setLightColor(Color.BLUE);
+        notificationManager.createNotificationChannel(channel);
+        return true;
     }
 
     /** code to post/handler request for permission */
@@ -228,8 +189,7 @@ public class MainService extends Service {
     }
 
     private void cancelCurrentNotification() {
-        stopForeground(true);
-        //Log.d("blerg", "cancelCurrentNotification()");
+        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
     }
 
     private void showDefaultNotification() {
@@ -243,44 +203,22 @@ public class MainService extends Service {
 
 
         String channel;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel = createChannel();
-        else {
+        } else {
             channel = "";
         }
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, channel)
-                .setSmallIcon(R.drawable.ic_stat)
-                .setContentTitle(getString(R.string.app_name));
-        Notification notification = mBuilder
+        Notification notification = new NotificationCompat.Builder(this, channel)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_default_summary))
-                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
-                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
                 .setGroupSummary(true)
                 .setLocalOnly(true)
                 .setContentIntent(hidePendingIntent)
                 .build();
-
-
-
-        /*
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat)
-                .setPriority(Notification.PRIORITY_MIN)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(getString(R.string.notification_default_summary))
-                //.addAction(R.drawable.ic_action_eye_closed_dark, getString(R.string.notification_action_hide), hidePendingIntent)
-                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                .setGroup(Constant.NOTIFICATION_GROUP_KEY_ARTICLES)
-                .setGroupSummary(true)
-                .setLocalOnly(true)
-                .setContentIntent(hidePendingIntent);
-                */
 
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
@@ -302,15 +240,19 @@ public class MainService extends Service {
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), closeAllIntent, Util.getImmutablePendingIntentFlags());
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        String channel;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channel = createChannel();
+        } else {
+            channel = "";
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channel)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_unhide_summary))
                 .setLocalOnly(true)
-                //.addAction(R.drawable.ic_action_eye_open_dark, getString(R.string.notification_action_unhide), unhidePendingIntent)
-                //.addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
-                .addAction(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ? R.drawable.ic_action_cancel_white : R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
+                .addAction(R.drawable.ic_action_cancel_dark, getString(R.string.notification_action_close_all), closeAllPendingIntent)
                 .setContentIntent(unhidePendingIntent);
 
         // Nuke all previous notifications

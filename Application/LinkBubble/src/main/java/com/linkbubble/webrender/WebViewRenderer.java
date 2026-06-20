@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -96,7 +97,7 @@ class WebViewRenderer extends WebRenderer {
     public WebViewRenderer(Context context, Controller controller, View webRendererPlaceholder, String tag) {
         super(context, controller, webRendererPlaceholder);
 
-        mHandler = new Handler();
+        mHandler = new Handler(Looper.getMainLooper());
         TAG = tag;
 
         mWebView = new CustomWebView(mContext);
@@ -122,6 +123,10 @@ class WebViewRenderer extends WebRenderer {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(false);
+        webSettings.setAllowContentAccess(false);
+        webSettings.setAllowFileAccessFromFileURLs(false);
+        webSettings.setAllowUniversalAccessFromFileURLs(false);
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationEnabled(true);
         webSettings.setSupportZoom(true);
@@ -411,7 +416,7 @@ class WebViewRenderer extends WebRenderer {
                 default:
                     if (Constant.ACTIVITY_WEBVIEW_RENDERING == false) {
                         Message msg = new Message();
-                        msg.setTarget(new Handler() {
+                        msg.setTarget(new Handler(Looper.getMainLooper()) {
                             @Override
                             public void handleMessage(Message msg) {
                                 Bundle b = msg.getData();
@@ -930,15 +935,26 @@ class WebViewRenderer extends WebRenderer {
 
         @Override
         public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, Message resultMsg) {
-            TabView tabView = MainController.get().openUrl(Constant.NEW_TAB_URL, System.currentTimeMillis(), false, Analytics.OPENED_URL_FROM_NEW_WINDOW);
-            if (tabView != null) {
-                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
-                transport.setWebView((WebView) tabView.getContentView().getWebRenderer().getView());
-                resultMsg.sendToTarget();
-                return true;
-            }
+            // Modern Chromium WebView rejects setWebView() if the target WebView has been
+            // navigated. Hand it a throwaway WebView, capture the URL it wants to load,
+            // then route that URL through MainController's normal tab-opening flow.
+            final WebView tempWebView = new WebView(view.getContext());
+            tempWebView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView w, String url) {
+                    MainController controller = MainController.get();
+                    if (controller != null && url != null) {
+                        controller.openUrl(url, System.currentTimeMillis(), true, Analytics.OPENED_URL_FROM_NEW_WINDOW);
+                    }
+                    w.destroy();
+                    return true;
+                }
+            });
 
-            return false;
+            WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+            transport.setWebView(tempWebView);
+            resultMsg.sendToTarget();
+            return true;
         }
 
         @Override

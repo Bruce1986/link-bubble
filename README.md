@@ -33,10 +33,15 @@ and activate it via `nvm use 18`. Newer versions may introduce compatibility iss
 modules.
 Confirm you are using Node.js 18 with `node --version` before building or running scripts.
 
-## Update SDK version
-Goto LinkBubble/build.gradle
+## SDK versions
 
-Update `compileSdkVersion` and `targetSdkVersion` to `33`, and `minSdkVersion` to `28`
+The project currently targets:
+
+- `compileSdkVersion 34`
+- `targetSdkVersion 34`
+- `minSdkVersion 21`
+
+These are configured in `Application/LinkBubble/build.gradle`.
 
 ## Building
 

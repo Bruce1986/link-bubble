@@ -46,7 +46,7 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
-    <style name="TransparentTheme" parent="android:Theme.Holo.Light">
+    <style name="TransparentTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -56,7 +56,7 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="ActiveTheme" parent="android:Theme.Holo.Light">
+    <style name="ActiveTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
@@ -70,7 +70,7 @@
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
-    <style name="ContentThemeBase" parent="android:Theme.Holo.Light">
+    <style name="ContentThemeBase" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -79,11 +79,11 @@
 
     <style name="ContentTheme" parent="ContentThemeBase"/>
 
-    <style name="MainServiceThemeLight" parent="@android:style/Theme.Holo.Light">
+    <style name="MainServiceThemeLight" parent="Theme.MaterialComponents.Light">
         <item name="android:popupMenuStyle">@style/popupMenuStyleLight</item>
     </style>
 
-    <style name="MainServiceThemeDark" parent="@android:style/Theme.Holo">
+    <style name="MainServiceThemeDark" parent="Theme.MaterialComponents">
         <item name="android:popupMenuStyle">@style/popupMenuStyleDark</item>
     </style>
 
@@ -105,7 +105,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="SectionHeaderTheme" parent="@android:Theme.Holo.Light">
+    <style name="SectionHeaderTheme">
         <item name="android:background">#f5f5f5</item>
     </style>
 
@@ -152,7 +152,7 @@
     </style>
 
 
-    <style name="ExpandedModeBaseTheme" parent="android:Theme.Holo.Light">
+    <style name="ExpandedModeBaseTheme" parent="Theme.MaterialComponents.Light">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

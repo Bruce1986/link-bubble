@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -132,7 +133,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private Preference mWebViewBatterySavePreference;
         private ListPreference mUserAgentPreference;
 
-        private Handler mHandler = new Handler();
+        private Handler mHandler = new Handler(Looper.getMainLooper());
 
         Drawable getTintedDrawable(@DrawableRes int drawable, int color) {
             Drawable d = getResources().getDrawable(drawable);

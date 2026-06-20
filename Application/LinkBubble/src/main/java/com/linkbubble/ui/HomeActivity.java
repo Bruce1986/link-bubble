@@ -57,6 +57,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Register early so the unregister in onDestroy is always balanced,
+        // even when later code in this method takes an early-return path
+        // (e.g. the overlay-permission branch below).
+        MainApplication.registerForBus(this, this);
+
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -136,8 +141,6 @@ public class HomeActivity extends AppCompatActivity {
                         Analytics.OPENED_URL_FROM_MAIN_NEW_TAB);
             }
         });
-
-        MainApplication.registerForBus(this, this);
 
         Settings.get().getBrowsers();
     }

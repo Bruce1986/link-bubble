@@ -6,6 +6,13 @@ package com.linkbubble.util;
 
 import android.app.Application;
 
+/**
+ * No-op analytics facade. All trackXxx methods are intentionally empty.
+ *
+ * TODO: Wire up to Firebase Analytics (GA4) — see DEV-PLAN §4.
+ * The 137 call sites across the project remain unchanged so that future
+ * integration only needs to touch this single file.
+ */
 public class Analytics {
 
     public static final String GA_PROPERTY_ID = "UA-49396039-1";

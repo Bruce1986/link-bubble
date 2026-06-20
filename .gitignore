@@ -56,6 +56,9 @@ Application/LinkBubble/src/main/assets/crashlytics-build.properties
 # Crashlytics secret key file
 Application/LinkBubble/fabric.properties
 
+# Firebase config (contains project-specific API key, leave per-developer)
+Application/LinkBubble/google-services.json
+
 # API keys like youtube and etc
 Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java
 

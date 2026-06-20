@@ -3,4 +3,5 @@
 /.idea/workspace.xml
 .DS_Store
 LinkBubble/.externalNativeBuild
+LinkBubble/.cxx
 LinkBubble/build

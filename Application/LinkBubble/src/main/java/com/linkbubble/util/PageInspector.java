@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
@@ -68,7 +69,7 @@ public class PageInspector {
     public PageInspector(Context context, WebView webView, OnItemFoundListener listener) {
         mContext = context;
         mWebView = webView;
-        mHandler = new Handler();
+        mHandler = new Handler(Looper.getMainLooper());
         mJSEmbedHandler = new JSEmbedHandler();
         mOnItemFoundListener = listener;
         webView.addJavascriptInterface(mJSEmbedHandler, JS_VARIABLE);
@@ -234,7 +235,7 @@ public class PageInspector {
                 }
                 sTouchIconTransformation.setListener(mOnItemFoundListener);
                 sTouchIconTransformation.mTouchIconPageUrl = mWebViewUrl;
-                Picasso.with(mContext).load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
+                Picasso.get().load(touchIconEntry.mUrl.toString()).transform(sTouchIconTransformation).fetch();
             }
 
         }
@@ -363,7 +364,7 @@ public class PageInspector {
                 try {
                     result = Bitmap.createScaledBitmap(source, Constant.TOUCH_ICON_MAX_SIZE, Constant.TOUCH_ICON_MAX_SIZE, true);
                 } catch (OutOfMemoryError e) {
-                    
+                    result = source;
                 }
             }
 
@@ -374,11 +375,17 @@ public class PageInspector {
                 }
             }
 
-            // return null. No need for Picasso to cache this, as we're already doing so elsewhere
-            return null;
+            // Picasso 2.71828 contract: when transform returns a different bitmap,
+            // the source must be recycled. Source is owned by Picasso here (loaded
+            // via Picasso.get().load(url).transform(...).fetch()), so recycling
+            // is safe — the listener already has the new result above.
+            if (result != source) {
+                source.recycle();
+            }
+            return result;
         }
 
         @Override
-        public String key() { return "faviconTransformation()"; }
+        public String key() { return "touchIconTransformation()"; }
     }
 }
