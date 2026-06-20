@@ -23,10 +23,17 @@ def versionPatch = 4
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
 
 boolean isRelease = project.gradle.startParameter.taskNames.any { it.contains("Release") }
+
+// Firebase Crashlytics needs google-services.json, which is intentionally not committed
+// (it contains API keys). Only apply the Google Services + Crashlytics plugins for Release
+// builds so debug builds — including CI's `assembleDebug` — don't require the file.
+// Provide google-services.json via a CI secret when building releases.
+if (isRelease) {
+    apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.firebase.crashlytics'
+}
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
