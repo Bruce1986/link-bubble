@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.core.content.pm.PackageInfoCompat;
 import android.util.Log;
 import android.view.Choreographer;
 import android.view.Gravity;
@@ -852,7 +853,7 @@ public class MainController implements Choreographer.FrameCallback {
         PackageManager pm = context.getPackageManager();
         try {
             PackageInfo pi = pm.getPackageInfo("com.google.android.webview", 0);
-            mVersionNumber =  pi.versionCode;
+            mVersionNumber = PackageInfoCompat.getLongVersionCode(pi);
         } catch (PackageManager.NameNotFoundException e) {
             mVersionNumber = -1;
         }

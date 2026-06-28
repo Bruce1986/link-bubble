@@ -8,6 +8,9 @@
     <string name="notification_unhide_summary">Touch to Unhide, expand to Close All</string>
     <string name="notification_action_close_all">Close All</string>
     <string name="notification_action_hide">Hide</string>
+    <string name="notification_permission_rationale_title">Allow notifications</string>
+    <string name="notification_permission_rationale_message">Link Bubble needs notification permission so Android can keep the bubble service running in the foreground.</string>
+    <string name="notification_permission_denied_message">Notifications are disabled. Link Bubble may not be able to keep bubbles running in the background.</string>
     <string name="share_picker_label">Share picker</string>
 
     <string name="yes">Yes</string>

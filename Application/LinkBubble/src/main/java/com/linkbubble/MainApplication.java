@@ -23,6 +23,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Vibrator;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import android.widget.Toast;
 
 import com.linkbubble.Constant.BubbleAction;
@@ -275,7 +276,7 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("url", url);
         serviceIntent.putExtra("start_time", time);
         serviceIntent.putExtra("openedFromAppName", openedFromAppName);
-        context.startService(serviceIntent);
+        ContextCompat.startForegroundService(context, serviceIntent);
 
         return true;
     }
@@ -322,7 +323,7 @@ public class MainApplication extends Application {
         serviceIntent.putExtra("cmd", "restore");
         serviceIntent.putExtra("urls", urls);
         serviceIntent.putExtra("start_time", System.currentTimeMillis());
-        context.startService(serviceIntent);
+        ContextCompat.startForegroundService(context, serviceIntent);
     }
 
     public static boolean openInBrowser(Context context, Intent intent, boolean showToastIfNoBrowser, boolean braveBrowser) {
@@ -683,7 +684,6 @@ public class MainApplication extends Application {
         }
     }*/
 }
-
 
 
 

@@ -39,6 +39,7 @@ public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private static final String OPENED_URL_FROM_RESTORE = "restore";
+    private static final String NOTIFICATION_CHANNEL_ID = "linkbubble_service_channel";
 
     private boolean mRestoreComplete;
 
@@ -195,10 +196,10 @@ public class MainService extends Service {
     private synchronized String createChannel() {
         NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String name = "snap map fake location ";
+        String name = getString(R.string.app_name) + " Service";
         int importance = NotificationManager.IMPORTANCE_LOW;
 
-        NotificationChannel mChannel = new NotificationChannel("snap map channel", name, importance);
+        NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
 
         mChannel.enableLights(true);
         mChannel.setLightColor(Color.BLUE);
@@ -207,7 +208,7 @@ public class MainService extends Service {
         } else {
             stopSelf();
         }
-        return "snap map channel";
+        return NOTIFICATION_CHANNEL_ID;
     }
 
     /** code to post/handler request for permission */
@@ -218,6 +219,11 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(STOP_FOREGROUND_REMOVE);
+        } else {
+            stopForeground(true);
+        }
         MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
         MainApplication.unregisterForBus(this, this);
         unregisterReceiver(mScreenReceiver);
@@ -302,7 +308,8 @@ public class MainService extends Service {
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), closeAllIntent, Util.getImmutablePendingIntentFlags());
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        String channel = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createChannel() : "";
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channel)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
@@ -351,7 +358,10 @@ public class MainService extends Service {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
-                MainController.get().onCloseSystemDialogs();
+                MainController mainController = MainController.get();
+                if (mainController != null) {
+                    mainController.onCloseSystemDialogs();
+                }
             }
         }
     };
@@ -360,7 +370,10 @@ public class MainService extends Service {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
-                MainController.get().onOrientationChanged();
+                MainController mainController = MainController.get();
+                if (mainController != null) {
+                    mainController.onOrientationChanged();
+                }
             }
         }
     };
@@ -368,7 +381,10 @@ public class MainService extends Service {
     private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            MainController.get().updateScreenState(intent.getAction());
+            MainController mainController = MainController.get();
+            if (mainController != null) {
+                mainController.updateScreenState(intent.getAction());
+            }
         }
     };
 
