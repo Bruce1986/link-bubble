@@ -1,0 +1,7 @@
+# CMake build artifacts from manual/in-tree cmake runs.
+# The JNI sources here are built by Gradle's externalNativeBuild (outputs go to
+# build/ and .cxx/), so these generated files must never be committed.
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/Makefile
