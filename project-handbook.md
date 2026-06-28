@@ -1,4 +1,4 @@
-# 🛠 專案名稱 - 開發協作手冊
+# Link Bubble 開發協作手冊
 
 ## 📋 目錄
 1. [任務分工與進度追蹤](#任務分工與進度追蹤)
@@ -11,11 +11,12 @@
 
 ## 🧱 任務分工與進度追蹤
 
-| 任務編號 | 功能說明             | 負責人 | 狀態         | 備註 |
-|----------|----------------------|--------|--------------|------|
-| #001     | 登入畫面切版         | A      | ✅ 完成       |      |
-| #002     | Google 登入串接      | B      | 🟡 進行中     | 依賴 #001 |
-| #003     | API Token 機制       | B      | ⏳ 待開始     |      |
+| 任務編號 | 功能說明 | 負責人 | 狀態 | 備註 |
+|----------|----------|--------|------|------|
+| #001 | 還原 JNI / CMake native build | 待分配 | 🟡 進行中 | 需 vendor C++ 原始碼並恢復 Gradle 設定 |
+| #002 | 建立可發布的 release 簽名流程 | 待分配 | ⏳ 待開始 | 需 CI secrets 與正式 keystore |
+| #003 | 驗證 Android 13/14/15 前景服務與通知權限 | 待分配 | 🟡 進行中 | 補齊 runtime permission 與回歸測試 |
+| #004 | 清理過時文件與佔位符內容 | 待分配 | 🟡 進行中 | 保持文件與程式碼現況一致 |
 
 - 狀態建議使用：⏳ 待開始｜🟡 進行中｜🔍 審核中｜✅ 完成
 
@@ -25,13 +26,13 @@
 
 1. 每項任務請建立 feature branch，例如：
    ```bash
-   git checkout -b feature/login-ui
+   git checkout -b feature/android15-permission-fix
    ```
 
 2. 完成後發起 Pull Request（PR），標題格式：
 
    ```
-   [Feature] 登入頁面切版 (#001)
+   [Fix] Restore native build (#001)
    ```
 3. 不能直接 push 到 `main` 分支，需透過 PR。
 4. PR 提交後需指派另一位協作者進行 Review。
@@ -52,9 +53,9 @@
 
 ### 🛡 程式邏輯
 
-* 防呆與錯誤處理要寫清楚（例如登入錯誤的提示）
+* 防呆與錯誤處理要寫清楚，例如權限遭拒、native lib 缺失、release 環境變數未設定等情境
 * 不要留死 code
-* API 錯誤時要 console log 錯誤資訊
+* API 或建置錯誤時要留下足夠日誌，方便追查
 
 ### 👀 Review 時要看的事
 
@@ -71,28 +72,28 @@
 > 請每次 commit 前更新一次，記錄格式如下：
 
 ```markdown
-### 🙋‍♂️ A 的日誌（2025/07/08）
-- ✅ 完成：登入畫面切版（#001）
-- 🟡 進行中：樣式微調、RWD 修正
-- 🤔 問題：尚未確定登入按鈕顏色是否符合設計稿
+### 🙋‍♂️ A 的日誌（2026/03/29）
+- ✅ 完成：釐清 Android 15 / native build 問題來源
+- 🟡 進行中：恢復 JNI 原始碼與通知權限流程
+- 🤔 問題：release keystore 尚未納入 CI 或本機安全配置
 
-### 🧑‍💻 B 的日誌（2025/07/08）
-- ✅ 完成：API token 的初步設計草圖
-- ⏳ 明日計畫：串接登入按鈕與 token API
-- 🙋 想問：Login API 回傳錯誤格式是否統一？
+### 🧑‍💻 B 的日誌（2026/03/29）
+- ✅ 完成：整理 code review 報告與文件差異
+- ⏳ 明日計畫：補齊 Android 13/14/15 驗證
+- 🙋 想問：Play Console 的 `FOREGROUND_SERVICE_SPECIAL_USE` 聲明由誰負責提交？
 ```
 
 ---
 
 ## 📚 資源與文件連結
 
-* 🔗 Figma 設計稿：[點我前往](https://figma.com/xxxx)
-* 🔗 API 文件連結：[Swagger Docs](http://localhost:8000/docs)
-* 🔗 技術指南 / Code Style：[點我查看](https://github.com/你的組織/code-style-guide)
+* `build_fix_summary.md`：記錄 SDK 升級與建置修復歷程
+* `docs/android15-compatibility-review.md`：Android 13-15 前景服務與通知權限檢查
+* `docs/node-dependency-findings.md`：舊 npm/native 依賴鏈調查結果
 
 ---
 
-## 📌 補充：兩人協作小叮嚀
+## 📌 補充：協作小叮嚀
 
 * **如果卡住，請互相支援或寫日誌記錄問題點，等老闆回來再補救**
 * **分工明確，避免同時改動同一檔案造成衝突**
@@ -112,13 +113,8 @@
 
 ---
 
-## 🧰 建議檔名：`project-handbook.md` 或 `開發協作手冊.md`
+## 📎 文件維護原則
 
----
-
-這樣設計的優點是：
-
-* **透明可見**：不在時，也能清楚該怎麼協作與更新。
-* **低門檻維護**：全用文字就能同步，不需額外學工具。
-* **便於版本控管**：放在專案根目錄，搭配 Git 使用。
-
+* `AGENTS.md` 只放 AI 協作額外規則，不重複手冊內容
+* `project-handbook.md` 是協作流程單一真相來源
+* 若文件描述與程式碼不一致，請在同一個 PR 一併修正

@@ -8,8 +8,12 @@ Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.templa
 
 Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and update any necessary configuration values.
 
-npm install  # pulls JNI sources via postinstall
+npm install  # installs devDependencies used by tooling (e.g. lint)
 npm run lint  # enforce semistandard style to ensure code quality and consistency
+
+The native JNI sources (ad-block / tracking-protection) are vendored directly
+under `Application/LinkBubble/src/main/jni/` and built via CMake, so no
+`postinstall` step is required.
 
 Run `node --version` to confirm you are using Node.js 18 before running these
 commands. Newer Node versions may cause native module failures.
