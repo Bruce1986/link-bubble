@@ -62,6 +62,9 @@ Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java
 # Crashlytics API keys
 Application/LinkBubble/src/main/AndroidManifest.xml
 
+# Firebase config (contains API key)
+google-services.json
+
 # release builds
 dist
 build-release.sh
