@@ -292,7 +292,9 @@ public class MainService extends Service {
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        // FOREGROUND_SERVICE_TYPE_SPECIAL_USE was added in API 34; passing it on
+        // older releases (where the manifest cannot declare specialUse) throws.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NotificationHideActivity.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {
             startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
@@ -323,7 +325,7 @@ public class MainService extends Service {
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {
             startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
@@ -413,8 +415,10 @@ public class MainService extends Service {
     }
 
     private void registerReceiverCompat(BroadcastReceiver receiver, IntentFilter filter) {
+        // These receivers only handle protected system broadcasts (screen, config
+        // change, close-system-dialogs), so they must not be exported to other apps.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+            registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
         } else {
             registerReceiver(receiver, filter);
         }

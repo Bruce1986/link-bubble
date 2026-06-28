@@ -16,6 +16,25 @@
 
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
 
+    <!-- Android 11+ package visibility: needed so the app can discover browsers
+         and apps that can handle shared/opened URLs (queryIntentActivities). -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="text/plain" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
     <application
         android:name="com.linkbubble.MainApplication"
         android:allowBackup="true"
@@ -182,6 +201,11 @@
             android:foregroundServiceType="specialUse"
                  android:label="@string/service_name"
             android:exported="false">
+            <!-- Required by Android 14+ for the specialUse foreground service type;
+                 explains the use case to the system and Play Console review. -->
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps the floating bubble browser service running while the user reads links" />
             <intent-filter>
                 <action android:name="android.intent.action.CONFIGURATION_CHANGED"/>
             </intent-filter>
