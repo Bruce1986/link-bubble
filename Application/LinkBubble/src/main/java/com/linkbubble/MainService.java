@@ -10,6 +10,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,8 +27,10 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
+import com.linkbubble.ui.NotificationPermissionActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
@@ -42,6 +46,7 @@ public class MainService extends Service {
     private static final String NOTIFICATION_CHANNEL_ID = "linkbubble_service_channel";
 
     private boolean mRestoreComplete;
+    private boolean mNotificationPermissionRequested;
 
     public static class ShowDefaultNotificationEvent {
     }
@@ -74,6 +79,11 @@ public class MainService extends Service {
             return START_NOT_STICKY;
         }
 
+        // The foreground service relies on its ongoing notification; make sure we
+        // ask for POST_NOTIFICATIONS regardless of which entry point started us
+        // (e.g. EntryActivity, which never opens HomeActivity).
+        maybeRequestNotificationPermission();
+
         long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
@@ -104,6 +114,24 @@ public class MainService extends Service {
         }
 
         return START_STICKY;
+    }
+
+    private void maybeRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        if (mNotificationPermissionRequested) {
+            return;
+        }
+        mNotificationPermissionRequested = true;
+
+        Intent intent = new Intent(this, NotificationPermissionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
