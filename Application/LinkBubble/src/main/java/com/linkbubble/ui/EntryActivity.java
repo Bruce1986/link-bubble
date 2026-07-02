@@ -4,16 +4,20 @@
 
 package com.linkbubble.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
@@ -130,6 +134,13 @@ public class EntryActivity extends Activity {
 //                }
 
                 MainApplication.openLink(this, url, true, openedFromAppName);
+
+                // We are about to run the foreground bubble service, whose ongoing
+                // notification needs POST_NOTIFICATIONS on Android 13+. Trigger the
+                // request here from this visible activity (reliable), in addition to
+                // the fallback in MainService, since this entry path never opens
+                // HomeActivity.
+                requestNotificationPermissionIfNeeded();
             } else {
                 MainApplication.openInBrowser(this, intent, true, false);
             }
@@ -138,6 +149,21 @@ public class EntryActivity extends Activity {
         }
 
         finish();
+    }
+
+    private void requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        // Delegate to the dedicated transparent activity so the system dialog
+        // survives this activity's imminent finish().
+        Intent intent = new Intent(this, NotificationPermissionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     /*
