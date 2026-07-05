@@ -6,10 +6,14 @@ package com.linkbubble.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.linkbubble.R;
 
@@ -23,6 +27,33 @@ import com.linkbubble.R;
 public class NotificationPermissionActivity extends Activity {
 
     private static final int REQUEST_CODE_POST_NOTIFICATIONS = 34;
+
+    /** Persisted so we only auto-prompt once per install instead of nagging on every recreation. */
+    private static final String PREF_POST_NOTIFICATIONS_ASKED = "post_notifications_permission_asked";
+
+    /**
+     * True only when we should still auto-prompt for POST_NOTIFICATIONS: running on
+     * Android 13+, the permission isn't granted, and we haven't already asked once.
+     * Shared by every entry point (EntryActivity / HomeActivity / MainService) so the
+     * prompt fires at most once across activity/process recreations.
+     */
+    public static boolean shouldAutoRequest(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return false;
+        }
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+        return !PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREF_POST_NOTIFICATIONS_ASKED, false);
+    }
+
+    /** Record that the one automatic prompt has been issued. */
+    public static void markAsked(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putBoolean(PREF_POST_NOTIFICATIONS_ASKED, true).apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

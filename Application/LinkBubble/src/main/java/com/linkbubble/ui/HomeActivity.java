@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -41,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private static final int REQUEST_CODE_DRAW_OVERLAYS = 33;
     private static final int REQUEST_CODE_POST_NOTIFICATIONS = 34;
-    private boolean mNotificationPermissionRequested;
 
     Button mActionButtonView;
     Button mNewBubble;
@@ -257,25 +255,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void requestNotificationPermissionIfNeeded() {
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
             return;
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                == PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        if (mNotificationPermissionRequested) {
-            return;
-        }
+        // Auto-prompt at most once per install (persisted), so we don't re-pop this
+        // on every HomeActivity recreation (rotation, revisits) after a denial.
+        NotificationPermissionActivity.markAsked(this);
 
         if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
             showNotificationPermissionRationale();
             return;
         }
 
-        mNotificationPermissionRequested = true;
         requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE_POST_NOTIFICATIONS);
     }
 
@@ -283,11 +275,9 @@ public class HomeActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.notification_permission_rationale_title)
                 .setMessage(R.string.notification_permission_rationale_message)
-                .setPositiveButton(R.string.action_ok, (dialog, which) -> {
-                    mNotificationPermissionRequested = true;
-                    requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},
-                            REQUEST_CODE_POST_NOTIFICATIONS);
-                })
+                .setPositiveButton(R.string.action_ok, (dialog, which) ->
+                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                                REQUEST_CODE_POST_NOTIFICATIONS))
                 .setNegativeButton(R.string.action_cancel, null)
                 .show();
     }

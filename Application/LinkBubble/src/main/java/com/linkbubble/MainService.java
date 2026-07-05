@@ -10,8 +10,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,7 +25,6 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
 import com.linkbubble.ui.NotificationPermissionActivity;
@@ -46,7 +43,6 @@ public class MainService extends Service {
     private static final String NOTIFICATION_CHANNEL_ID = "linkbubble_service_channel";
 
     private boolean mRestoreComplete;
-    private boolean mNotificationPermissionRequested;
 
     public static class ShowDefaultNotificationEvent {
     }
@@ -117,29 +113,22 @@ public class MainService extends Service {
     }
 
     private void maybeRequestNotificationPermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            return;
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                == PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        if (mNotificationPermissionRequested) {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
             return;
         }
 
         // Best-effort fallback only: a Service has no background-activity-launch
         // privilege (an active foreground service is still "background" for BAL),
         // so this succeeds only while a visible activity exists — exactly when
-        // EntryActivity/HomeActivity already handle the request. Only burn the flag
+        // EntryActivity/HomeActivity already handle the request. Only mark it asked
         // once the launch is accepted, so a later foreground-triggered start can retry.
         Intent intent = new Intent(this, NotificationPermissionActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             startActivity(intent);
-            mNotificationPermissionRequested = true;
+            NotificationPermissionActivity.markAsked(this);
         } catch (RuntimeException e) {
-            // Launch rejected (e.g. BAL-blocked on some OEMs); leave the flag unset.
+            // Launch rejected (e.g. BAL-blocked on some OEMs); leave it unasked.
         }
     }
 

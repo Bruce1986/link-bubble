@@ -22,11 +22,6 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
 
-// Only true for tasks that actually package a release artifact — NOT for
-// lint*/test*Release tasks (which need no signing) so those don't get aborted.
-boolean isRelease = project.gradle.startParameter.taskNames.any {
-    (it.contains("assemble") || it.contains("bundle")) && it.contains("Release")
-}
 boolean hasReleaseSigning = [
         "LINK_BUBBLE_KEYSTORE_LOCATION",
         "LINK_BUBBLE_KEYSTORE_PASSWORD",
@@ -34,25 +29,32 @@ boolean hasReleaseSigning = [
         "LINK_BUBBLE_KEY_PASSWORD"
 ].every { System.getenv(it) }
 
-// Fail fast on an explicit release packaging task when signing secrets are
-// missing, so we never silently ship a debug-signed (non-upgradeable) release.
-if (isRelease && !hasReleaseSigning) {
-    throw new GradleException("Release build requested but signing env vars are missing: " +
-            "set LINK_BUBBLE_KEYSTORE_LOCATION, LINK_BUBBLE_KEYSTORE_PASSWORD, " +
-            "LINK_BUBBLE_KEY_ALIAS and LINK_BUBBLE_KEY_PASSWORD (see build-release.sh.template).")
-}
-
-// A plain `./gradlew build`/`assemble` also compiles the release variant, whose
-// task name isn't caught by isRelease above. Warn loudly (rather than hard-fail,
-// so build/test/lint still work) instead of silently emitting a debug-signed release.
+// Guard release signing against *resolved* task names, so CLI casing / camel-case
+// abbreviation (e.g. `assembleplaystorerelease`, which Gradle resolves fine) can't
+// bypass the check the way a case-sensitive startParameter string match would.
+// (The release buildType leaves the variant UNSIGNED when secrets are absent — see
+// signingConfig below — so at worst an unshippable artifact is produced, never a
+// debug-signed one masquerading as a real release.)
+//  - an explicitly-requested release packaging task with no signing → fail fast;
+//  - a release variant assembled only incidentally by `build`/`assemble` → warn
+//    (don't hard-fail, so build/test/lint*Release/test*Release keep working).
 gradle.taskGraph.whenReady { graph ->
     boolean assemblesRelease = graph.allTasks.any {
         (it.name.startsWith("assemble") || it.name.startsWith("bundle")) && it.name.endsWith("Release")
     }
     if (assemblesRelease && !hasReleaseSigning) {
-        logger.warn("WARNING: building the release variant without signing env vars " +
-                "(LINK_BUBBLE_KEYSTORE_LOCATION/PASSWORD, LINK_BUBBLE_KEY_ALIAS/PASSWORD); " +
-                "the resulting release APK/bundle will be debug-signed.")
+        boolean explicitRelease = gradle.startParameter.taskNames.any {
+            def n = it.toLowerCase()
+            (n.contains("assemble") || n.contains("bundle")) && n.contains("release")
+        }
+        String detail = "release signing env vars are missing (LINK_BUBBLE_KEYSTORE_LOCATION, " +
+                "LINK_BUBBLE_KEYSTORE_PASSWORD, LINK_BUBBLE_KEY_ALIAS, LINK_BUBBLE_KEY_PASSWORD; " +
+                "see build-release.sh.template)"
+        if (explicitRelease) {
+            throw new GradleException("Refusing to build an unsigned release: " + detail + ".")
+        } else {
+            logger.warn("WARNING: the release variant will be UNSIGNED because " + detail + ".")
+        }
     }
 }
 
@@ -112,7 +114,7 @@ android {
 
     signingConfigs {
         release {
-            if (isRelease && hasReleaseSigning) {
+            if (hasReleaseSigning) {
                 storeFile file(System.getenv("LINK_BUBBLE_KEYSTORE_LOCATION"))
                 storePassword System.getenv("LINK_BUBBLE_KEYSTORE_PASSWORD")
                 keyAlias System.getenv("LINK_BUBBLE_KEY_ALIAS")
@@ -130,7 +132,14 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
+            // When signing secrets are absent, leave the release variant UNSIGNED
+            // rather than falling back to the debug key. An aggregate task
+            // (./gradlew build/assemble) builds the release variant without an
+            // explicit *Release task name, so it slips past the fail-fast throw
+            // above; an unsigned APK is obviously unshippable (won't install /
+            // upload) whereas a debug-signed one could masquerade as a real
+            // release. The taskGraph.whenReady warning above flags this case.
+            signingConfig hasReleaseSigning ? signingConfigs.release : null
         }
     }
 

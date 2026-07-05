@@ -4,20 +4,16 @@
 
 package com.linkbubble.ui;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-
-import androidx.core.content.ContextCompat;
 
 import com.linkbubble.BuildConfig;
 import com.linkbubble.Config;
@@ -152,13 +148,10 @@ public class EntryActivity extends Activity {
     }
 
     private void requestNotificationPermissionIfNeeded() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
             return;
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                == PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
+        NotificationPermissionActivity.markAsked(this);
         // Delegate to the dedicated transparent activity so the system dialog
         // survives this activity's imminent finish().
         Intent intent = new Intent(this, NotificationPermissionActivity.class);
