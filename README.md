@@ -35,10 +35,10 @@ errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 Use Node.js 18 for the project tools (lint / translations). You can install it
 with `nvm install 18` and activate it via `nvm use 18`.
 
-## Update SDK version
-Goto LinkBubble/build.gradle
-
-Update `compileSdkVersion` and `targetSdkVersion` to `33`, and `minSdkVersion` to `28`
+## SDK versions
+See `Application/LinkBubble/build.gradle`. The project currently uses
+`compileSdkVersion`/`targetSdkVersion` **34** and `minSdkVersion` **21**. Adjust these
+there if you need to retarget.
 
 ## Building
 
