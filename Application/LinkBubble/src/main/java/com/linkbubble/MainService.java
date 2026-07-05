@@ -127,11 +127,20 @@ public class MainService extends Service {
         if (mNotificationPermissionRequested) {
             return;
         }
-        mNotificationPermissionRequested = true;
 
+        // Best-effort fallback only: a Service has no background-activity-launch
+        // privilege (an active foreground service is still "background" for BAL),
+        // so this succeeds only while a visible activity exists — exactly when
+        // EntryActivity/HomeActivity already handle the request. Only burn the flag
+        // once the launch is accepted, so a later foreground-triggered start can retry.
         Intent intent = new Intent(this, NotificationPermissionActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        try {
+            startActivity(intent);
+            mNotificationPermissionRequested = true;
+        } catch (RuntimeException e) {
+            // Launch rejected (e.g. BAL-blocked on some OEMs); leave the flag unset.
+        }
     }
 
     @Override

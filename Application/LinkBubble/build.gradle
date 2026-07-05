@@ -22,7 +22,11 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 apply plugin:'com.android.application'
 
-boolean isRelease = project.gradle.startParameter.taskNames.any { it.contains("Release") }
+// Only true for tasks that actually package a release artifact — NOT for
+// lint*/test*Release tasks (which need no signing) so those don't get aborted.
+boolean isRelease = project.gradle.startParameter.taskNames.any {
+    (it.contains("assemble") || it.contains("bundle")) && it.contains("Release")
+}
 boolean hasReleaseSigning = [
         "LINK_BUBBLE_KEYSTORE_LOCATION",
         "LINK_BUBBLE_KEYSTORE_PASSWORD",
@@ -30,12 +34,26 @@ boolean hasReleaseSigning = [
         "LINK_BUBBLE_KEY_PASSWORD"
 ].every { System.getenv(it) }
 
-// Fail fast on a real release build when signing secrets are missing, so we
-// never silently ship a debug-signed (non-upgradeable) release artifact.
+// Fail fast on an explicit release packaging task when signing secrets are
+// missing, so we never silently ship a debug-signed (non-upgradeable) release.
 if (isRelease && !hasReleaseSigning) {
     throw new GradleException("Release build requested but signing env vars are missing: " +
             "set LINK_BUBBLE_KEYSTORE_LOCATION, LINK_BUBBLE_KEYSTORE_PASSWORD, " +
             "LINK_BUBBLE_KEY_ALIAS and LINK_BUBBLE_KEY_PASSWORD (see build-release.sh.template).")
+}
+
+// A plain `./gradlew build`/`assemble` also compiles the release variant, whose
+// task name isn't caught by isRelease above. Warn loudly (rather than hard-fail,
+// so build/test/lint still work) instead of silently emitting a debug-signed release.
+gradle.taskGraph.whenReady { graph ->
+    boolean assemblesRelease = graph.allTasks.any {
+        (it.name.startsWith("assemble") || it.name.startsWith("bundle")) && it.name.endsWith("Release")
+    }
+    if (assemblesRelease && !hasReleaseSigning) {
+        logger.warn("WARNING: building the release variant without signing env vars " +
+                "(LINK_BUBBLE_KEYSTORE_LOCATION/PASSWORD, LINK_BUBBLE_KEY_ALIAS/PASSWORD); " +
+                "the resulting release APK/bundle will be debug-signed.")
+    }
 }
 
 def localProperties = new Properties()
