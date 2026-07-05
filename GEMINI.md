@@ -24,20 +24,7 @@
 ### 1.5. 工作日誌記錄
 為了清楚記錄所有操作歷史，將使用 `WORKLOG.md` 檔案。每當完成一項重要操作後，應在檔案末尾追加一筆新的紀錄，內容包含操作日期、時間及具體行動描述。
 
-> Windows 環境相關內容請見 [Windows.md](./Windows.md)
-# 重新命名檔案
-python temp_ops.py mv "D:/path/to/old_name.html" "D:/path/to/new_name.html"
-
-# 刪除檔案或資料夾
-python temp_ops.py rm "D:/path/to/file_or_folder"
-```
-
-### 2.5. ADB 指令注意事項
-
-在 Windows PowerShell 環境下執行 ADB 指令時，若 `adb.exe` 位於當前目錄，必須使用 `./adb.exe` 而非僅輸入 `adb`。這是 PowerShell 的安全限制。
-
-*   **正確範例**：`./adb.exe devices`
-*   **錯誤範例**：`adb devices`
+> Windows 環境相關內容（檔案操作、ADB 指令等）請見 [Windows.md](./Windows.md)
 
 ---
 
@@ -87,14 +74,13 @@ Your communication must be direct, professional, and concise. Focus on the user'
    - 純文件/風格建議也要處理
 
 3. **驗證**
-   - 跑 `ruff check src/ tests/`
-   - 跑 `mypy src/autonomous_agent/`
-   - 跑 `pytest -v`
-   - 三項全部通過才能繼續
+   - 跑 `npm run lint`（semistandard 風格檢查）
+   - 跑 `./gradlew :LinkBubble:assembleDebug`（需 JDK 17）確認可建置
+   - 全部通過才能繼續
 
 4. **Commit & Push**
    - 寫清楚的 commit message（見下方慣例）
-   - 推到 origin 和 homee 兩個 remote
+   - 推到 `origin`
 
 5. **觸發下一輪 review**
    - 在 PR 留言 `/Gemini review`

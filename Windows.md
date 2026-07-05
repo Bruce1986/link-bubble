@@ -102,3 +102,16 @@ if __name__ == "__main__":
 **執行方式：**
 
 ```bash
+# 重新命名檔案
+python temp_ops.py mv "D:/path/to/old_name.html" "D:/path/to/new_name.html"
+
+# 刪除檔案或資料夾
+python temp_ops.py rm "D:/path/to/file_or_folder"
+```
+
+### 2.5. ADB 指令注意事項
+
+在 Windows PowerShell 環境下執行 ADB 指令時，若 `adb.exe` 位於當前目錄，必須使用 `./adb.exe` 而非僅輸入 `adb`。這是 PowerShell 的安全限制。
+
+*   **正確範例**：`./adb.exe devices`
+*   **錯誤範例**：`adb devices`

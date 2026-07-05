@@ -2,6 +2,13 @@
 
 Date: 2026-03-15
 
+> **狀態：已由本次 Android 相容性 PR 取代（superseded）。**
+> 本文件記錄的是 2026-03-15 當時 npm/native 依賴鏈的調查。此後「Possible Next Steps」第 1 項
+> 已完成：JNI C++ 原始碼已直接 vendored 進 `Application/LinkBubble/src/main/jni/` 並改由 CMake
+> 建置，`package.json` 已移除 `postinstall` 與 native 相依，Node 僅用於 lint / translate 工具鏈
+> （不再需要 `node-gyp`）。下方「package.json 定義」與 Node 版本疑慮描述的是修復前的情況，
+> 僅供歷史參考。目前建置流程請見 [README.md](../README.md) 與 [WORKLOG.md](../WORKLOG.md)。
+
 ## Summary
 
 `npm install` is currently not reliable on this repo with modern local toolchains.

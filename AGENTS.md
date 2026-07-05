@@ -49,14 +49,13 @@
    - 純文件/風格建議也要處理
 
 3. **驗證**
-   - 跑 `ruff check src/ tests/`
-   - 跑 `mypy src/autonomous_agent/`
-   - 跑 `pytest -v`
-   - 三項全部通過才能繼續
+   - 跑 `npm run lint`（semistandard 風格檢查）
+   - 跑 `./gradlew :LinkBubble:assembleDebug`（需 JDK 17）確認可建置
+   - 全部通過才能繼續
 
 4. **Commit & Push**
    - 寫清楚的 commit message（見下方慣例）
-   - 推到 origin 和 homee 兩個 remote
+   - 推到 `origin`
 
 5. **觸發下一輪 review**
    - 在 PR 留言 `/Gemini review`
