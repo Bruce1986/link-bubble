@@ -27,6 +27,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.linkbubble.ui.NotificationCloseAllActivity;
 import com.linkbubble.ui.NotificationHideActivity;
+import com.linkbubble.ui.NotificationPermissionActivity;
 import com.linkbubble.ui.NotificationUnhideActivity;
 import com.linkbubble.util.Analytics;
 import com.linkbubble.util.Util;
@@ -39,6 +40,7 @@ public class MainService extends Service {
 
     private static final String BCAST_CONFIGCHANGED = "android.intent.action.CONFIGURATION_CHANGED";
     private static final String OPENED_URL_FROM_RESTORE = "restore";
+    private static final String NOTIFICATION_CHANNEL_ID = "linkbubble_service_channel";
 
     private boolean mRestoreComplete;
 
@@ -73,6 +75,11 @@ public class MainService extends Service {
             return START_NOT_STICKY;
         }
 
+        // The foreground service relies on its ongoing notification; make sure we
+        // ask for POST_NOTIFICATIONS regardless of which entry point started us
+        // (e.g. EntryActivity, which never opens HomeActivity).
+        maybeRequestNotificationPermission();
+
         long urlLoadStartTime = intent.getLongExtra("start_time", System.currentTimeMillis());
         if (cmd.compareTo("open") == 0) {
             String url = intent.getStringExtra("url");
@@ -103,6 +110,26 @@ public class MainService extends Service {
         }
 
         return START_STICKY;
+    }
+
+    private void maybeRequestNotificationPermission() {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
+            return;
+        }
+
+        // Best-effort fallback only: a Service has no background-activity-launch
+        // privilege (an active foreground service is still "background" for BAL),
+        // so this succeeds only while a visible activity exists — exactly when
+        // EntryActivity/HomeActivity already handle the request. Only mark it asked
+        // once the launch is accepted, so a later foreground-triggered start can retry.
+        Intent intent = new Intent(this, NotificationPermissionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            startActivity(intent);
+            NotificationPermissionActivity.markAsked(this);
+        } catch (RuntimeException e) {
+            // Launch rejected (e.g. BAL-blocked on some OEMs); leave it unasked.
+        }
     }
 
     @Override
@@ -195,10 +222,10 @@ public class MainService extends Service {
     private synchronized String createChannel() {
         NotificationManager mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String name = "snap map fake location ";
+        String name = getString(R.string.app_name) + " Service";
         int importance = NotificationManager.IMPORTANCE_LOW;
 
-        NotificationChannel mChannel = new NotificationChannel("snap map channel", name, importance);
+        NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
 
         mChannel.enableLights(true);
         mChannel.setLightColor(Color.BLUE);
@@ -207,7 +234,7 @@ public class MainService extends Service {
         } else {
             stopSelf();
         }
-        return "snap map channel";
+        return NOTIFICATION_CHANNEL_ID;
     }
 
     /** code to post/handler request for permission */
@@ -218,6 +245,11 @@ public class MainService extends Service {
 
     @Override
     public void onDestroy() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(STOP_FOREGROUND_REMOVE);
+        } else {
+            stopForeground(true);
+        }
         MainApplication.postEvent(MainService.this, new OnDestroyMainServiceEvent());
         MainApplication.unregisterForBus(this, this);
         unregisterReceiver(mScreenReceiver);
@@ -286,7 +318,9 @@ public class MainService extends Service {
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        // FOREGROUND_SERVICE_TYPE_SPECIAL_USE was added in API 34; passing it on
+        // older releases (where the manifest cannot declare specialUse) throws.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NotificationHideActivity.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {
             startForeground(NotificationHideActivity.NOTIFICATION_ID, notification);
@@ -302,7 +336,8 @@ public class MainService extends Service {
         closeAllIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent closeAllPendingIntent = PendingIntent.getActivity(this, MainApplication.getNextRequestCode(), closeAllIntent, Util.getImmutablePendingIntentFlags());
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        String channel = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createChannel() : "";
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channel)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setPriority(Notification.PRIORITY_MIN)
                 .setContentTitle(getString(R.string.app_name))
@@ -316,7 +351,7 @@ public class MainService extends Service {
         // Nuke all previous notifications
         NotificationManagerCompat.from(this).cancel(NotificationUnhideActivity.NOTIFICATION_ID);
         NotificationManagerCompat.from(this).cancel(NotificationHideActivity.NOTIFICATION_ID);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {
             startForeground(NotificationUnhideActivity.NOTIFICATION_ID, notificationBuilder.build());
@@ -351,7 +386,10 @@ public class MainService extends Service {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if (myIntent.getAction().equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
-                MainController.get().onCloseSystemDialogs();
+                MainController mainController = MainController.get();
+                if (mainController != null) {
+                    mainController.onCloseSystemDialogs();
+                }
             }
         }
     };
@@ -360,7 +398,10 @@ public class MainService extends Service {
         @Override
         public void onReceive(Context context, Intent myIntent) {
             if ( myIntent.getAction().equals( BCAST_CONFIGCHANGED ) ) {
-                MainController.get().onOrientationChanged();
+                MainController mainController = MainController.get();
+                if (mainController != null) {
+                    mainController.onOrientationChanged();
+                }
             }
         }
     };
@@ -368,7 +409,10 @@ public class MainService extends Service {
     private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            MainController.get().updateScreenState(intent.getAction());
+            MainController mainController = MainController.get();
+            if (mainController != null) {
+                mainController.updateScreenState(intent.getAction());
+            }
         }
     };
 
@@ -397,8 +441,10 @@ public class MainService extends Service {
     }
 
     private void registerReceiverCompat(BroadcastReceiver receiver, IntentFilter filter) {
+        // These receivers only handle protected system broadcasts (screen, config
+        // change, close-system-dialogs), so they must not be exported to other apps.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+            registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
         } else {
             registerReceiver(receiver, filter);
         }

@@ -458,7 +458,7 @@ public class BubbleDraggable extends BubbleView implements Draggable {
             @Override
             public void onActionMove(DraggableHelper.MoveEvent e) {
                 if (mTouchDown) {
-                    int targetX = targetX = (int) (e.rawX - Config.mBubbleWidth * 0.5);
+                    int targetX = (int) (e.rawX - Config.mBubbleWidth * 0.5);
                     int targetY = (int) (e.rawY - Config.mBubbleHeight);
 
                     targetX = Util.clamp(Config.mBubbleSnapLeftX, targetX, Config.mBubbleSnapRightX);

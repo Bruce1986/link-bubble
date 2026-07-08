@@ -4,9 +4,12 @@
 
 package com.linkbubble.ui;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.linkbubble.Constant;
 import com.linkbubble.MainApplication;
@@ -34,6 +38,8 @@ import com.squareup.otto.Subscribe;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
+    private static final int REQUEST_CODE_DRAW_OVERLAYS = 33;
+    private static final int REQUEST_CODE_POST_NOTIFICATIONS = 34;
 
     Button mActionButtonView;
     Button mNewBubble;
@@ -45,9 +51,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     @TargetApi(23)
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {//should be 33
-//        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 33) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_DRAW_OVERLAYS) {
             Log.d(TAG, "onActivityResult: "+android.provider.Settings.canDrawOverlays(this));
+            requestNotificationPermissionIfNeeded();
         } else {
             Log.d(TAG, "onActivityResult: NOPE!!!!!");
         }
@@ -75,9 +82,11 @@ public class HomeActivity extends AppCompatActivity {
 
         if (android.os.Build.VERSION.SDK_INT >= 23 && !android.provider.Settings.canDrawOverlays(this)) {   //Android M Or Over
             Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, 33);
+            startActivityForResult(intent, REQUEST_CODE_DRAW_OVERLAYS);
             return;
         }
+
+        requestNotificationPermissionIfNeeded();
 
 //        if (!Settings.get().getTermsAccepted()) {
 //            final FrameLayout rootView = (FrameLayout)findViewById(android.R.id.content);
@@ -228,5 +237,48 @@ public class HomeActivity extends AppCompatActivity {
     @Subscribe
     public void onLinkLoadTimeStatsUpdatedEvent(Settings.LinkLoadTimeStatsUpdatedEvent event) {
         updateLinkLoadTimeStats();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode != REQUEST_CODE_POST_NOTIFICATIONS) {
+            return;
+        }
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        Toast.makeText(this, R.string.notification_permission_denied_message, Toast.LENGTH_LONG).show();
+    }
+
+    private void requestNotificationPermissionIfNeeded() {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
+            return;
+        }
+
+        // Auto-prompt at most once per install (persisted), so we don't re-pop this
+        // on every HomeActivity recreation (rotation, revisits) after a denial.
+        NotificationPermissionActivity.markAsked(this);
+
+        if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+            showNotificationPermissionRationale();
+            return;
+        }
+
+        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_CODE_POST_NOTIFICATIONS);
+    }
+
+    private void showNotificationPermissionRationale() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.notification_permission_rationale_title)
+                .setMessage(R.string.notification_permission_rationale_message)
+                .setPositiveButton(R.string.action_ok, (dialog, which) ->
+                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                                REQUEST_CODE_POST_NOTIFICATIONS))
+                .setNegativeButton(R.string.action_cancel, null)
+                .show();
     }
 }

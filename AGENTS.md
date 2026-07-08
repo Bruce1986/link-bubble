@@ -27,3 +27,61 @@
 - 在運行 npm 命令之前，請使用 `node --version` 驗證您正在使用 Node.js 18。
 - Gradle 構建需要 JDK 17。請確保 `JAVA_HOME` 指向 JDK 17 或在構建 Android 專案時使用 `.java-version` 檔案。該專案使用 Android Gradle Plugin 8.1.1 和 Gradle 8.1。
 - CI 環境不再支持 Python 2；請使用 Python 3，不要配置 Python 2。
+
+
+---
+
+## PR Review 自動化循環
+
+收到「抓取 review 意見」或 `/Gemini review` 相關指令後，執行以下循環：
+
+### 步驟
+
+1. **抓取 review comments**
+   - `gh api repos/{owner}/{repo}/pulls/{pr}/comments` 取得 inline comments
+   - `gh api repos/{owner}/{repo}/pulls/{pr}/reviews` 取得 review summary
+   - 篩選 `user.login == "gemini-code-assist[bot]"`
+   - 用時間戳過濾只處理新的 comments
+
+2. **修改程式碼**
+   - 合理建議直接實作
+   - 已被 owner 明確拒絕的建議跳過（查看先前對話紀錄）
+   - 純文件/風格建議也要處理
+
+3. **驗證**
+   - 跑 `npm run lint`（semistandard 風格檢查）
+   - 跑 `./gradlew :LinkBubble:assembleDebug`（需 JDK 17）確認可建置
+   - 全部通過才能繼續
+
+4. **Commit & Push**
+   - 寫清楚的 commit message（見下方慣例）
+   - 推到 `origin`
+
+5. **觸發下一輪 review**
+   - 在 PR 留言 `/Gemini review`
+
+6. **等待**
+   - `sleep 210` 秒（約 3.5 分鐘）等待 Gemini 回應
+   - 若時間到了沒有新 review，再等 60-120 秒重試
+
+7. **檢查終止條件後回到步驟 1**
+
+### 終止條件
+
+- Gemini 回覆包含 **"I have no feedback"** 或 **"no review comments were submitted"**
+- Gemini bot 達到每日額度限制（"daily quota"）
+- 使用者手動要求停止
+
+---
+
+## Commit 慣例
+
+```
+<type>: <簡述>
+
+<詳細說明>
+
+Co-Authored-By: <agent-name> <noreply@anthropic.com>
+```
+
+Type: `fix`, `feat`, `refactor`, `chore`, `docs`, `test`

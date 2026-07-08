@@ -8,11 +8,15 @@ Copy `Application/LinkBubble/src/main/java/com/linkbubble/ConfigAPIs.java.templa
 
 Copy `Application/LinkBubble/src/main/AndroidManifest.xml.template` to `Application/LinkBubble/src/main/AndroidManifest.xml` and update any necessary configuration values.
 
-npm install  # pulls JNI sources via postinstall
+npm install  # installs devDependencies used by tooling (e.g. lint)
 npm run lint  # enforce semistandard style to ensure code quality and consistency
 
-Run `node --version` to confirm you are using Node.js 18 before running these
-commands. Newer Node versions may cause native module failures.
+The native JNI sources (ad-block / tracking-protection) are vendored directly
+under `Application/LinkBubble/src/main/jni/` and built via CMake, so no
+`postinstall` step is required.
+
+Node is only used for the tooling above (lint / translations); the native JNI
+sources no longer build through npm. Node.js 18 is recommended for consistency.
 
 ### Java Version
 The project requires JDK 17 for Gradle builds. Set your default Java to version 17
@@ -28,15 +32,13 @@ Using older JDK versions can lead to build failures such as a
 errors, verify that `JAVA_HOME` points to a JDK 17 installation.
 
 ### Node Version
-Use Node.js 18 for the project tools. You can install it with `nvm install 18`
-and activate it via `nvm use 18`. Newer versions may introduce compatibility issues with native
-modules.
-Confirm you are using Node.js 18 with `node --version` before building or running scripts.
+Use Node.js 18 for the project tools (lint / translations). You can install it
+with `nvm install 18` and activate it via `nvm use 18`.
 
-## Update SDK version
-Goto LinkBubble/build.gradle
-
-Update `compileSdkVersion` and `targetSdkVersion` to `33`, and `minSdkVersion` to `28`
+## SDK versions
+See `Application/LinkBubble/build.gradle`. The project currently uses
+`compileSdkVersion`/`targetSdkVersion` **34** and `minSdkVersion` **21**. Adjust these
+there if you need to retarget.
 
 ## Building
 
@@ -46,7 +48,7 @@ Open `./Application/` in Android Studio and build.  You'll need the NDK installe
 
 Copy `build-release.sh.template` to `build-release.sh`.
 
-Modify each of these exported environment variables: `LINK_BUBBLE_KEYSTORE_LOCATION`, `LINK_BUBBLE_KEYSTORE_PASSWORD`, and `LINK_BUBBLE_KEY_PASSWORD`.
+Modify each of these exported environment variables: `LINK_BUBBLE_KEYSTORE_LOCATION`, `LINK_BUBBLE_KEYSTORE_PASSWORD`, `LINK_BUBBLE_KEY_ALIAS`, and `LINK_BUBBLE_KEY_PASSWORD`. A release build fails fast if any of them is missing.
 
 If you get an error about similar to:
 

@@ -3,6 +3,7 @@
 # your build.
 
 cmake_minimum_required(VERSION 3.10.2)
+project(LinkBubbleNative)
 
 # Specifies a library name, specifies whether the library is STATIC or
 # SHARED, and provides relative paths to the source code. You can
@@ -12,6 +13,8 @@ cmake_minimum_required(VERSION 3.10.2)
 
 
 add_subdirectory(dlib dlib_build)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library( # Specifies the name of the library.
         LinkBubble
@@ -32,4 +35,3 @@ add_library( # Specifies the name of the library.
         TrackerData.cpp )
 
 target_link_libraries(LinkBubble PRIVATE dlib)
-

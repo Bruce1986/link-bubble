@@ -130,6 +130,13 @@ public class EntryActivity extends Activity {
 //                }
 
                 MainApplication.openLink(this, url, true, openedFromAppName);
+
+                // We are about to run the foreground bubble service, whose ongoing
+                // notification needs POST_NOTIFICATIONS on Android 13+. Trigger the
+                // request here from this visible activity (reliable), in addition to
+                // the fallback in MainService, since this entry path never opens
+                // HomeActivity.
+                requestNotificationPermissionIfNeeded();
             } else {
                 MainApplication.openInBrowser(this, intent, true, false);
             }
@@ -138,6 +145,18 @@ public class EntryActivity extends Activity {
         }
 
         finish();
+    }
+
+    private void requestNotificationPermissionIfNeeded() {
+        if (!NotificationPermissionActivity.shouldAutoRequest(this)) {
+            return;
+        }
+        NotificationPermissionActivity.markAsked(this);
+        // Delegate to the dedicated transparent activity so the system dialog
+        // survives this activity's imminent finish().
+        Intent intent = new Intent(this, NotificationPermissionActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     /*
